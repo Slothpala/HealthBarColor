@@ -3,6 +3,7 @@
 ## Title: HealthBarColor
 ## Author: Slothpala
 ## SavedVariables: HealthBarColorDB
+## X-Curse-Project-ID: 682398
 
 #Libs
 embeds.xml
