@@ -1,0 +1,17 @@
+## Interface: 100007
+## Version: @project-version@
+## Title: HealthBarColor
+## Author: Slothpala
+## SavedVariables: HealthBarColorDB
+
+#Libs
+embeds.xml
+
+#Config
+Core.lua
+DB\DB_Defaults.lua
+Options\Options.lua
+
+#Modules
+include_modules.xml
+
