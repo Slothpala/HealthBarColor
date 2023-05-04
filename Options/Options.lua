@@ -944,6 +944,7 @@ local options = {
                             get = "GetColor",
                             set = "SetColor",
                             disabled = function() return not HealthBarColor.db.profile.Settings.ReactionColorOverwrites.enabled end,
+                            width = 0.6,
                         },
                         neutral = {
                             order = 3,
@@ -953,6 +954,7 @@ local options = {
                             get = "GetColor",
                             set = "SetColor",
                             disabled = function() return not HealthBarColor.db.profile.Settings.ReactionColorOverwrites.enabled end,
+                            width = 0.6,
                         },
                         friendly = {
                             order = 4,
@@ -962,6 +964,7 @@ local options = {
                             get = "GetColor",
                             set = "SetColor",
                             disabled = function() return not HealthBarColor.db.profile.Settings.ReactionColorOverwrites.enabled end,
+                            width = 0.6,
                         },
                         newline2 = {
                             order = 5,
