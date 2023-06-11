@@ -708,7 +708,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.45,
+                            width = 0.5,
                         },
                         BackgroundTextures = {
                             order = 3,
