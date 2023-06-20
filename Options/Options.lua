@@ -746,6 +746,15 @@ local options = {
                             set = "SetStatus",
                             width = 0.36,
                         },
+                        HideClassPowerBar = {
+                            order = 7,
+                            name = "HideClassPowerBar",
+                            desc = "Hide the class power bar.",
+                            type = "toggle",
+                            get = "GetStatus",
+                            set = "SetStatus",
+                            width = 0.9,
+                        },
                     },
                 },
                 ClassColorOverwrites = {
