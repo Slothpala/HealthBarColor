@@ -96,6 +96,7 @@ local defaults = {
                 DebuffColor        = false,
                 PartyColor         = false,
                 Glow               = false,
+                HideClassPowerBar  = false,
                 ['*']              = true,
             },
             ClassColorOverwrites = {
