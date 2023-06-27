@@ -120,7 +120,46 @@ local ACD        = LibStub("AceConfigDialog-3.0")
 local AceGUI     = LibStub("AceGUI-3.0")
 local LibDeflate = LibStub:GetLibrary("LibDeflate")
 local LDS        = LibStub("LibDualSpec-1.0")
-local GUI
+
+--GUI Shared xml template with AceGUI widgets 
+local OptionsFrame = CreateFrame("Frame", "HealthBarColorOptions", UIParent, "PortraitFrameTemplate")
+tinsert(UISpecialFrames, OptionsFrame:GetName())
+OptionsFrame:SetFrameStrata("DIALOG")
+OptionsFrame:SetSize(800,500)
+OptionsFrame:SetPoint("CENTER", UIparent, "CENTER")
+OptionsFrame:EnableMouse(true)
+OptionsFrame:SetMovable(true)
+OptionsFrame:SetResizable(true)
+OptionsFrame:SetResizeBounds(300,200)
+OptionsFrame:SetClampedToScreen(true)
+OptionsFrame:RegisterForDrag("LeftButton")
+OptionsFrame:SetScript("OnDragStart", OptionsFrame.StartMoving)
+OptionsFrame:SetScript("OnDragStop", OptionsFrame.StopMovingOrSizing)
+OptionsFrame:Hide()
+HealthBarColorOptionsPortrait:SetTexture("Interface\\AddOns\\HealthBarColor\\Textures\\Icon\\Icon.tga")
+HealthBarColorOptionsTitleText:SetText("HealthBarColor")
+
+local resizeButton = CreateFrame("Button", "HealthBarColorOptionsResizeButton", OptionsFrame)
+resizeButton:SetPoint("BOTTOMRIGHT", -5, 7)
+resizeButton:SetSize(14, 14)
+resizeButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+resizeButton:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+resizeButton:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+resizeButton:SetScript("OnMouseDown", function(_, button) 
+    if button == "LeftButton" then
+        OptionsFrame:StartSizing("BOTTOMRIGHT")
+    end
+end)
+resizeButton:SetScript("OnMouseUp", function()
+    OptionsFrame:StopMovingOrSizing("BOTTOMRIGHT")
+end)
+
+local container = AceGUI:Create("SimpleGroup")
+container.frame:SetParent(OptionsFrame)
+container.frame:SetPoint("TOPLEFT", OptionsFrame, "TOPLEFT", 2, -22)
+container.frame:SetPoint("BOTTOMRIGHT", OptionsFrame, "BOTTOMRIGHT", -2, 3)
+OptionsFrame.container = container
+--
 
 function HealthBarColor:OnInitialize()
     --Initial work
@@ -168,8 +207,6 @@ function HealthBarColor:OnEnable()
     options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db) 
     --register options as option table to create a gui based on it
     AC:RegisterOptionsTable("HealthBarColor_options", options) 
-    --add them to blizzards settings panel for addons
-    self.optionsFrame = ACD:AddToBlizOptions("HealthBarColor_options", "HealthBarColor")
     --add dual specc support 
     LDS:EnhanceDatabase(self.db, "HealthBarColor") 
     LDS:EnhanceOptions(options.args.profile, self.db) 
@@ -179,11 +216,11 @@ function HealthBarColor:OnEnable()
 end
 
 function HealthBarColor:SlashCommand()
-    if ACD.OpenFrames["HealthBarColor_options"] then
-        ACD:Close("HealthBarColor_options")
+    if OptionsFrame:IsShown() then
+        OptionsFrame:Hide()
     else
-        ACD:SetDefaultSize("HealthBarColor_options",820,720)
-        ACD:Open("HealthBarColor_options",GUI)
+        ACD:Open("HealthBarColor_options", OptionsFrame.container)
+        OptionsFrame:Show()
     end
 end
 
@@ -495,3 +532,7 @@ function HealthBarColor:EmptyTables()
     OnEnteringWorld_Callbaks  = {}
 end
 
+--Addon compartment 
+_G.HealthBarColor_AddOnCompartmentClick = function()
+    HealthBarColor:SlashCommand()
+end
