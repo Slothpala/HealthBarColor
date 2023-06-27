@@ -3,6 +3,8 @@
 ## Title: HealthBarColor
 ## Author: Slothpala
 ## SavedVariables: HealthBarColorDB
+## AddonCompartmentFunc: HealthBarColor_AddOnCompartmentClick
+## IconTexture: Interface\AddOns\HealthBarColor\Textures\Icon\Icon.tga
 ## X-Curse-Project-ID: 682398
 
 #Libs
