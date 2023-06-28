@@ -2,7 +2,8 @@
     Created by Slothpala 
 --]]
 local Media     = LibStub("LibSharedMedia-3.0")
-Media:HashTable("statusbar")
+local statusbars =  LibStub("LibSharedMedia-3.0"):List("statusbar")
+
 local lastEntry = 6
 local selectedWidth, colorWidth, statusBarWidth = 1, 0.4, 1.8
 local options = {
@@ -981,23 +982,37 @@ local options = {
                         healthbar = {
                             order = 1,
                             type = "select",
-                            dialogControl = "LSM30_Statusbar", 
-                            name = "Health Bar", 
-                            values = Media:HashTable("statusbar"), 
-                            get = "GetStatus",
-                            set = "SetStatus",
-                            width = statusBarWidth,
+                            name = "Health Bar",
+                            values = statusbars,
+                            get = function()
+                                for i, v in next, statusbars do
+                                    if v == HealthBarColor.db.profile.Modules.Textures.healthbar then return i end
+                                end
+                            end,
+                            set = function(_, value)
+                                HealthBarColor.db.profile.Modules.Textures.healthbar  = statusbars[value]
+                                HealthBarColor:ReloadConfig()
+                            end,
+                          itemControl = "DDI-Statusbar",
+                          width = statusBarWidth,
                         },
                         powerbar = {
                             order = 2,
                             type = "select",
-                            dialogControl = "LSM30_Statusbar", 
-                            name = "Power Bar", 
-                            values = Media:HashTable("statusbar"), 
-                            get = "GetStatus",
-                            set = "SetStatus",
-                            width = statusBarWidth,
-                            disabled  = function() return HealthBarColor.db.profile.Modules.Textures.excludep end,
+                            name = "Power Bar",
+                            values = statusbars,
+                            get = function()
+                                for i, v in next, statusbars do
+                                    if v == HealthBarColor.db.profile.Modules.Textures.powerbar then return i end
+                                end
+                            end,
+                            set = function(_, value)
+                                HealthBarColor.db.profile.Modules.Textures.powerbar  = statusbars[value]
+                                HealthBarColor:ReloadConfig()
+                            end,
+                          itemControl = "DDI-Statusbar",
+                          width = statusBarWidth,
+                          disabled  = function() return HealthBarColor.db.profile.Modules.Textures.excludep end,
                         },
                         excludep = {
                             order = 3,
@@ -1020,12 +1035,19 @@ local options = {
                         texture = {
                             order = 1,
                             type = "select",
-                            dialogControl = "LSM30_Statusbar", 
-                            name = "Texture", 
-                            values = Media:HashTable("statusbar"), 
-                            get = "GetStatus",
-                            set = "SetStatus",
-                            width = statusBarWidth,
+                            name = "Texture",
+                            values = statusbars,
+                            get = function()
+                                for i, v in next, statusbars do
+                                    if v == HealthBarColor.db.profile.Modules.BackgroundTextures.texture then return i end
+                                end
+                            end,
+                            set = function(_, value)
+                                HealthBarColor.db.profile.Modules.BackgroundTextures.texture  = statusbars[value]
+                                HealthBarColor:ReloadConfig()
+                            end,
+                          itemControl = "DDI-Statusbar",
+                          width = statusBarWidth,
                         },
                         color = {
                             order = 2,
