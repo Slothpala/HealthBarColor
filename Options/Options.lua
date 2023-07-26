@@ -650,7 +650,7 @@ local options = {
         },
         Settings = {
             order = 2,
-            name = "Settings",
+            name = "Enabled Modules",
             type = "group",
             args = {
                 Modules = {
