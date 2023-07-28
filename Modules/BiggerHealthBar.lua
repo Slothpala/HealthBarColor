@@ -1,0 +1,102 @@
+--[[
+    Created by Slothpala 
+--]]
+local BiggerHealthBar = HealthBarColor:NewModule("BiggerHealthBar")
+--hook stuff
+local hooked = {}
+local callbacks = {}
+local donothing = function() end
+local Player = HealthBarColor:GetUnit("Player")
+Player.frameContainer = PlayerFrame.PlayerFrameContainer
+
+local textures = {
+	FrameTexture = {
+		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_FrameTexture.tga",
+		coords = {26.5/256, 223.5/256, 27/128, 97/128}
+	},
+	FrameFlash = {
+		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_FrameFlash.tga",
+		coords = {27.5/256, 219/256, 26/128, 96/128}
+	},
+	AlternateFrameTexture = {
+		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_AlternateFrameTexture.tga",
+		coords = {26.5/256, 223.5/256, 27/128, 100/128}
+	},
+	AlternateFrameFlash = {
+		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_AlternateFrameFlash.tga",
+		coords = {27.5/256, 219/256, 26/128, 96.5/128}
+	},
+	Mask = {
+		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_PlayerFrameHealthMask.tga",
+		coords = {2/128, 126/128, 15/64, 52/64}
+	},
+} 
+
+local function toPlayerArt() 
+	local isAlterntePowerFrame = PlayerFrame.activeAlternatePowerBar
+	local frameTexture = isAlterntePowerFrame and Player.frameContainer.AlternatePowerFrameTexture or Player.frameContainer.FrameTexture
+	if isAlterntePowerFrame then
+		frameTexture:SetTexture(textures["AlternateFrameTexture"].path)
+		frameTexture:SetTexCoord(unpack(textures["AlternateFrameTexture"].coords))
+		Player.frameContainer.FrameFlash:SetTexture(textures["AlternateFrameFlash"].path)
+		Player.frameContainer.FrameFlash:SetTexCoord(unpack(textures["AlternateFrameFlash"].coords))
+		Player.HealthBar.HealthBarMask:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health-Mask")
+		Player.HealthBar.HealthBarMask:SetPoint("TOPLEFT",Player.HealthBar,-2,9)
+		Player.HealthBar.HealthBarMask:SetPoint("BOTTOMRIGHT",Player.HealthBar,2,-10)
+	else
+		frameTexture:SetTexture(textures["FrameTexture"].path)
+		frameTexture:SetTexCoord(unpack(textures["FrameTexture"].coords))
+		Player.frameContainer.FrameFlash:SetTexture(textures["FrameFlash"].path)
+		Player.frameContainer.FrameFlash:SetTexCoord(unpack(textures["FrameFlash"].coords))
+		Player.HealthBar.HealthBarMask:SetTexture(textures["Mask"].path)
+		Player.HealthBar.HealthBarMask:SetPoint("TOPLEFT",Player.HealthBar,-3,7)
+		Player.HealthBar.HealthBarMask:SetPoint("BOTTOMRIGHT",Player.HealthBar,2,-12)
+	end
+	Player.HealthBar:SetHeight(31)
+end
+
+
+function BiggerHealthBar:OnEnable()
+    callbacks["PlayerFrame_ToPlayerArt"] = function() toPlayerArt() end
+    if not hooked["PlayerFrame_ToPlayerArt"] then
+        hooksecurefunc("PlayerFrame_ToPlayerArt", function() callbacks["PlayerFrame_ToPlayerArt"]() end)
+    end
+    toPlayerArt()
+    for _,ressourcebar in pairs({
+        Player.PowerBar,
+        InsanityBarFrame,
+    }) do
+        callbacks[ressourcebar] = function() ressourcebar:Hide() end
+        if not hooked[ressourcebar] then
+            ressourcebar:HookScript("OnShow",function() callbacks[ressourcebar]() end)
+        end
+        ressourcebar:Hide()
+    end
+end
+
+function BiggerHealthBar:OnDisable()
+    callbacks["PlayerFrame_ToPlayerArt"] = donothing
+	local isAlterntePowerFrame = PlayerFrame.activeAlternatePowerBar
+	local frameTexture = isAlterntePowerFrame and Player.frameContainer.AlternatePowerFrameTexture or Player.frameContainer.FrameTexture
+    if isAlterntePowerFrame then
+		frameTexture:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-ClassResource")
+        frameTexture:SetTexCoord(0,1,0,1)
+		Player.frameContainer.FrameFlash:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-ClassResource-InCombat")
+        Player.frameContainer.FrameFlash:SetTexCoord(0,1,0,1)
+	else
+		frameTexture:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn")
+        frameTexture:SetTexCoord(0,1,0,1)
+		Player.frameContainer.FrameFlash:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-InCombat")
+        Player.frameContainer.FrameFlash:SetTexCoord(0,1,0,1)
+	end
+    Player.HealthBar.HealthBarMask:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health-Mask")
+	Player.HealthBar:SetHeight(20)
+    for _,ressourcebar in pairs({
+        Player.PowerBar,
+        InsanityBarFrame,
+    }) do
+        callbacks[ressourcebar] = donothing
+		ressourcebar:Show()
+    end
+end
+

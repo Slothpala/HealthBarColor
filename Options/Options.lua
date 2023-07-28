@@ -722,6 +722,15 @@ local options = {
                             set = "SetStatus",
                             width = 0.9,
                         },
+                        BiggerHealthBar = {
+                            order = 8,
+                            name = "BiggerHealthBar",
+                            desc = "Resizes the player's health bar to cover the entire inner player frame.",
+                            type = "toggle",
+                            get = "GetStatus",
+                            set = "SetStatus",
+                            width = 0.9,
+                        },
                     },
                 },
                 ClassColorOverwrites = {
