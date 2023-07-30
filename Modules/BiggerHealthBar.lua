@@ -55,12 +55,14 @@ local function toPlayerArt()
 	Player.HealthBar:SetHeight(31)
 end
 
+local function toVehicelArt() 
+	Player.frameContainer.FrameFlash:SetTexCoord(0,1,0,1)
+end
+
 
 function BiggerHealthBar:OnEnable()
-    callbacks["PlayerFrame_ToPlayerArt"] = function() toPlayerArt() end
-    if not hooked["PlayerFrame_ToPlayerArt"] then
-        hooksecurefunc("PlayerFrame_ToPlayerArt", function() callbacks["PlayerFrame_ToPlayerArt"]() end)
-    end
+	HealthBarColor:RegisterOnToPlayerArt(toPlayerArt)
+	HealthBarColor:RegisterOnToVehicleArt(toVehicelArt)
     toPlayerArt()
     for _,ressourcebar in pairs({
         Player.PowerBar,
@@ -75,7 +77,6 @@ function BiggerHealthBar:OnEnable()
 end
 
 function BiggerHealthBar:OnDisable()
-    callbacks["PlayerFrame_ToPlayerArt"] = donothing
 	local isAlterntePowerFrame = PlayerFrame.activeAlternatePowerBar
 	local frameTexture = isAlterntePowerFrame and Player.frameContainer.AlternatePowerFrameTexture or Player.frameContainer.FrameTexture
     if isAlterntePowerFrame then
