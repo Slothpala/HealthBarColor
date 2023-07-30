@@ -446,7 +446,8 @@ function HealthBarColor:GetReactionColor(hbc_unit, unit)
     return reactionColor
 end
 --tables that will be used to save registered callback functions into
-local OnTargetChanged_Callbacks = {}; local OnToTChanged_Callbacks = {}; local OnFocusChanged_Callbacks = {}; local OnToFChanged_Callbacks = {}; local OnEnteringWorld_Callbaks = {}
+local OnTargetChanged_Callbacks , OnToTChanged_Callbacks, OnFocusChanged_Callbacks, OnToFChanged_Callbacks , OnEnteringWorld_Callbaks, ToPlayerArt_Callbacks, ToVehiceleArt_Callbacks = {}, {}, {}, {}, {}, {}, {}
+local hooked = {}
 
 function HealthBarColor:OnTargetChanged()
     self:OnToTChanged()
@@ -502,7 +503,6 @@ function HealthBarColor:OnSelectionColorChanged(self, unit)
     end
 end
 
-
 --Register
 --modules will register callback functions on events
 --first parameter can be any string for debug purposes use "ModuleName.."
@@ -526,12 +526,42 @@ function HealthBarColor:RegisterOnEnteringWorld(anyname, callback)
     OnEnteringWorld_Callbaks[anyname] = callback
 end
 
+function HealthBarColor:RegisterOnToPlayerArt(callback)
+    ToPlayerArt_Callbacks[#ToPlayerArt_Callbacks+1] = callback
+    if not hooked["PlayerFrame_ToPlayerArt"] then
+        hooksecurefunc("PlayerFrame_ToPlayerArt", function() 
+            for i = 1,#ToPlayerArt_Callbacks do 
+                ToPlayerArt_Callbacks[i]()
+            end
+        end)
+        hooked["PlayerFrame_ToPlayerArt"] = true
+    end
+end
+
+function HealthBarColor:RegisterOnToVehicleArt(callback)
+    ToVehiceleArt_Callbacks[#ToVehiceleArt_Callbacks+1] = callback
+    if not hooked["PlayerFrame_ToVehicleArt"] then
+        hooksecurefunc("PlayerFrame_ToVehicleArt", function() 
+            for i = 1,#ToVehiceleArt_Callbacks do 
+                ToVehiceleArt_Callbacks[i]()
+            end
+        end)
+        hooked["PlayerFrame_ToVehicleArt"] = true
+    end
+end
+
 function HealthBarColor:EmptyTables()
-    OnTargetChanged_Callbacks = {}
-    OnToTChanged_Callbacks    = {}
-    OnFocusChanged_Callbacks  = {}
-    OnToFChanged_Callbacks    = {}
-    OnEnteringWorld_Callbaks  = {}
+    for _,callbackTable in pairs({
+        OnTargetChanged_Callbacks,
+        OnToTChanged_Callbacks,
+        OnFocusChanged_Callbacks,
+        OnToFChanged_Callbacks,
+        OnEnteringWorld_Callbaks,
+        ToPlayerArt_Callbacks,
+        ToVehiceleArt_Callbacks
+    }) do
+        callbackTable = {}
+    end
 end
 
 --Addon compartment 
