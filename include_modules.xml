@@ -8,4 +8,5 @@
   <Include file="Modules\Fonts\load_fonts.xml"/>
   <Include file="Modules\Glow\load_glow.xml"/>
   <Script file="Modules\BiggerHealthBar.lua"/>
+  <Script file="Modules\Overabsorb.lua"/>
 </Ui>

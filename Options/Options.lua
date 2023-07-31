@@ -731,6 +731,15 @@ local options = {
                             set = "SetStatus",
                             width = 0.9,
                         },
+                        Overabsorb = {
+                            order = 8,
+                            name = "Overabsorb",
+                            desc = "",
+                            type = "toggle",
+                            get = "GetStatus",
+                            set = "SetStatus",
+                            width = 0.9,
+                        },
                     },
                 },
                 ClassColorOverwrites = {

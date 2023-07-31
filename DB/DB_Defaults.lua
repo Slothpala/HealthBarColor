@@ -93,6 +93,7 @@ local defaults = {
                 Glow               = false,
                 HideClassPowerBar  = false,
                 BiggerHealthBar    = false,
+                Overabsorb         = false,
                 ['*']              = true,
             },
             ClassColorOverwrites = {
