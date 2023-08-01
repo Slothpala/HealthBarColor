@@ -17,9 +17,14 @@ end
 function HBC_Unit:SetStatusBarReactionColored()
     self.HealthBar:SetStatusBarColor(self.ReactionColor:GetRGB())
 end
+function HBC_Unit:AddAbsorbVariables()
+    self.OverAbsorbGlow = self.HealthBar.OverAbsorbGlow
+    self.TotalAbsorbBar = self.HealthBar.TotalAbsorbBar
+    self.TotalAbsorbBarOverlay = self.HealthBar.TotalAbsorbBarOverlay
+end
 local metatable = {__index = HBC_Unit}
 --player
-local Player = {}
+local Player        = setmetatable({},metatable)
 Player.HealthBar    = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar
 Player.PowerBar     = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar
 Player.Portrait     = _G.PlayerFrame.PlayerFrameContainer.PlayerPortrait
