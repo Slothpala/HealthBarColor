@@ -2,76 +2,63 @@
     Created by Slothpala 
 	Based on https://www.curseforge.com/wow/addons/derangement-shieldmeters.
 --]]
-local Overabsorb = HealthBarColor:NewModule("Overabsorb")
-local whitelistedUnit = {
-	["player"] = true,
-	["target"] = true,
-	--["focus"] = true,
-}
-local donothing = function() end
-local UnitFrame_Update_Callback 
-local UnitFrameHealPredictionBars_Update_Callback
-local hooked = {}
 
+local Overabsorb = HealthBarColor:NewModule("Overabsorb")
+local donothing = function() end
+local UnitFrameHealPredictionBars_Update_Callback = nil
+local hooked = nil
+
+local function anchorGlowToOverlay(HBC_Unit)
+	HBC_Unit.TotalAbsorbBarOverlay:ClearAllPoints()
+	HBC_Unit.OverAbsorbGlow:ClearAllPoints()
+	HBC_Unit.OverAbsorbGlow:SetPoint("TOPLEFT", HBC_Unit.TotalAbsorbBarOverlay, "TOPLEFT", -5, 0)
+	HBC_Unit.OverAbsorbGlow:SetPoint("BOTTOMLEFT", HBC_Unit.TotalAbsorbBarOverlay, "BOTTOMLEFT", -5, 0)
+end
 
 function Overabsorb:OnEnable()
-	local glowColor
-	local overlayColor
-	UnitFrame_Update_Callback = function(frame)
-		if not whitelistedUnit[frame.unit] then 
-			return
-		end
-		local absorbOverlay = frame.totalAbsorbBarOverlay;
-		if not absorbOverlay then
-			return
-		end
-		absorbOverlay:ClearAllPoints()	
-		local absorbGlow = frame.overAbsorbGlow
-		if absorbGlow then
-			absorbGlow:ClearAllPoints()
-			absorbGlow:SetPoint("TOPLEFT", absorbOverlay, "TOPLEFT", -5, 0)
-			absorbGlow:SetPoint("BOTTOMLEFT", absorbOverlay, "BOTTOMLEFT", -5, 0)
-		end
+	local Player = HealthBarColor:GetUnit("Player")
+	local units = {
+		["player"] = Player,
+		--["target"] = Target,
+		--["focus"] = Focus,
+	}
+	for _,HBC_Unit in pairs (units) do
+		HBC_Unit:AddAbsorbVariables()
+		anchorGlowToOverlay(HBC_Unit)
 	end
-	if not hooked["UnitFrame_Update"] then
-		hooksecurefunc("UnitFrame_Update",function(frame) UnitFrame_Update_Callback(frame) end)
-		hooked["UnitFrame_Update"] = true
-	end
-	UnitFrameHealPredictionBars_Update_Callback = function(frame)
-		if not whitelistedUnit[frame.unit] then 
+	UnitFrameHealPredictionBars_Update_Callback = function(unit)
+		if not units[unit] then 
 			return
 		end
-		local absorbOverlay = frame.totalAbsorbBarOverlay;
-		if not absorbOverlay or absorbOverlay:IsForbidden() then
-			return
-		end
-		local absorbBar = frame.totalAbsorbBar
-		local healthBar = frame.healthbar
-		local _, maxHealth = healthBar:GetMinMaxValues()
+		print("hook")
+		HBC_Unit = units[unit]
+		local _, maxHealth = HBC_Unit.HealthBar:GetMinMaxValues()
 		if maxHealth <= 0 then
 			return
 		end
-		local totalAbsorb = UnitGetTotalAbsorbs(frame.unit) or 0
+		local totalAbsorb = UnitGetTotalAbsorbs(unit) or 0
 		if totalAbsorb > maxHealth then
 			totalAbsorb = maxHealth
 		end
 		if totalAbsorb > 0 then 
-			if absorbBar:IsShown() then 
-				absorbOverlay:SetPoint("TOPRIGHT", absorbBar, "TOPRIGHT", 0, 0);
-				absorbOverlay:SetPoint("BOTTOMRIGHT", absorbBar, "BOTTOMRIGHT", 0, 0);
+			if HBC_Unit.TotalAbsorbBar:IsShown() then 
+				HBC_Unit.TotalAbsorbBarOverlay:SetPoint("TOPRIGHT", HBC_Unit.TotalAbsorbBar, "TOPRIGHT", 0, 0);
+				HBC_Unit.TotalAbsorbBarOverlay:SetPoint("BOTTOMRIGHT", HBC_Unit.TotalAbsorbBar, "BOTTOMRIGHT", 0, 0);
 			else
-				absorbOverlay:SetPoint("TOPRIGHT", healthBar, "TOPRIGHT", 0, 0);
-				absorbOverlay:SetPoint("BOTTOMRIGHT", healthBar, "BOTTOMRIGHT", 0, 0);
+				HBC_Unit.TotalAbsorbBarOverlay:SetPoint("TOPRIGHT", HBC_Unit.HealthBar, "TOPRIGHT", 0, 0);
+				HBC_Unit.TotalAbsorbBarOverlay:SetPoint("BOTTOMRIGHT", HBC_Unit.HealthBar, "BOTTOMRIGHT", 0, 0);
 			end
-            local width = healthBar:GetWidth()			
+            local width = HBC_Unit.HealthBar:GetWidth()			
             local barSize = totalAbsorb / maxHealth * width
-            absorbOverlay:SetWidth(barSize)
-            absorbOverlay:Show()
+            HBC_Unit.TotalAbsorbBarOverlay:SetWidth(barSize)
+            HBC_Unit.TotalAbsorbBarOverlay:Show()
 		end
 	end
-	if not hooked["UnitFrameHealPredictionBars_Update"] then
-		hooksecurefunc("UnitFrameHealPredictionBars_Update",function(frame) UnitFrameHealPredictionBars_Update_Callback(frame) end)
-		hooked["UnitFrameHealPredictionBars_Update"] = true
+	if not hooked then
+		hooksecurefunc("UnitFrameHealPredictionBars_Update",function(frame) 
+			UnitFrameHealPredictionBars_Update_Callback(frame.unit) 
+		end)
+		hooked = true
 	end
 end
 
