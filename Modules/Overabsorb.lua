@@ -1,14 +1,13 @@
 --[[
     Created by Slothpala 
-	Based on https://www.curseforge.com/wow/addons/derangement-shieldmeters.
 --]]
 
 local Overabsorb = HealthBarColor:NewModule("Overabsorb")
 local donothing = function() end
 local UnitFrameHealPredictionBars_Update_Callback = nil
 local hooked = nil
-local Player = nil
-
+local Player, Target, Focus = nil, nil, nil
+local units = {}
 local function anchorGlowToOverlay(HBC_Unit)
 	HBC_Unit.TotalAbsorbBarOverlay:ClearAllPoints()
 	HBC_Unit.OverAbsorbGlow:ClearAllPoints()
@@ -18,10 +17,12 @@ end
 
 function Overabsorb:OnEnable()
 	Player = HealthBarColor:GetUnit("Player")
-	local units = {
+	Target = HealthBarColor:GetUnit("Target")
+	Focus = HealthBarColor:GetUnit("Focus")
+	units = {
 		["player"] = Player,
-		--["target"] = Target,
-		--["focus"] = Focus,
+		["target"] = Target,
+		["focus"] = Focus,
 	}
 	for _,HBC_Unit in pairs (units) do
 		HBC_Unit:AddAbsorbVariables()
@@ -59,7 +60,13 @@ function Overabsorb:OnEnable()
 			HBC_Unit.TotalAbsorbBarOverlay:Show()
 		end
 	end
-	UnitFrameHealPredictionBars_Update_Callback("player")
+	for _, unit in pairs ({
+		"player",
+		"target",
+		"focus",
+	}) do
+		UnitFrameHealPredictionBars_Update_Callback(unit)
+	end
 	if not hooked then
 		hooksecurefunc("UnitFrameHealPredictionBars_Update",function(frame) 
 			UnitFrameHealPredictionBars_Update_Callback(frame.unit) 
@@ -71,11 +78,17 @@ end
 function Overabsorb:OnDisable()
 	local function restore(HBC_Unit)
 		HBC_Unit.TotalAbsorbBarOverlay:ClearAllPoints()
-		HBC_Unit.TotalAbsorbBarOverlay:SetPoint("TOPLEFT", HBC_Unit.TotalAbsorbBar, "TOPLEFT", 0, 0)
-		HBC_Unit.TotalAbsorbBarOverlay:SetPoint("BOTTOMRIGHT", HBC_Unit.TotalAbsorbBar, "BOTTOMRIGHT", 0, 0)
-		HBC_Unit.TotalAbsorbBarOverlay:SetWidth(HBC_Unit.TotalAbsorbBar:GetWidth())
+		HBC_Unit.TotalAbsorbBarOverlay:SetAllPoints(HBC_Unit.TotalAbsorbBar)
+		if not HBC_Unit.TotalAbsorbBar:IsShown() then
+			HBC_Unit.TotalAbsorbBarOverlay:Hide()
+		end
+		HBC_Unit.OverAbsorbGlow:ClearAllPoints()
+		HBC_Unit.OverAbsorbGlow:SetPoint("TOPLEFT", HBC_Unit.HealthBar, "TOPRIGHT", -7, 0)
+		HBC_Unit.OverAbsorbGlow:SetPoint("BOTTOMLEFT", HBC_Unit.HealthBar, "BOTTOMRIGHT", -7, 0)
 	end
-	restore(Player)
+	for _,HBC_Unit in pairs (units) do
+		restore(HBC_Unit)
+	end
 	UnitFrame_Update_Callback = donothing
 	UnitFrameHealPredictionBars_Update_Callback = donothing
 end
