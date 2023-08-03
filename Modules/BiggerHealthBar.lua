@@ -71,6 +71,7 @@ function BiggerHealthBar:OnEnable()
         callbacks[ressourcebar] = function() ressourcebar:Hide() end
         if not hooked[ressourcebar] then
             ressourcebar:HookScript("OnShow",function() callbacks[ressourcebar]() end)
+			hooked[ressourcebar] = true
         end
         ressourcebar:Hide()
     end
