@@ -20,7 +20,7 @@ local textures = {
 	},
 	AlternateFrameTexture = {
 		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_AlternateFrameTexture.tga",
-		coords = {26.5/256, 223.5/256, 27/128, 100/128}
+		coords = {26/256, 224/256, 26/128, 100/128}
 	},
 	AlternateFrameFlash = {
 		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_AlternateFrameFlash.tga",
@@ -41,7 +41,7 @@ local function toPlayerArt()
 		Player.frameContainer.FrameFlash:SetTexture(textures["AlternateFrameFlash"].path)
 		Player.frameContainer.FrameFlash:SetTexCoord(unpack(textures["AlternateFrameFlash"].coords))
 		Player.HealthBar.HealthBarMask:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health-Mask")
-		Player.HealthBar.HealthBarMask:SetPoint("TOPLEFT",Player.HealthBar,-2,9)
+		Player.HealthBar.HealthBarMask:SetPoint("TOPLEFT",Player.HealthBar,-2,10)
 		Player.HealthBar.HealthBarMask:SetPoint("BOTTOMRIGHT",Player.HealthBar,2,-10)
 	else
 		frameTexture:SetTexture(textures["FrameTexture"].path)
