@@ -560,17 +560,13 @@ function HealthBarColor:RegisterOnToVehicleArt(callback)
 end
 
 function HealthBarColor:EmptyTables()
-    for _,callbackTable in pairs({
-        OnTargetChanged_Callbacks,
-        OnToTChanged_Callbacks,
-        OnFocusChanged_Callbacks,
-        OnToFChanged_Callbacks,
-        OnEnteringWorld_Callbaks,
-        ToPlayerArt_Callbacks,
-        ToVehiceleArt_Callbacks
-    }) do
-        callbackTable = {}
-    end
+    OnTargetChanged_Callbacks = {}
+    OnToTChanged_Callbacks = {}
+    OnFocusChanged_Callbacks = {}
+    OnToFChanged_Callbacks = {}
+    OnEnteringWorld_Callbaks = {}
+    ToPlayerArt_Callbacks = {}
+    ToVehiceleArt_Callback = {}
 end
 
 --Addon compartment 
