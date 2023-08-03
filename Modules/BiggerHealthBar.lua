@@ -8,11 +8,11 @@ local callbacks = {}
 local donothing = function() end
 local Player = HealthBarColor:GetUnit("Player")
 Player.frameContainer = PlayerFrame.PlayerFrameContainer
-
+--left, right, top, bottom
 local textures = {
 	FrameTexture = {
 		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_FrameTexture.tga",
-		coords = {26.5/256, 223.5/256, 27/128, 97/128}
+		coords = {26/256, 224/256, 26/128, 97/128}
 	},
 	FrameFlash = {
 		path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\Player\\BiggerHealthBar_FrameFlash.tga",
