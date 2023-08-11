@@ -3,7 +3,7 @@
 --]]
 local Media     = LibStub("LibSharedMedia-3.0")
 local statusbars =  LibStub("LibSharedMedia-3.0"):List("statusbar")
-
+local L = LibStub("AceLocale-3.0"):GetLocale("HealthBarColor")
 local lastEntry = 6
 local selectedWidth, colorWidth, statusBarWidth = 1, 0.4, 1.8
 local options = {
@@ -20,7 +20,7 @@ local options = {
         },
         HealthBars = {
             order = 1,
-            name = "Health Bars",
+            name = L["Health Bars"],
             type = "group",
             args = {
                 Player = {
