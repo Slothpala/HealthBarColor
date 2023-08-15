@@ -885,8 +885,8 @@ local options = {
                         },
                         ResetColors = {
                             order = 16,
-                            name = "reset",
-                            desc = "to default",
+                            name = L["reset"],
+                            desc = L["to default"],
                             type = "execute",
                             width = 0.4,
                             func = 
@@ -967,8 +967,8 @@ local options = {
                         },
                         ResetColors = {
                             order = 6,
-                            name = "reset",
-                            desc = "to default",
+                            name = L["reset"],
+                            desc = L["to default"],
                             type = "execute",
                             width = 0.4,
                             func = 
@@ -986,13 +986,13 @@ local options = {
         },
         Modules = {
             order = 3,
-            name = "Module Settings",
+            name = L["Module Settings"],
             type = "group",
             hidden  = function() return not (HealthBarColor.db.profile.Settings.Modules.Textures or HealthBarColor.db.profile.Settings.Modules.BackgroundTextures or HealthBarColor.db.profile.Settings.Modules.DebuffColor or HealthBarColor.db.profile.Settings.Modules.Glow) end,
             args = {
                 Textures = {
                     order = 1,
-                    name = "Textures",
+                    name = L["Textures"],
                     type = "group",
                     inline = true,
                     hidden  = function() return not HealthBarColor.db.profile.Settings.Modules.Textures end,
@@ -1035,7 +1035,7 @@ local options = {
                         excludep = {
                             order = 3,
                             name = "Exclude",
-                            desc = "exclude the power bar texture",
+                            desc = L["excludep_desc"],
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
@@ -1045,7 +1045,7 @@ local options = {
                 },
                 BackgroundTextures = {
                     order = 2,
-                    name = "Background Textures",
+                    name = L["Background Texture"],
                     type = "group",
                     inline = true,
                     hidden  = function() return not HealthBarColor.db.profile.Settings.Modules.BackgroundTextures end,
@@ -1053,7 +1053,7 @@ local options = {
                         texture = {
                             order = 1,
                             type = "select",
-                            name = "Texture",
+                            name = L["Texture"],
                             values = statusbars,
                             get = function()
                                 for i, v in next, statusbars do
@@ -1080,14 +1080,14 @@ local options = {
                 },
                 DebuffColor = {
                     order = 3,
-                    name = "Dispellable Debuff Color",
+                    name = L["debuff_color_name"],
                     type = "group",
                     inline = true,
                     hidden  = function() return not HealthBarColor.db.profile.Settings.Modules.DebuffColor end,
                     args = {
                         Curse = {
                             order = 1,
-                            name = "Curse",
+                            name = L["Curse"],
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
@@ -1095,7 +1095,7 @@ local options = {
                         },
                         Disease = {
                             order = 2,
-                            name = "Disease",
+                            name = L["Disease"],
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
@@ -1103,7 +1103,7 @@ local options = {
                         },
                         Magic = {
                             order = 3,
-                            name = "Magic",
+                            name = L["Magic"],
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
@@ -1111,7 +1111,7 @@ local options = {
                         },
                         Poison = {
                             order = 4,
-                            name = "Poison",
+                            name = L["Poison"],
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
@@ -1119,8 +1119,8 @@ local options = {
                         },
                         ignoreMagic = {
                             order = 5,
-                            name = "Ignore Magic",
-                            desc = "ignore magic debuffs",
+                            name = L["ignore_magic_name"],
+                            desc = L["ignore_magic_desc"],
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
@@ -1132,8 +1132,8 @@ local options = {
                         },
                         ResetColors = {
                             order = 8,
-                            name = "reset",
-                            desc = "to default",
+                            name = L["reset"],
+                            desc = L["to default"],
                             type = "execute",
                             width = 0.4,
                             func = 
@@ -1149,17 +1149,17 @@ local options = {
                 },
                 Glow = {
                     order = 4,
-                    name = "Glow",
+                    name = L["Glow"],
                     type = "group",
                     inline = true,
                     hidden  = function() return not HealthBarColor.db.profile.Settings.Modules.Glow end,
                     args = {
                         player = {
                             order = 1,
-                            name = "Player",
+                            name = L["Player"],
                             desc = "",
                             type = "select",
-                            values = {"class color","static color","hide"},
+                            values = {L["color_option_2"],L["color_option_3"],L["color_option_5"]},
                             sorting = {1,2,3},
                             get = "GetStatus",
                             set = "SetStatus",
@@ -1177,10 +1177,10 @@ local options = {
                         }, 
                         target = {
                             order = 2,
-                            name = "Target",
+                            name = L["Target"],
                             desc = "",
                             type = "select",
-                            values = {"class/reaction color","static color","hide"},
+                            values = {L["color_option_1"],L["color_option_3"],L["color_option_5"]},
                             sorting = {1,2,3},
                             get = "GetStatus",
                             set = "SetStatus",
@@ -1198,10 +1198,10 @@ local options = {
                         }, 
                         focus = {
                             order = 3,
-                            name = "Focus",
+                            name = L["Focus"],
                             desc = "",
                             type = "select",
-                            values = {"class/reaction color","static color","hide"},
+                            values = {L["color_option_1"],L["color_option_3"],L["color_option_5"]},
                             sorting = {1,2,3},
                             get = "GetStatus",
                             set = "SetStatus",
@@ -1221,32 +1221,40 @@ local options = {
                 },
             },
         },
-        ImportExportPofile = {
+        ProfileSettings = {
             order = lastEntry,
-            name = "Import/Export Profile",
+            name = "Profile Settings",
             type = "group",
+            childGroups = "tab",
             args = {
-                Header = {
-                    order = 1,
-                    name = "Share your profile or import one",
-                    type = "header",
-                },
-                Desc = {
+                ImportExportPofile = {
                     order = 2,
-                    name = "To export your current profile copy the code below.\nTo import a profile replace the code below and press Accept",
-                    fontSize = "medium",
-                    type = "description",
-                },
-                Textfield = {
-                    order = 3,
-                    name = "import/export from or to your current profile",
-                    desc = "Caution: Importing a profile will overwrite your current profile.",
-                    type = "input",
-                    multiline = 20,
-                    width = "full",
-                    confirm = function() return "Caution: Importing a profile will overwrite your current profile." end,
-                    get = function() return HealthBarColor:ShareProfile() end,
-                    set = function(self, input) HealthBarColor:ImportProfile(input); ReloadUI() end, 
+                    name = L["share_profile_title"],
+                    type = "group",
+                    args = {
+                        Header = {
+                            order = 1,
+                            name = L["share_profile_header"],
+                            type = "header",
+                        },
+                        Desc = {
+                            order = 2,
+                            name = L["share_profile_desc_row1"] .. "\n" .. L["share_profile_desc_row2"],
+                            fontSize = "medium",
+                            type = "description",
+                        },
+                        Textfield = {
+                            order = 3,
+                            name = L["share_profile_input_name"],
+                            desc = L["share_profile_input_desc"],
+                            type = "input",
+                            multiline = 20,
+                            width = "full",
+                            confirm = function() return L["share_profile_input_confirm_msg"] end,
+                            get = function() return HealthBarColor:ShareProfile() end,
+                            set = function(self, input) HealthBarColor:ImportProfile(input); ReloadUI() end, 
+                        },
+                    },
                 },
             },
         },

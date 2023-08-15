@@ -213,14 +213,15 @@ function HealthBarColor:OnEnable()
     --load own options table
     local options = self:GetOptionsTable()
     --create option table based on database structure and add them to options
-    options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db) 
+    options.args.ProfileSettings.args.profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db) 
+    options.args.ProfileSettings.args.profiles.order = 1
     --register options as option table to create a gui based on it
     AC:RegisterOptionsTable("HealthBarColor_options", options) 
     --add them to blizzards settings panel for addons
     self.optionsFrame = ACD:AddToBlizOptions("HealthBarColor_options", "HealthBarColor")
     --add dual specc support 
     LDS:EnhanceDatabase(self.db, "HealthBarColor") 
-    LDS:EnhanceOptions(options.args.profile, self.db) 
+    LDS:EnhanceOptions(options.args.ProfileSettings.args.profiles, self.db) 
     self:RegisterChatCommand("hbc", "SlashCommand")
     self:RegisterEvents()
     self:LoadConfig()
