@@ -1,6 +1,7 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("HealthBarColor", "enUS", true)
 
 --Modules
+L["Module Settings"] = true
 --Health Bars
 L["Health Bars"] = true
 --Fonts
@@ -12,11 +13,20 @@ L["outline_option_2"] = "THICKOUTLINE"
 L["outline_option_3"] = "MONOCHROME"
 L["outline_option_4"] = "NONE"
 --Textures
+L["Textures"] = true
 L["Texture"] = true
+L["excludep_desc"] = "exclude the power bar texture"
 --BackgroundTextures
 L["Background Texture"] = true
 --DebuffColor
 L["DebuffColor"] = true
+L["debuff_color_name"] = "Dispellable Debuff Color"
+L["Curse"] = true
+L["Disease"] = true
+L["Magic"] = true
+L["Poison"] = true
+L["ignore_magic_name"] = "Ignore Magic"
+L["ignore_magic_desc"] = "ignore magic debuffs"
 --PartyColor
 L["PartyColor"] = true
 --Glow
@@ -72,15 +82,17 @@ L["WAR"] = "Warrior"
 --Color options
 L["color"] = true
 L["NPC color"] = true
-L["NPC color by reaction"] = true
 L["color_options"] = "color by.."
+L["NPC color by reaction"] = true
 L["targets class color"] = true
 L["tot class color"] = true
 L["focus class color"] = true
 L["tof class color"] = true
+L["color_option_1"] = "class/reaction color"
 L["color_option_2"] = "my class color"
 L["color_option_3"] = "static color"
 L["color_option_4"] = "reaction color"
+L["color_option_5"] = "hide"
 --Status Bars
 L["Health Bar"] = true
 L["Power Bar"] = true
@@ -88,6 +100,17 @@ L["Power Bar"] = true
 L["Name"] = true
 L["reset"] = true
 L["to default"] = true
+L["Exclude"] = true
+--Profile Settings
+L["profiles_entry"] = "Profile Settings"
+--import/export
+L["share_profile_title"] = "Import/Export Profile"
+L["share_profile_header"] = "Share your profile or import one"
+L["share_profile_desc_row1"] = "To export your current profile copy the code below."
+L["share_profile_desc_row2"] = "To import a profile replace the code below and press Accept"
+L["share_profile_input_name"] = "import/export from or to your current profile"
+L["share_profile_input_desc"] = "Caution: Importing a profile will overwrite your current profile."
+L["share_profile_input_confirm_msg"] = "Caution: Importing a profile will overwrite your current profile."
 
-L[""] = true
-        
+
+
