@@ -5,10 +5,10 @@
 local CreateColor = CreateColor
 local UnitClass = UnitClass
 local GetRGB = GetRGB
+local UnitSelectionType = UnitSelectionType
 --lua local
 local pairs = pairs
 local select = select
-local UnitSelectionType = UnitSelectionType
 --HeealthBarColor Units
 local HBC_Unit = {}
 function HBC_Unit:SetStatusBarClassColored()
@@ -391,31 +391,22 @@ end
 function HealthBarColor:GetClassColors()
     return ClassColor
 end
+local HBC_Units = {
+    ["Player"] = Player,
+    ["Target"] = Target,
+    ["Focus"] = Focus,
+    ["ToT"] = ToT,
+    ["ToF"] = ToF,
+    ["Pet"] = Pet,
+    ["Boss1"] = Boss1,
+    ["Boss2"] = Boss2,
+    ["Boss3"] = Boss3,
+    ["Boss4"] = Boss4,
+    ["Boss5"] = Boss5,
+}
 --Get Units for other modules
 function HealthBarColor:GetUnit(unit_name)
-    if     unit_name == "Player" then
-        return Player
-    elseif unit_name == "Target" then
-        return Target
-    elseif unit_name == "Focus"  then 
-        return Focus
-    elseif unit_name == "ToT"    then 
-        return ToT
-    elseif unit_name == "ToF"    then 
-        return ToF
-    elseif unit_name == "Pet"    then 
-        return Pet
-    elseif unit_name == "Boss1"  then 
-        return Boss1
-    elseif unit_name == "Boss2"  then 
-        return Boss2
-    elseif unit_name == "Boss3"  then 
-        return Boss3
-    elseif unit_name == "Boss4"  then 
-        return Boss4
-    elseif unit_name == "Boss5"  then 
-        return Boss5
-    end
+    return HBC_Units[unit_name]
 end
 --Collect data
 --store information like class color reaction color in their local unit to be always available for all modules and to not repeat the work on every module
