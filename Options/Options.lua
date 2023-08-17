@@ -1,6 +1,9 @@
 --[[
     Created by Slothpala 
 --]]
+local _, addonTable = ...
+local HealthBarColor = addonTable.HealthBarColor
+
 local Media     = LibStub("LibSharedMedia-3.0")
 local statusbars =  LibStub("LibSharedMedia-3.0"):List("statusbar")
 local L = LibStub("AceLocale-3.0"):GetLocale("HealthBarColor")

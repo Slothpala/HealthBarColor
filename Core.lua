@@ -116,8 +116,10 @@ local ClassColor = {}
 --reaction colors
 local ReactionColor = {}
 --AddOn
+local addonName, addonTable = ...
 --create addon and get libraries
-HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
+addonTable.HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
+local HealthBarColor = addonTable.HealthBarColor
 HealthBarColor:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
 HealthBarColor:SetDefaultModuleState(false)
 local AC         = LibStub("AceConfig-3.0")
