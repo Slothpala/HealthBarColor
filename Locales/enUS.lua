@@ -110,7 +110,7 @@ L["share_profile_desc_row1"] = "To export your current profile copy the code bel
 L["share_profile_desc_row2"] = "To import a profile replace the code below and press Accept"
 L["share_profile_input_name"] = "import/export from or to your current profile"
 L["share_profile_input_desc"] = "Caution: Importing a profile will overwrite your current profile."
-L["share_profile_input_confirm_msg"] = "Caution: Importing a profile will overwrite your current profile."
+
 
 
 
