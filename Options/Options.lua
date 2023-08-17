@@ -669,7 +669,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.4,
                         },
                         Textures = {
                             order = 2,
@@ -678,7 +677,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.5,
                         },
                         BackgroundTextures = {
                             order = 3,
@@ -687,7 +685,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.9,
                         },
                         DebuffColor = {
                             order = 4,
@@ -696,7 +693,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.65,
                         },
                         PartyColor = {
                             order = 5,
@@ -705,7 +701,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.65,
                         },
                         Glow = {
                             order = 6,
@@ -714,7 +709,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.36,
                         },
                         HideClassPowerBar = {
                             order = 7,
@@ -723,7 +717,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.9,
                         },
                         BiggerHealthBar = {
                             order = 8,
@@ -732,7 +725,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.8,
                         },
                         Overabsorb = {
                             order = 8,
@@ -741,7 +733,6 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            width = 0.9,
                         },
                     },
                 },
@@ -1226,7 +1217,7 @@ local options = {
         },
         ProfileSettings = {
             order = lastEntry,
-            name = "Profile Settings",
+            name = L["profiles_entry"],
             type = "group",
             childGroups = "tab",
             args = {
@@ -1253,7 +1244,7 @@ local options = {
                             type = "input",
                             multiline = 20,
                             width = "full",
-                            confirm = function() return L["share_profile_input_confirm_msg"] end,
+                            confirm = function() return L["share_profile_input_desc"] end,
                             get = function() return HealthBarColor:ShareProfile() end,
                             set = function(self, input) HealthBarColor:ImportProfile(input); ReloadUI() end, 
                         },
