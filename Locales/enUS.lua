@@ -93,6 +93,8 @@ L["color_option_2"] = "my class color"
 L["color_option_3"] = "static color"
 L["color_option_4"] = "reaction color"
 L["color_option_5"] = "hide"
+L["color_option_6"] = "units class color"
+L["color_option_7"] = "units class/reaction color"
 --Status Bars
 L["Health Bar"] = true
 L["Power Bar"] = true
