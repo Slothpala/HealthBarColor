@@ -94,7 +94,7 @@ local options = {
                 },
                 ToT = {
                     order = 3,
-                    name = "Target of Target",
+                    name = L["Target of Target"],
                     type = "group",
                     inline = true,
                     args = {
@@ -158,7 +158,7 @@ local options = {
                         },  
                         reaction = {
                             order = 3,
-                            name = "NPC color by reaction",
+                            name = L["NPC color by reaction"],
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
@@ -168,7 +168,7 @@ local options = {
                 },
                 ToF = {
                     order = 5,
-                    name = L["Target of Target"],
+                    name = L["Target of Focus"],
                     type = "group",
                     inline = true,
                     args = {
@@ -672,7 +672,7 @@ local options = {
                         },
                         Textures = {
                             order = 2,
-                            name = L["Texture"],
+                            name = L["Textures"],
                             desc = L["tex_desc"],
                             type = "toggle",
                             get = "GetStatus",
