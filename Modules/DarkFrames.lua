@@ -6,7 +6,7 @@ local HealthBarColor = addonTable.HealthBarColor
 local DarkFrames = HealthBarColor:NewModule("DarkFrames")
 local color = {r=0.2,g=0.2,b=0.2,a=1}
 
-local function recolorFrames(r,g,b,a)
+local function recolorFrames(r,g,b,a,desaturation)
     local frameTextures = {
         PlayerFrame.PlayerFrameContainer.FrameTexture,
         PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture,
@@ -28,14 +28,15 @@ local function recolorFrames(r,g,b,a)
         PetFrameTexture
     }
     for _,frameTexture in pairs (frameTextures) do
+        frameTexture:SetDesaturation(desaturation)
         frameTexture:SetVertexColor(r,g,b,a)
     end
 end
 
 function DarkFrames:OnEnable()
-    recolorFrames(color.r,color.g,color.b,color.a)
+    recolorFrames(color.r,color.g,color.b,color.a,1)
 end
 
 function DarkFrames:OnDisable()
-    recolorFrames(1,1,1,1)
+    recolorFrames(1,1,1,1,0)
 end
