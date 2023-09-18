@@ -16,6 +16,7 @@ locales.xml
 Core.lua
 DB\DB_Defaults.lua
 Options\Options.lua
+ProfileSharing.lua
 
 
 #Modules
