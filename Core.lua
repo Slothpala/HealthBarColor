@@ -125,7 +125,6 @@ HealthBarColor:SetDefaultModuleState(false)
 local AC         = LibStub("AceConfig-3.0")
 local ACD        = LibStub("AceConfigDialog-3.0")
 local AceGUI     = LibStub("AceGUI-3.0")
-local LibDeflate = LibStub:GetLibrary("LibDeflate")
 local LDS        = LibStub("LibDualSpec-1.0")
 
 --GUI Shared xml template with AceGUI widgets 
@@ -302,50 +301,6 @@ function HealthBarColor:SetColor(info, r,g,b)
     self.db.profile[info[#info-2]][info[#info-1]][info[#info]].g = g
     self.db.profile[info[#info-2]][info[#info-1]][info[#info]].b = b
     self:ReloadConfig()
-end
---profile import / export functions
---[[
-    the method to share and import profiles is based on:
-    https://github.com/brittyazel/EnhancedRaidFrames/blob/main/EnhancedRaidFrames.lua
-]]--
-function HealthBarColor:ShareProfile()
-    --AceSerialize
-	local serialized_profile = self:Serialize(self.db.profile) 
-    --LibDeflate
-	local compressed_profile = LibDeflate:CompressZlib(serialized_profile) 
-	local encoded_profile    = LibDeflate:EncodeForPrint(compressed_profile)
-	return encoded_profile
-end
-
-function HealthBarColor:ImportProfile(input)
-    --validate input
-    --empty?
-    if input == "" then
-        self:Print("No import string provided. Abort")
-        return
-    end
-    --LibDeflate decode
-    local decoded_profile = LibDeflate:DecodeForPrint(input)
-    if decoded_profile == nil then
-        self:Print("Decoding failed. Abort")
-        return
-    end
-    --LibDefalte uncompress
-    local uncompressed_profile = LibDeflate:DecompressZlib(decoded_profile)
-    if uncompressed_profile == nil then
-        self:Print("Uncompressing failed. Abort")
-        return
-    end
-    --AceSerialize
-    --deserialize the profile and overwirte the current values
-    local valid, imported_Profile = self:Deserialize(uncompressed_profile)
-    if valid and imported_Profile then
-		for i,v in pairs(imported_Profile) do
-			self.db.profile[i] = CopyTable(v)
-		end
-    else
-        self:Print("Invalid profile. Abort")
-    end
 end
 --Color functions
 function HealthBarColor:CreateColors()
