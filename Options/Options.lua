@@ -858,6 +858,7 @@ local options = {
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
+                            guiHidden  = HealthBarColor.isClassic,
                             disabled = function() return not HealthBarColor.db.profile.Settings.ClassColorOverwrites.enabled end,
                         },
                         demonhunter = {
@@ -1081,7 +1082,7 @@ local options = {
             order = 3,
             name = L["Module Settings"],
             type = "group",
-            hidden  = function() return not (HealthBarColor.db.profile.Settings.Modules.Textures or HealthBarColor.db.profile.Settings.Modules.BackgroundTextures or HealthBarColor.db.profile.Settings.Modules.DebuffColor or HealthBarColor.db.profile.Settings.Modules.Glow) end,
+            hidden  = function() return not ((HealthBarColor.db.profile.Settings.Modules.Textures or HealthBarColor.db.profile.Settings.Modules.BackgroundTextures or HealthBarColor.db.profile.Settings.Modules.DebuffColor or HealthBarColor.db.profile.Settings.Modules.Glow)) and not HealthBarColor.isRetail end,
             args = {
                 Textures = {
                     order = 1,

@@ -28,14 +28,8 @@ ToT.HealthBar       = _G.TargetFrameToTHealthBar
 ToT.Name            = _G.TargetFrameToTTextureFrameName
 --focus
 local Focus        = setmetatable({},metatable)
-Focus.HealthBar    = _G.FocusFrameHealthBar
-Focus.Name         = _G.FocusFrameTextureFrameName
-Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
-Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
 --focustarget
 local ToF           = setmetatable({},metatable)
-ToF.HealthBar       = _G.FocusFrameToTHealthBar
-ToF.Name            = _G.FocusFrameToTTextureFrameName
 --pet
 local Pet           = {}
 Pet.HealthBar       = _G.PetFrameHealthBar
@@ -55,6 +49,14 @@ if tocversion < 30000 then
     HealthBarColor.isClassic = true
 elseif tocversion > 30000 and tocversion < 100000 then
     HealthBarColor.isWrath = true
+    --focus
+    Focus.HealthBar    = _G.FocusFrameHealthBar
+    Focus.Name         = _G.FocusFrameTextureFrameName
+    Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
+    Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
+    --tof
+    ToF.HealthBar       = _G.FocusFrameToTHealthBar
+    ToF.Name            = _G.FocusFrameToTTextureFrameName
 else
     HealthBarColor.isRetail = true
 end
