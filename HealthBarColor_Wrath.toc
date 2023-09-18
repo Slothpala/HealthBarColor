@@ -12,7 +12,7 @@ locales.xml
 
 #Config
 Core_Vanilla.lua
-DB\DB_Defaults_Vanilla.lua
+DB\DB_Defaults.lua
 Options\Options_Vanilla.lua
 ProfileSharing.lua
 
