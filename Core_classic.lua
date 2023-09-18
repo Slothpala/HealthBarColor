@@ -105,6 +105,10 @@ function HealthBarColor:LoadConfig()
     end
     self:OnTargetChanged()
     self:OnToTChanged()
+    if self.isWrath then
+        self:OnFocusChanged()
+        self:OnToFChanged()
+    end
 end
 
 local update_queued = nil
@@ -151,7 +155,7 @@ function HealthBarColor:CreateColors()
     ClassColor["MAGE"]        = {r=0.25,g=0.78,b=0.92}
     ClassColor["PALADIN"]     = {r=0.96,g=0.55,b=0.73}
     ClassColor["PRIEST"]      = {r=1,g=1,b=1}  
-    ClassColor["ROGUE"]       = {r=0,g=0.96,b=0.41} 
+    ClassColor["ROGUE"]       = {r=1,g=0.96,b=0.41} 
     ClassColor["SHAMAN"]      = {r=0,g=0.44,b=0.87}
     ClassColor["WARLOCK"]     = {r=0.53,g=0.53,b=0.93}
     ClassColor["WARRIOR"]     = {r=0.78,g=0.61,b=0.43}
