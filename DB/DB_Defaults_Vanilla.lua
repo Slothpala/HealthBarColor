@@ -21,6 +21,16 @@ local defaults = {
                 color     = {r=0,g=1,b=0},
                 reaction  = true,
             },
+            Focus = {
+                selected  = 1,
+                color     = {r=0,g=1,b=0},
+                reaction  = true,
+            },
+            ToF = {
+                selected  = 1,
+                color     = {r=0,g=1,b=0},
+                reaction  = true,
+            },
             Pet = {
                 selected  = 1,
                 color     = {r=0,g=1,b=0},
@@ -54,6 +64,14 @@ local defaults = {
                 powerbar_choice  = 4,
                 powerbar_color   = {r=1,g=1,b=1}, 
             },
+            Focus = {
+                name_choice      = 2,
+                name_color       = {r=0,g=1,b=0},
+                healthbar_choice = 2,
+                healthbar_color  = {r=0,g=1,b=0},
+                powerbar_choice  = 4,
+                powerbar_color   = {r=1,g=1,b=1},  
+            },
         },
         Settings = {
             Modules = {
@@ -64,12 +82,9 @@ local defaults = {
             ClassColorOverwrites = {
                 enabled       = false,
                 deathknight   = {r=0.77,g=0.12,b=0.23},
-                demonhunter   = {r=0.64,g=0.19,b=0.79},
                 druid         = {r=1.00,g=0.49,b=0.04},
-                evoker        = {r=0.20,g=0.58,b=0.50},
                 hunter        = {r=0.67,g=0.83,b=0.45},
                 mage          = {r=0.25,g=0.78,b=0.923},
-                monk          = {r=0.00,g=1.00,b=0.60},
                 paladin       = {r=0.96,g=0.55,b=0.73},
                 priest        = {r=1.00,g=1.00,b=1.00},
                 rogue         = {r=1.00,g=0.96,b=0.41},
