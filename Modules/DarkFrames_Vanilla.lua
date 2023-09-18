@@ -12,6 +12,10 @@ local function recolorFrames(r,g,b,a,desaturation)
         TargetFrameTextureFrameTexture,
         TargetFrameToTTextureFrameTexture
     }
+    if not HealthBarColor.isClassic then
+        table.insert(frameTextures,#frameTextures+1,FocusFrameTextureFrameTexture)
+        table.insert(frameTextures,#frameTextures+1,FocusFrameToTTextureFrameTexture)
+    end
     for _,frameTexture in pairs (frameTextures) do
         frameTexture:SetDesaturation(desaturation)
         frameTexture:SetVertexColor(r,g,b,a)
