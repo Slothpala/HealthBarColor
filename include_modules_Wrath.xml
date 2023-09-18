@@ -1,0 +1,5 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Include file="Modules\HealthBars\_classic_\load_healthbars_Wrath.xml"/>
+    <Include file="Modules\Fonts\_classic_\load_fonts_Wrath.xml"/>
+    <Script file="Modules\DarkFrames_classic.lua"/>
+</Ui>

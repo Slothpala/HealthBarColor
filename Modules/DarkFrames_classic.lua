@@ -10,7 +10,8 @@ local function recolorFrames(r,g,b,a,desaturation)
     local frameTextures = {
         PlayerFrameTexture,
         TargetFrameTextureFrameTexture,
-        TargetFrameToTTextureFrameTexture
+        TargetFrameToTTextureFrameTexture,
+        PetFrameTexture,
     }
     if not HealthBarColor.isClassic then
         table.insert(frameTextures,#frameTextures+1,FocusFrameTextureFrameTexture)

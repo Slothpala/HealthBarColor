@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Include file="Modules\HealthBars\load_healthbars_Vanilla.xml"/>
-      <Include file="Modules\Fonts\load_fonts_Vanilla.xml"/>
-    <Script file="Modules\DarkFrames_Vanilla.lua"/>
+    <Include file="Modules\HealthBars\_classic_\load_healthbars_Vanilla.xml"/>
+      <Include file="Modules\Fonts\_classic_\load_fonts_Vanilla.xml"/>
+    <Script file="Modules\DarkFrames_classic.lua"/>
 </Ui>

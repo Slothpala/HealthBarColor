@@ -14,28 +14,50 @@ local metatable = {__index = HBC_Unit}
 local Player        = setmetatable({},metatable)
 Player.HealthBar    = _G.PlayerFrameHealthBar
 Player.Name         = _G.PlayerName
-Player.HealthText   = {_G.PlayerFrameHealthBarTextLeft, _G.PlayerFrameHealthBarTextLeft, _G.PlayerFrameHealthBarText}
+Player.HealthText   = {_G.PlayerFrameHealthBarTextLeft, _G.PlayerFrameHealthBarTextRight, _G.PlayerFrameHealthBarText}
 Player.PowerText    = {_G.PlayerFrameManaBarTextLeft,_G.PlayerFrameManaBarTextRight,_G.PlayerFrameManaBarText}
 --target
 local Target        = setmetatable({},metatable)
 Target.HealthBar    = _G.TargetFrameHealthBar
 Target.Name         = _G.TargetFrameTextureFrameName
-Target.HealthText   = {}
-Target.PowerText    = {}
+Target.HealthText   = {_G.TargetFrameTextureFrame.HealthBarTextLeft,_G.TargetFrameTextureFrame.HealthBarTextRight,_G.TargetFrameTextureFrame.HealthBarText}
+Target.PowerText    = {_G.TargetFrameTextureFrame.ManaBarTextLeft,_G.TargetFrameTextureFrame.ManaBarTextRight,_G.TargetFrameTextureFrame.ManaBarText}
 --targettarget
 local ToT           = setmetatable({},metatable)
 ToT.HealthBar       = _G.TargetFrameToTHealthBar
 ToT.Name            = _G.TargetFrameToTTextureFrameName
+--focus
+local Focus        = setmetatable({},metatable)
+Focus.HealthBar    = _G.FocusFrameHealthBar
+Focus.Name         = _G.FocusFrameTextureFrameName
+Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
+Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
+--focustarget
+local ToF           = setmetatable({},metatable)
+ToF.HealthBar       = _G.FocusFrameToTHealthBar
+ToF.Name            = _G.FocusFrameToTTextureFrameName
+--pet
+local Pet           = {}
+Pet.HealthBar       = _G.PetFrameHealthBar
+Pet.Name            = _G.PetName
+Pet.HealthText      = {_G.PetFrameHealthBarTextLeft, _G.PetFrameHealthBarTextRight, _G.PetFrameHealthBarText}
+Pet.PowerText       = {_G.PetFrameManaBarText, _G.PetFrameManaBarTextLeft, _G.PetFrameManaBarTextRight}
 --AddOn
 local addonName, addonTable = ...
 --create addon and get libraries
 addonTable.HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
 local HealthBarColor = addonTable.HealthBarColor
 HealthBarColor.isClassic = false
-if select(4,GetBuildInfo()) < 30000 then
+HealthBarColor.isWrath = false
+HealthBarColor.isRetail = false
+local tocversion = select(4,GetBuildInfo())
+if tocversion < 30000 then
     HealthBarColor.isClassic = true
+elseif tocversion > 30000 and tocversion < 100000 then
+    HealthBarColor.isWrath = true
+else
+    HealthBarColor.isRetail = true
 end
-print(HealthBarColor.isClassic)
 HealthBarColor:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
 HealthBarColor:SetDefaultModuleState(false)
 local AC = LibStub("AceConfig-3.0")
@@ -72,6 +94,8 @@ function HealthBarColor:LoadConfig()
     self:GetUnitInformation(Player, "player")
     self:GetUnitInformation(Target, "target")
     self:GetUnitInformation(ToT, "targettarget")
+    self:GetUnitInformation(Focus, "focus")
+    self:GetUnitInformation(ToF, "focustarget")
     for _, module in self:IterateModules() do
         if self.db.profile.Settings.Modules[module:GetName()] then 
             module:Enable()
@@ -106,6 +130,9 @@ end
 function HealthBarColor:RegisterEvents()
     self:RegisterEvent("PLAYER_TARGET_CHANGED","OnTargetChanged")
     self:RegisterEvent("UNIT_TARGET","OnUnitTarget")
+    if not self.isClassic then
+        self:RegisterEvent("PLAYER_FOCUS_CHANGED","OnFocusChanged")
+    end
 end
 
 --Colors
@@ -160,6 +187,9 @@ local HBC_Units = {
     ["Player"] = Player,
     ["Target"] = Target,
     ["ToT"] = ToT,
+    ["Focus"] = Focus,
+    ["ToF"] = ToF,
+    ["Pet"] = Pet,
 }
 
 --Get Units for other modules
@@ -196,7 +226,7 @@ function HealthBarColor:GetReactionColor(hbc_unit, unit)
 end
 
 --tables that will be used to save registered callback functions into
-local OnTargetChanged_Callbacks, OnToTChanged_Callbacks, ToPlayerArt_Callbacks, ToVehiceleArt_Callbacks = {}, {}, {}, {}
+local OnTargetChanged_Callbacks , OnToTChanged_Callbacks, OnFocusChanged_Callbacks, OnToFChanged_Callbacks , OnEnteringWorld_Callbaks, ToPlayerArt_Callbacks, ToVehiceleArt_Callbacks = {}, {}, {}, {}, {}, {}, {}
 local hooked = {}
 
 function HealthBarColor:OnTargetChanged()
@@ -214,15 +244,42 @@ function HealthBarColor:OnToTChanged()
     end
 end
 
+function HealthBarColor:OnFocusChanged()
+    self:OnToFChanged()
+    self:GetUnitInformation(Focus,"focus")
+    for _, callback in pairs(OnFocusChanged_Callbacks) do
+        callback()
+    end
+end
+
+function HealthBarColor:OnToFChanged()
+    self:GetUnitInformation(ToF,"focustarget")
+    for _, callback in pairs(OnToFChanged_Callbacks) do
+        callback()
+    end
+end
+
 function HealthBarColor:OnUnitTarget(self, unit)
     if unit == "target" then
         HealthBarColor:OnToTChanged()
+    end
+    if unit == "focus" then
+        HealthBarColor:OnToFChanged()
     end
 end
 
 function HealthBarColor:OnEnteringWorld()
     for _, callback in pairs(OnEnteringWorld_Callbaks) do
         callback()
+    end
+end
+
+function HealthBarColor:OnSelectionColorChanged(self, unit)
+    if unit == "target" then
+        HealthBarColor:OnTargetChanged()
+    end
+    if unit == "focus" then
+        HealthBarColor:OnFocusChanged()
     end
 end
 
@@ -235,6 +292,18 @@ end
 
 function HealthBarColor:RegisterOnToTChanged(anyname, callback)
     OnToTChanged_Callbacks[anyname] = callback
+end
+
+function HealthBarColor:RegisterOnFocusChanged(anyname, callback)
+    OnFocusChanged_Callbacks[anyname] = callback
+end
+
+function HealthBarColor:RegisterOnToFChanged(anyname, callback)
+    OnToFChanged_Callbacks[anyname] = callback
+end
+
+function HealthBarColor:RegisterOnEnteringWorld(anyname, callback)
+    OnEnteringWorld_Callbaks[anyname] = callback
 end
 
 function HealthBarColor:RegisterOnToPlayerArt(callback)
@@ -264,6 +333,8 @@ end
 function HealthBarColor:EmptyTables()
     OnTargetChanged_Callbacks = {}
     OnToTChanged_Callbacks = {}
+    OnFocusChanged_Callbacks = {}
+    OnToFChanged_Callbacks = {}
     OnEnteringWorld_Callbaks = {}
     ToPlayerArt_Callbacks = {}
     ToVehiceleArt_Callback = {}

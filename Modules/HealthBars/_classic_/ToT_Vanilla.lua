@@ -9,6 +9,7 @@ local _, addonTable = ...
 local HealthBarColor = addonTable.HealthBarColor
 local HealthBar_ToT = HealthBarColor:NewModule("HealthBar_ToT")
 local updateColor = function() end
+local hooked = nil
 
 function HealthBar_ToT:OnEnable()
     local ToT = HealthBarColor:GetUnit("ToT")

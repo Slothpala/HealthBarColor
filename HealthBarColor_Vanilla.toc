@@ -11,9 +11,9 @@ embeds.xml
 locales.xml
 
 #Config
-Core_Vanilla.lua
+Core_classic.lua
 DB\DB_Defaults.lua
-Options\Options_Vanilla.lua
+Options\Options.lua
 ProfileSharing.lua
 
 

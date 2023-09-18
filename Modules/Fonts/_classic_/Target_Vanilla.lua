@@ -81,6 +81,86 @@ function Font_Target:OnEnable()
         Target.Name:SetTextColor(name_color.r,name_color.g,name_color.b)
         ToT.Name:SetTextColor(name_color.r,name_color.g,name_color.b)
     end
+    if HealthBarColor.isWrath then
+        --healthbar
+        healthbar_color = HealthBarColor.db.profile.Fonts.Target.healthbar_color
+        selected = HealthBarColor.db.profile.Fonts.Target.healthbar_choice
+        if selected == 1 then
+            local function OnTargetChanged()
+                if Target.isPlayer then
+                    for _,text in pairs (Target.HealthText) do
+                        text:SetTextColor(Target.ClassColor.r,Target.ClassColor.g,Target.ClassColor.b)
+                    end
+                else
+                    for _,text in pairs (Target.HealthText) do
+                        text:SetTextColor(healthbar_color.r,healthbar_color.g,healthbar_color.b)
+                    end
+                end
+            end
+            HealthBarColor:RegisterOnTargetChanged("Font_HealthText_ClassColor",OnTargetChanged)
+        elseif selected == 2 then
+            local function OnTargetChanged()
+                if Target.isPlayer then
+                    for _,text in pairs (Target.HealthText) do
+                        text:SetTextColor(Target.ClassColor.r,Target.ClassColor.g,Target.ClassColor.b)
+                    end
+                else
+                    for _,text in pairs (Target.HealthText) do
+                        text:SetTextColor(Target.ReactionColor.r,Target.ReactionColor.g,Target.ReactionColor.b)
+                    end
+                end
+            end
+            HealthBarColor:RegisterOnTargetChanged("Font_HealthText_ClassColor",OnTargetChanged)
+        elseif selected == 3 then
+            local Player = HealthBarColor:GetUnit("Player")
+            for _,text in pairs (Target.HealthText) do
+                text:SetTextColor(Player.ClassColor.r,Player.ClassColor.g,Player.ClassColor.b)
+            end
+        else
+            for _,text in pairs (Target.HealthText) do
+                text:SetTextColor(healthbar_color.r,healthbar_color.g,healthbar_color.b)
+            end
+        end
+        --powerbar
+        powerbar_color = HealthBarColor.db.profile.Fonts.Target.powerbar_color
+        selected = HealthBarColor.db.profile.Fonts.Target.powerbar_choice
+        if selected == 1 then
+            local function OnTargetChanged()
+                if Target.isPlayer then
+                    for _,text in pairs (Target.PowerText) do
+                        text:SetTextColor(Target.ClassColor.r,Target.ClassColor.g,Target.ClassColor.b)
+                    end
+                else
+                    for _,text in pairs (Target.PowerText) do
+                        text:SetTextColor(powerbar_color.r,powerbar_color.g,powerbar_color.b)
+                    end
+                end
+            end
+            HealthBarColor:RegisterOnTargetChanged("Font_PowerText_ClassColor",OnTargetChanged)
+        elseif selected == 2 then
+            local function OnTargetChanged()
+                if Target.isPlayer then
+                    for _,text in pairs (Target.PowerText) do
+                        text:SetTextColor(Target.ClassColor.r,Target.ClassColor.g,Target.ClassColor.b)
+                    end
+                else
+                    for _,text in pairs (Target.PowerText) do
+                        text:SetTextColor(Target.ReactionColor.r,Target.ReactionColor.g,Target.ReactionColor.b)
+                    end
+                end
+            end
+            HealthBarColor:RegisterOnTargetChanged("Font_PowerText_ClassColor",OnTargetChanged)
+        elseif selected == 3 then
+            local Player = HealthBarColor:GetUnit("Player")
+            for _,text in pairs (Target.PowerText) do
+                text:SetTextColor(Player.ClassColor.r,Player.ClassColor.g,Player.ClassColor.b)
+            end
+        else
+            for _,text in pairs (Target.PowerText) do
+                text:SetTextColor(powerbar_color.r,powerbar_color.g,powerbar_color.b)
+            end
+        end
+    end
 end
 
 function Font_Target:OnDisable()
@@ -88,9 +168,23 @@ function Font_Target:OnDisable()
     Target.Name:SetTextColor(1,0.8196,0)
     ToT.Name:SetFont("Fonts\\FRIZQT__.TTF", 10,"NONE")
     ToT.Name:SetTextColor(1,0.8196,0)
+    for _,text in pairs (Target.HealthText) do
+        text:SetFont("Fonts\\ARIALN.TTF", 14,"OUTLINE")
+        text:SetTextColor(1,1,1)
+    end
+    for _,text in pairs (Target.PowerText) do
+        text:SetFont("Fonts\\ARIALN.TTF", 14,"OUTLINE")
+        text:SetTextColor(1,1,1)
+    end
 end
 
 function Font_Target:SetFonts()
     Target.Name:SetFont(name_font, name_size, name_outline)
     ToT.Name:SetFont(name_font, name_size, name_outline)
+    for _,text in pairs (Target.HealthText) do
+        text:SetFont(healthbar_font, healthbar_size, healthbar_outline)
+    end
+    for _,text in pairs (Target.PowerText) do
+        text:SetFont(powerbar_font, powerbar_size, powerbar_outline)
+    end
 end
