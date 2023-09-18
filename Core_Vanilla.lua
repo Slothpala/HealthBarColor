@@ -31,6 +31,11 @@ local addonName, addonTable = ...
 --create addon and get libraries
 addonTable.HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
 local HealthBarColor = addonTable.HealthBarColor
+HealthBarColor.isClassic = false
+if select(4,GetBuildInfo()) < 30000 then
+    HealthBarColor.isClassic = true
+end
+print(HealthBarColor.isClassic)
 HealthBarColor:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
 HealthBarColor:SetDefaultModuleState(false)
 local AC = LibStub("AceConfig-3.0")
@@ -111,15 +116,16 @@ local ReactionColor = {}
 
 --Color functions
 function HealthBarColor:CreateColors()
-    ClassColor["DRUID"]       = RAID_CLASS_COLORS["DRUID"] 
-    ClassColor["HUNTER"]      = RAID_CLASS_COLORS["HUNTER"]  
-    ClassColor["MAGE"]        = RAID_CLASS_COLORS["MAGE"] 
-    ClassColor["PALADIN"]     = RAID_CLASS_COLORS["PALADIN"]
-    ClassColor["PRIEST"]      = RAID_CLASS_COLORS["PRIEST"]  
-    ClassColor["ROGUE"]       = RAID_CLASS_COLORS["ROGUE"]  
-    ClassColor["SHAMAN"]      = RAID_CLASS_COLORS["SHAMAN"]  
-    ClassColor["WARLOCK"]     = RAID_CLASS_COLORS["WARLOCK"]
-    ClassColor["WARRIOR"]     = RAID_CLASS_COLORS["WARRIOR"] 
+    ClassColor["DRUID"]       = {r=1,g=0.49,b=0.04}
+    ClassColor["DEATHKNIGHT"] = {r=0.77,g=0.12,b=0.23}
+    ClassColor["HUNTER"]      = {r=0.67,g=0.83,b=0.45}
+    ClassColor["MAGE"]        = {r=0.25,g=0.78,b=0.92}
+    ClassColor["PALADIN"]     = {r=0.96,g=0.55,b=0.73}
+    ClassColor["PRIEST"]      = {r=1,g=1,b=1}  
+    ClassColor["ROGUE"]       = {r=0,g=0.96,b=0.41} 
+    ClassColor["SHAMAN"]      = {r=0,g=0.44,b=0.87}
+    ClassColor["WARLOCK"]     = {r=0.53,g=0.53,b=0.93}
+    ClassColor["WARRIOR"]     = {r=0.78,g=0.61,b=0.43}
     ReactionColor["HOSTILE"]  = {r=1,g=0,b=0}
     ReactionColor["NEUTRAL"]  = {r=1,g=1,b=0}
     ReactionColor["FRIENDLY"] = {r=0,g=1,b=0}
@@ -128,6 +134,7 @@ end
 function HealthBarColor:GetColorOverwrites()
     if self.db.profile.Settings.ClassColorOverwrites.enabled then
         ClassColor["DRUID"]       = {r=self.db.profile.Settings.ClassColorOverwrites.druid.r,g=self.db.profile.Settings.ClassColorOverwrites.druid.g,b=self.db.profile.Settings.ClassColorOverwrites.druid.b}
+        ClassColor["DEATHKNIGHT"] = {r=self.db.profile.Settings.ClassColorOverwrites.deathknight.r,g=self.db.profile.Settings.ClassColorOverwrites.deathknight.g,b=self.db.profile.Settings.ClassColorOverwrites.deathknight.b}
         ClassColor["HUNTER"]      = {r=self.db.profile.Settings.ClassColorOverwrites.hunter.r,g=self.db.profile.Settings.ClassColorOverwrites.hunter.g,b=self.db.profile.Settings.ClassColorOverwrites.hunter.b}
         ClassColor["MAGE"]        = {r=self.db.profile.Settings.ClassColorOverwrites.mage.r,g=self.db.profile.Settings.ClassColorOverwrites.mage.g,b=self.db.profile.Settings.ClassColorOverwrites.mage.b}
         ClassColor["PALADIN"]     = {r=self.db.profile.Settings.ClassColorOverwrites.paladin.r,g=self.db.profile.Settings.ClassColorOverwrites.paladin.g,b=self.db.profile.Settings.ClassColorOverwrites.paladin.b}
@@ -189,7 +196,7 @@ function HealthBarColor:GetReactionColor(hbc_unit, unit)
 end
 
 --tables that will be used to save registered callback functions into
-local OnTargetChanged_Callbacks , OnToTChanged_Callbacks, ToPlayerArt_Callbacks, ToVehiceleArt_Callbacks = {}, {}, {}, {}
+local OnTargetChanged_Callbacks, OnToTChanged_Callbacks, ToPlayerArt_Callbacks, ToVehiceleArt_Callbacks = {}, {}, {}, {}
 local hooked = {}
 
 function HealthBarColor:OnTargetChanged()
