@@ -282,26 +282,7 @@ function HealthBarColor:RegisterEvents()
     --currently not needed  by any module
     --self:RegisterEvent("PLAYER_ENTERING_WORLD","OnEnteringWorld")
 end
---getter/setter functions that will save and call settings into/from the db
---status
-function HealthBarColor:GetStatus(info)
-    return self.db.profile[info[#info-2]][info[#info-1]][info[#info]]
-end
-function HealthBarColor:SetStatus(info,value)
-    self.db.profile[info[#info-2]][info[#info-1]][info[#info]] = value
-    --will reload the config each time the settings have been adjusted
-    self:ReloadConfig()
-end
---color
-function HealthBarColor:GetColor(info)
-    return self.db.profile[info[#info-2]][info[#info-1]][info[#info]].r, self.db.profile[info[#info-2]][info[#info-1]][info[#info]].g, self.db.profile[info[#info-2]][info[#info-1]][info[#info]].b
-end
-function HealthBarColor:SetColor(info, r,g,b)
-    self.db.profile[info[#info-2]][info[#info-1]][info[#info]].r = r 
-    self.db.profile[info[#info-2]][info[#info-1]][info[#info]].g = g
-    self.db.profile[info[#info-2]][info[#info-1]][info[#info]].b = b
-    self:ReloadConfig()
-end
+
 --Color functions
 function HealthBarColor:CreateColors()
     ClassColor["DEATHKNIGHT"] = C_ClassColor.GetClassColor("DEATHKNIGHT")
