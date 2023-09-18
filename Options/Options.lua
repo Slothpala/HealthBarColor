@@ -267,13 +267,13 @@ local options = {
             order = 1.1,
             name = L["Fonts"],
             type = "group",
+            childGroups = "tab",
             hidden = function() return not HealthBarColor.db.profile.Settings.Modules.Fonts end,
             args = {
                 General = {
                     order = 0,
                     name = L["Font Settings"],
                     type = "group",
-                    inline = true,
                     args = {
                         name = {
                             order = 1,
@@ -375,7 +375,6 @@ local options = {
                     order = 1,
                     name = L["Player"],
                     type = "group",
-                    inline = true,
                     args = {
                         name_choice = {
                             order = 1,
@@ -398,6 +397,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Player.name_choice == 2 then return false end return true end,
                             width = colorWidth,
                         },
+                        newline = {
+                            order = 2.1,
+                            type = "description",
+                            name = "",
+                        },
                         healthbar_choice = {
                             order = 3,
                             name = L["Health Bar"], 
@@ -419,6 +423,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Player.healthbar_choice == 2 then return false end return true end,
                             width = colorWidth,
                         },   
+                        newline2 = {
+                            order = 4.1,
+                            type = "description",
+                            name = "",
+                        },
                         powerbar_choice = {
                             order = 5,
                             name = L["Power Bar"],
@@ -446,7 +455,6 @@ local options = {
                     order = 2,
                     name = L["Target"],
                     type = "group",
-                    inline = true,
                     args = {
                         name_choice = {
                             order = 1,
@@ -469,6 +477,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Target.name_choice == 1 or HealthBarColor.db.profile.Fonts.Target.name_choice == 4 then return false end return true end,
                             width = 0.35,
                         },
+                        newline = {
+                            order = 2.1,
+                            type = "description",
+                            name = "",
+                        },
                         healthbar_choice = {
                             order = 3,
                             name = L["Health Bar"],
@@ -490,6 +503,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Target.healthbar_choice == 1 or HealthBarColor.db.profile.Fonts.Target.healthbar_choice == 4 then return false end return true end,
                             width = 0.35,
                         },   
+                        newline2 = {
+                            order = 4.1,
+                            type = "description",
+                            name = "",
+                        },
                         powerbar_choice = {
                             order = 5,
                             name = L["Power Bar"],
@@ -517,7 +535,6 @@ local options = {
                     order = 4,
                     name = L["Focus"],
                     type = "group",
-                    inline = true,
                     args = {
                         name_choice = {
                             order = 1,
@@ -540,6 +557,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Focus.name_choice == 1 or HealthBarColor.db.profile.Fonts.Focus.name_choice == 4 then return false end return true end,
                             width = 0.35,
                         },
+                        newline = {
+                            order = 2.1,
+                            type = "description",
+                            name = "",
+                        },
                         healthbar_choice = {
                             order = 3,
                             name = L["Health Bar"],
@@ -561,6 +583,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Focus.healthbar_choice == 1 or HealthBarColor.db.profile.Fonts.Focus.healthbar_choice == 4 then return false end return true end,
                             width = 0.35,
                         },   
+                        newline2 = {
+                            order = 4.1,
+                            type = "description",
+                            name = "",
+                        },
                         powerbar_choice = {
                             order = 5,
                             name = L["Power Bar"],
@@ -588,7 +615,6 @@ local options = {
                     order = 6,
                     name = L["Pet"],
                     type = "group",
-                    inline = true,
                     args = {
                         name_choice = {
                             order = 1,
@@ -611,6 +637,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Pet.name_choice == 2 then return false end return true end,
                             width = colorWidth,
                         },
+                        newline = {
+                            order = 2.1,
+                            type = "description",
+                            name = "",
+                        },
                         healthbar_choice = {
                             order = 3,
                             name = L["Health Bar"],
@@ -632,6 +663,11 @@ local options = {
                             hidden = function() if HealthBarColor.db.profile.Fonts.Pet.healthbar_choice == 2 then return false end return true end,
                             width = colorWidth,
                         },   
+                        newline2 = {
+                            order = 4.1,
+                            type = "description",
+                            name = "",
+                        },
                         powerbar_choice = {
                             order = 5,
                             name = L["Power Bar"],
@@ -659,7 +695,6 @@ local options = {
                     order = 7,
                     name = L["Boss"],
                     type = "group",
-                    inline = true,
                     args = {
                         selected = {
                             order = 1,
