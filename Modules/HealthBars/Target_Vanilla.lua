@@ -53,6 +53,9 @@ function HealthBar_Target:OnEnable()
         Target.HealthBar:HookScript("OnValueChanged", function()
             updateColor()
         end)
+        hooksecurefunc("TargetFrame_Update", function()
+            updateColor()
+        end)
         hooked = true
     end
     updateColor()
