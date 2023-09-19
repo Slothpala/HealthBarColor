@@ -64,9 +64,22 @@ HealthBarColor:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
 HealthBarColor:SetDefaultModuleState(false)
 local AC = LibStub("AceConfig-3.0")
 local ACD = LibStub("AceConfigDialog-3.0")
+local Icon = LibStub("LibDBIcon-1.0")
+local IconObj = LibStub("LibDataBroker-1.1"):NewDataObject("HealthBarColor", {
+    type = "launcher",
+    label = "HealthBarColor",
+    icon = "Interface\\AddOns\\HealthBarColor\\Textures\\Icon\\Icon.tga",
+    OnClick = function() 
+        HealthBarColor:SlashCommand() 
+    end,
+    OnTooltipShow = function(tooltip)
+        tooltip:AddLine("HealthBarColor")
+    end,
+})
 
 function HealthBarColor:OnEnable()
     self:LoadDataBase()
+    Icon:Register("HealthBarColor", IconObj, HealthBarColor.db.profile.MinimapIcon)
     --load own options table
     local options = self:GetOptionsTable()
     --create option table based on database structure and add them to options

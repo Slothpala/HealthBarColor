@@ -152,6 +152,9 @@ local defaults = {
                 focus_static_color = {r=0,g=1,b=0},
             },
         },
+        MinimapIcon = {
+
+        },
     },
 }
 
