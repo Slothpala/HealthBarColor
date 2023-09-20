@@ -25,6 +25,5 @@ function HealthBar_Player:OnEnable()
         Player.HealthBar.lockColor = true
     end
     updateColor()
-    Player.HealthBar:SetStatusBarTexture("Interface\\Buttons\\WHITE8X8")
 end
 
