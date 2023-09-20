@@ -135,7 +135,6 @@ function BiggerHealthBar:OnEnable()
 			toTargetArt("normal")
 		else
 			local classification = UnitClassification(self.unit)
-			print(classification)
 			toTargetArt(classification)
 		end
 	end
