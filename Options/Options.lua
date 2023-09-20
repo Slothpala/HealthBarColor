@@ -811,7 +811,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden = not HealthBarColor.isRetail,
+                           -- guiHidden = not HealthBarColor.isRetail,
                         },
                         Overabsorb = {
                             order = 9,
