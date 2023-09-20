@@ -22,14 +22,9 @@ function HealthBar_Player:OnEnable()
         end
     end  
     if not hooked then
-        Player.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooksecurefunc("PlayerFrame_Update", function()
-            updateColor()
-        end)
-        hooked = true
+        Player.HealthBar.lockColor = true
     end
     updateColor()
+    Player.HealthBar:SetStatusBarTexture("Interface\\Buttons\\WHITE8X8")
 end
 

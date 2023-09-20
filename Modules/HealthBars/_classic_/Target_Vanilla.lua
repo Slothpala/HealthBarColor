@@ -50,15 +50,7 @@ function HealthBar_Target:OnEnable()
         end
         HealthBarColor:RegisterOnTargetChanged("HealthBar_Target", updateColor)
     end
-    if not hooked then
-        Target.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooksecurefunc("TargetFrame_Update", function()
-            updateColor()
-        end)
-        hooked = true
-    end
+    Target.HealthBar.lockColor = true
     updateColor()
 end
 

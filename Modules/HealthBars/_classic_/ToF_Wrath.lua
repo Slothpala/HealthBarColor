@@ -48,12 +48,7 @@ function HealthBar_ToF:OnEnable()
             ToF:SetStatusBarReactionColored()
         end
     end
-    if not hooked then
-        ToF.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooked = true
-    end
+    ToF.HealthBar.lockColor = true
     HealthBarColor:RegisterOnToFChanged("HealthBar_ToF", updateColor)
     updateColor()
 end

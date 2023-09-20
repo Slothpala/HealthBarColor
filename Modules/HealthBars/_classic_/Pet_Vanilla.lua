@@ -23,15 +23,7 @@ function HealthBar_Pet:OnEnable()
             Pet.HealthBar:SetStatusBarColor(color.r,color.g,color.b)
         end
     end  
-    if not hooked then
-        Pet.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooksecurefunc("PetFrame_Update", function()
-            updateColor()
-        end)
-        hooked = true
-    end
+    Pet.HealthBar.lockColor = true
     updateColor()
 end
 

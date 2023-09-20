@@ -50,12 +50,7 @@ function HealthBar_Focus:OnEnable()
         end
         HealthBarColor:RegisterOnFocusChanged("HealthBar_Focus", updateColor)
     end
-    if not hooked then
-        Focus.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooked = true
-    end
+    Focus.HealthBar.lockColor = true
     updateColor()
 end
 

@@ -4,8 +4,9 @@
 local _, addonTable = ...
 local HealthBarColor = addonTable.HealthBarColor
 
-local Media     = LibStub("LibSharedMedia-3.0")
-local statusbars =  LibStub("LibSharedMedia-3.0"):List("statusbar")
+local Media = LibStub("LibSharedMedia-3.0")
+local statusbars = Media:List("statusbar")
+local fonts = Media:List("font")
 local L = LibStub("AceLocale-3.0"):GetLocale("HealthBarColor")
 local lastEntry = 6
 local selectedWidth, colorWidth, statusBarWidth = 1, 0.4, 1.8

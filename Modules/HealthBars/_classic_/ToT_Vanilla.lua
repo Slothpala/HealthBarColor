@@ -48,12 +48,7 @@ function HealthBar_ToT:OnEnable()
             ToT:SetStatusBarReactionColored()
         end
     end
-    if not hooked then
-        ToT.HealthBar:HookScript("OnValueChanged", function()
-            updateColor()
-        end)
-        hooked = true
-    end
+    ToT.HealthBar.lockColor = true
     HealthBarColor:RegisterOnToTChanged("HealthBar_ToT", updateColor)
     updateColor()
 end
