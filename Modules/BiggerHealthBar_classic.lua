@@ -22,14 +22,14 @@ local textures = {
 			coords =  {1, 0, 1, 0.78125, 0.09375, 0, 0.09375, 0.78125},
 		},
 		FrameFlash = {
-			path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\classic\\FrameFlash_classic.tga",
+			path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\classic\\Bigger_FrameFlash_classic.tga",
 			coords = {0, 0, 0, 0.53125, 0.74609375, 0, 0.74609375, 0.53125}
 		},
 	},
 	Target = {
 		normal = {
 			path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\classic\\Bigger_Normal_classic.tga",
-			coords =  {0.09375, 0, 0.09375, 0.78125, 1, 0, 1, 0.78125},
+			--coords =  {0.09375, 0, 0.09375, 0.78125, 1, 0, 1, 0.78125},
 		},
 		elite = {
 			path = "Interface\\AddOns\\HealthBarColor\\Textures\\UnitFrames\\classic\\Bigger_Elite_classic.tga",
