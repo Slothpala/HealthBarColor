@@ -161,8 +161,8 @@ HealthBarColorOptionsPortrait:SetTexture("Interface\\AddOns\\HealthBarColor\\Tex
 HealthBarColorOptionsTitleText:SetText("HealthBarColor")
 
 local resizeButton = CreateFrame("Button", "HealthBarColorOptionsResizeButton", OptionsFrame)
-resizeButton:SetPoint("BOTTOMRIGHT", -5, 7)
-resizeButton:SetSize(14, 14)
+resizeButton:SetPoint("BOTTOMRIGHT", -3, 5)
+resizeButton:SetSize(22, 22)
 resizeButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
 resizeButton:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
 resizeButton:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
@@ -177,8 +177,8 @@ end)
 
 local container = AceGUI:Create("SimpleGroup")
 container.frame:SetParent(OptionsFrame)
-container.frame:SetPoint("TOPLEFT", OptionsFrame, "TOPLEFT", 2, -22)
-container.frame:SetPoint("BOTTOMRIGHT", OptionsFrame, "BOTTOMRIGHT", -2, 3)
+container.frame:SetPoint("TOPLEFT", OptionsFrame, "TOPLEFT", 15, -58)
+container.frame:SetPoint("BOTTOMRIGHT", OptionsFrame, "BOTTOMRIGHT", -15, 20)
 OptionsFrame.container = container
 --
 
