@@ -149,7 +149,7 @@ local function updateCurable(englishClass)
     return hasDispel
 end
 
-local restoreColor --defined in OnEnable
+local restoreColor --= function() defined in OnEnable end
     
 local function toDebuffColor(dispelName)
     local r,g,b = debuffColor[dispelName].r, debuffColor[dispelName].g, debuffColor[dispelName].b
