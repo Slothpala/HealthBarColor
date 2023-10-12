@@ -3,7 +3,12 @@ local HealthBarColor = addonTable.HealthBarColor
 local DebuffColor = HealthBarColor:NewModule("DebuffColor")
 local Player = HealthBarColor:GetUnit("Player")
 
+local auraFrame = nil
+local eventFrame = nil
+
 local IsSpellKnown = IsSpellKnown
+local IsSpellKnownOrOverridesKnown = IsSpellKnownOrOverridesKnown
+local next = next
 
 local debuffColor = {
     Curse   = {r=0.6,g=0.0,b=1.0},
@@ -12,7 +17,7 @@ local debuffColor = {
     Poison  = {r=0.0,g=0.6,b=0.0},
 }
 local canCure = {}
-
+local ignoreMagic = false
 local function updateCurable(englishClass)
     canCure = {}
     local dispelAbilities = {
@@ -23,8 +28,10 @@ local function updateCurable(englishClass)
             end
             if IsSpellKnown(88423) then --Nature's Cure
                 canCure.Magic = true
-                canCure.Curse = true
-                canCure.Poison = true
+                if IsPlayerSpell(392378) then --Improved Nature's Cure
+                    canCure.Curse = true
+                    canCure.Poison = true
+                end
             end
         end,
         ["MAGE"] = function()
@@ -37,8 +44,19 @@ local function updateCurable(englishClass)
                 canCure.Poison = true
                 canCure.Disease = true
             end
-            if IsSpellKnown(115450) or IsSpellKnown(115310) or IsSpellKnown(388615) then --Detox MW --Revival --Restoral
+            if IsSpellKnown(115450) then --Detox MW 
                 canCure.Magic = true
+                if IsPlayerSpell(388874) then --Improved Detox 
+                    canCure.Poison = true
+                    canCure.Disease = true
+                end
+            end
+            if IsSpellKnown(115310) then --Revival
+                canCure.Magic = true
+                canCure.Poison = true
+                canCure.Disease = true
+            end
+            if IsSpellKnown(115310) then --Restoral
                 canCure.Poison = true
                 canCure.Disease = true
             end
@@ -50,14 +68,18 @@ local function updateCurable(englishClass)
             end
             if IsSpellKnown(4987) then --Cleanse
                 canCure.Magic = true
-                canCure.Poison = true
-                canCure.Disease = true
+                if IsPlayerSpell(393024) then --Improved Cleanse
+                    canCure.Poison = true
+                    canCure.Disease = true
+                end
             end
         end,
         ["PRIEST"] = function()
             if IsSpellKnown(527) then --Purify
                 canCure.Magic = true
-                canCure.Disease = true
+                if IsPlayerSpell(390632) then --Improved Purify
+                    canCure.Disease = true
+                end
             end
             if IsSpellKnown(213634) then --Purify Disease
                 canCure.Disease = true
@@ -72,7 +94,12 @@ local function updateCurable(englishClass)
             end
             if IsSpellKnown(77130) then --Purify Spirit
                 canCure.Magic = true
-                canCure.Curse = true
+                if IsPlayerSpell(383016) then --Improved Purify Spirit
+                    canCure.Curse = true
+                end
+            end
+            if IsSpellKnown(383013) then --Poision Cleansing Totem
+                canCure.Poison = true
             end
         end,
         ["WARLOCK"] = function()
@@ -86,18 +113,13 @@ local function updateCurable(englishClass)
                 canCure.Poison = true
                 canCure.Disease = true
             end
-            if IsSpellKnown(365585) then --Expunge Dev/Aug 
+            if IsSpellKnown(365585) then --Expunge 
                 canCure.Poison = true
-                if GetSpecialization() == 2 then --workaround see beloww
-                    canCure.Magic = true
-                end
             end
-            --[[
-            if IsSpellKnown(360823) then --Naturalize API bug i guess. IsSpellKnown(360823) will never return true but Expunge/365585 will.
+            if IsSpellKnownOrOverridesKnown(360823) then --Naturalize 
                 canCure.Magic = true
                 canCure.Poison = true
             end
-            ]]
         end,
         ["DEMONHUNTER"] = function()
             if IsSpellKnown(205604) then --Reverse Magic
@@ -114,20 +136,22 @@ local function updateCurable(englishClass)
     if dispelAbilities[englishClass] then
         dispelAbilities[englishClass]()
     end
+    if ignoreMagic then
+        canCure.Magic = false
+    end
     local hasDispel = false
     for k,v in pairs(canCure) do
-        print(k..": "..tostring(v))
-        hasDispel = v
+        if v then
+            hasDispel = v
+            break
+        end
     end
     return hasDispel
 end
 
-local function restoreColor()
-    Player:SetStatusBarClassColored()
-end
-
+local restoreColor --defined in OnEnable
+    
 local function toDebuffColor(dispelName)
-    print(dispelName)
     local r,g,b = debuffColor[dispelName].r, debuffColor[dispelName].g, debuffColor[dispelName].b
     Player.HealthBar:SetStatusBarColor(r,g,b)
 end
@@ -144,8 +168,7 @@ local function updateColor()
     restoreColor()
 end
 
-local auraFrame = CreateFrame("Frame")
-auraFrame:SetScript("OnEvent",function(_,_,_,updateInfo)
+local function updateAuraMap(_,_,_,updateInfo)
     if updateInfo.isFullUpdate then
         auraMap = {} --clear table 
         local function HandleAura(aura)
@@ -153,13 +176,13 @@ auraFrame:SetScript("OnEvent",function(_,_,_,updateInfo)
                 auraMap[aura.auraInstanceID] = aura.dispelName
             end
         end
-        AuraUtil.ForEachAura("player", "HARMFUL|RAID", nil, HandleAura, true)  
+        AuraUtil.ForEachAura("player", "HARMFUL", nil, HandleAura, true)  
         updateColor()
         return
     end
     if updateInfo.addedAuras then
         for _, aura in pairs(updateInfo.addedAuras) do
-            if aura.isRaid and aura.isHarmful and canCure[aura.dispelName] then
+            if aura.isHarmful and canCure[aura.dispelName] then
                 toDebuffColor(aura.dispelName)
                 auraMap[aura.auraInstanceID] = aura.dispelName
             end
@@ -168,23 +191,59 @@ auraFrame:SetScript("OnEvent",function(_,_,_,updateInfo)
     if updateInfo.removedAuraInstanceIDs then
         for _, auraInstanceID in pairs(updateInfo.removedAuraInstanceIDs) do
             auraMap[auraInstanceID] = nil
-            updateColor()
         end
+        updateColor()
     end
-end)
+end
+
+function DebuffColor:UpdateModule(event)
+    local hasDispel = updateCurable(Player.Class)
+    if hasDispel then
+        auraFrame:RegisterUnitEvent("UNIT_AURA", "player")
+    else
+        auraFrame:UnregisterEvent("UNIT_AURA")
+    end
+end
 
 function DebuffColor:OnEnable() 
-    self:RegisterEvent("SPELLS_CHANGED", function()
-        local hasDispel = updateCurable(Player.Class)
-        if hasDispel then
-            auraFrame:RegisterUnitEvent("UNIT_AURA", "player")
-        else
-            auraFrame:UnregisterEvent("UNIT_AURA")
+    debuffColor.Curse   = HealthBarColor.db.profile.Modules.DebuffColor.Curse
+    debuffColor.Disease = HealthBarColor.db.profile.Modules.DebuffColor.Disease
+    debuffColor.Magic   = HealthBarColor.db.profile.Modules.DebuffColor.Magic
+    debuffColor.Poison  = HealthBarColor.db.profile.Modules.DebuffColor.Poison
+    ignoreMagic = HealthBarColor.db.profile.Modules.DebuffColor.ignoreMagic
+    if not auraFrame then
+        auraFrame = CreateFrame("Frame")
+        auraFrame:SetScript("OnEvent", updateAuraMap)
+    end
+    auraFrame:RegisterUnitEvent("UNIT_AURA", "player")
+    if not eventFrame then
+        eventFrame = CreateFrame("Frame")
+        eventFrame:SetScript("OnEvent", DebuffColor.UpdateModule)
+    end
+    eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+    eventFrame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+    eventFrame:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player")
+    if Player.Class == "WARLOCK" then
+        eventFrame:RegisterUnitEvent("UNIT_PET", "player")
+    end
+    local selected = HealthBarColor.db.profile.HealthBars.Player.selected
+    if selected == 1 then
+        restoreColor = function()
+            Player:SetStatusBarClassColored()
         end
-    end)
+    else
+        local color = HealthBarColor.db.profile.HealthBars.Player.color
+        local r,g,b = color.r,color.g,color.b
+        restoreColor = function()
+            Player.HealthBar:SetStatusBarColor(r,g,b)
+        end
+    end
 end
 
 function DebuffColor:OnDisable()
+    if not auraFrame or not eventFrame then
+        return
+    end
     auraFrame:UnregisterEvent("UNIT_AURA")
-    self:UnregisterEvent("SPELLS_CHANGED")
+    eventFrame:UnregisterAllEvents()
 end
