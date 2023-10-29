@@ -1,5 +1,9 @@
 # **Changelog**
 
+### Version [2.11.4] - 2023-10-29
+#### Changed
+* Fetch updated german translation.
+
 ### Version [2.11.3] - 2023-10-25
 
 #### Added
