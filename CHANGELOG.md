@@ -1,4 +1,7 @@
 # **Changelog**
+### Version [2.11.5] - 2023-11-07
+#### Changed
+* retail interface version updated to 100200
 
 ### Version [2.11.4] - 2023-10-29
 #### Changed
