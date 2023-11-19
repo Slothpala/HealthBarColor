@@ -92,7 +92,7 @@ function HealthBarColor:MinimapIcon()
             OnTooltipShow = function(tooltip)
                 tooltip:AddLine("HealthBarColor")
                 tooltip:AddLine("Left click: Open add-on settings")
-                tooltip:AddLine("Middle click: Hide the minimap icon")
+                tooltip:AddLine("Middle click: Hide icon")
             end,
         })
         Icon:Register("HealthBarColor", IconObj, HealthBarColor.db.profile.MinimapIcon)
