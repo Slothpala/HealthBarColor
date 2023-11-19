@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [2.11.6] - 2023-11-20
+#### Added
+* option to hide the minimap icon
+
 ### Version [2.11.5] - 2023-11-07
 #### Changed
 * retail interface version updated to 100200
