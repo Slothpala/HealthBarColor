@@ -831,6 +831,15 @@ local options = {
                             get = "GetStatus",
                             set = "SetStatus",
                         },
+                        MinimapIcon = {
+                            order = 11,
+                            name = L["Minimap Icon"],
+                            desc = L["minimap_icon_desc"],
+                            type = "toggle",
+                            get = "GetStatus",
+                            set = "SetStatus",
+                            guiHidden = HealthBarColor.isRetail,
+                        },
                     },
                 },
                 ClassColorOverwrites = {
