@@ -1,4 +1,9 @@
 # **Changelog**
+
+### Version [2.12.0] - 2023-12-//
+#### Added
+* BetterBossFrame.lua module added for retail
+
 ### Version [2.11.6] - 2023-11-20
 #### Added
 * option to hide the minimap icon
