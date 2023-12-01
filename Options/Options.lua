@@ -840,6 +840,15 @@ local options = {
                             set = "SetStatus",
                             guiHidden = HealthBarColor.isRetail,
                         },
+                        BetterBossFrames = {
+                            order = 12,
+                            name = L["Better Boss Frames"],
+                            desc = L["better_boss_frames_desc"],
+                            type = "toggle",
+                            get = "GetStatus",
+                            set = "SetStatus",
+                            guiHidden = not HealthBarColor.isRetail,
+                        },
                     },
                 },
                 ClassColorOverwrites = {
