@@ -20,6 +20,9 @@ Options\OptionsFrame.lua
 ProfileSharing.lua
 HookRegistry.lua
 
+#Utils
+Utils\CombatLockdown.lua
+
 #Modules
 include_modules.xml
 
