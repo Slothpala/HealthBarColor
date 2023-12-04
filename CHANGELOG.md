@@ -1,6 +1,11 @@
 # **Changelog**
+### Version [2.12.1] - 2023-12-04
+#### Added
+* Utils/CombatLockdown.lua // helper to delay callbacks to be executed after combat
+#### Fixed
+* BiggerHealthBar.lua // InCombatLockdown added for toPlayerArt function and method added to delay the function until combat ends.
 
-### Version [2.12.0] - 2023-12-//
+### Version [2.12.0] - 2023-12-01
 #### Added
 * BetterBossFrame.lua module added for retail
 
