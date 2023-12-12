@@ -1,4 +1,13 @@
 # **Changelog**
+### Version [2.12.2] - 2023-12-
+#### Added
+* Utils/HookRegistry.lua
+#### Changed
+* BiggerHealthBar module: 
+    * all classes will now use the texture without an alternate power bar. 
+    * the AlternatePowerBar and MonkStaggerBar are now hidden.
+    * the module now uses the HookRegistry 
+
 ### Version [2.12.1] - 2023-12-04
 #### Added
 * Utils/CombatLockdown.lua // helper to delay callbacks to be executed after combat
