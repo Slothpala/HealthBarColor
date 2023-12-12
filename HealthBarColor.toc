@@ -18,10 +18,11 @@ DB\DB_Defaults.lua
 Options\Options.lua
 Options\OptionsFrame.lua
 ProfileSharing.lua
-HookRegistry.lua
+
 
 #Utils
 Utils\CombatLockdown.lua
+Utils\HookRegistry.lua
 
 #Modules
 include_modules.xml
