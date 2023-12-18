@@ -1,6 +1,7 @@
 --[[
     Created by Slothpala 
 --]]
+local addonName, addonTable = ...
 --HeealthBarColor Units
 local HBC_Unit = {}
 function HBC_Unit:SetStatusBarClassColored()
@@ -31,16 +32,20 @@ ToT.PowerBar        = _G.TargetFrameToTManaBar
 ToT.Name            = _G.TargetFrameToTTextureFrameName
 --focus
 local Focus        = setmetatable({},metatable)
-Focus.HealthBar    = _G.FocusFrameHealthBar
-Focus.PowerBar     = _G.FocusFrameManaBar
-Focus.Name         = _G.FocusFrameTextureFrameName
-Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
-Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
+if addonTable.isWrath then
+    Focus.HealthBar    = _G.FocusFrameHealthBar
+    Focus.PowerBar     = _G.FocusFrameManaBar
+    Focus.Name         = _G.FocusFrameTextureFrameName
+    Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
+    Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
+end
 --focustarget
 local ToF           = setmetatable({},metatable)
-ToF.HealthBar       = _G.FocusFrameToTHealthBar
-ToF.PowerBar        = _G.FocusFrameToTManaBar
-ToF.Name            = _G.FocusFrameToTTextureFrameName
+if addonTable.isWrath then
+    ToF.HealthBar       = _G.FocusFrameToTHealthBar
+    ToF.PowerBar        = _G.FocusFrameToTManaBar
+    ToF.Name            = _G.FocusFrameToTTextureFrameName
+end
 --pet
 local Pet           = {}
 Pet.HealthBar       = _G.PetFrameHealthBar
@@ -49,7 +54,7 @@ Pet.Name            = _G.PetName
 Pet.HealthText      = {_G.PetFrameHealthBarTextLeft, _G.PetFrameHealthBarTextRight, _G.PetFrameHealthBarText}
 Pet.PowerText       = {_G.PetFrameManaBarText, _G.PetFrameManaBarTextLeft, _G.PetFrameManaBarTextRight}
 --AddOn
-local addonName, addonTable = ...
+
 --create addon and get libraries
 addonTable.HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
 local HealthBarColor = addonTable.HealthBarColor
