@@ -18,6 +18,8 @@ DB\DB_Defaults.lua
 Options\Options.lua
 ProfileSharing.lua
 
+#Utils
+Utils\HookRegistry.lua
 
 #Modules
 include_modules_Vanilla.xml
