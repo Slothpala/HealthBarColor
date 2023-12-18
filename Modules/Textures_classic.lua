@@ -46,7 +46,6 @@ end
 
 function Textures:UpdatePowerBars(texture)
     for _, unit in pairs(units) do
-        print(unit)
         unit.PowerBar.texture:SetTexture(texture)
     end
 end
