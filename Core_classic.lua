@@ -13,32 +13,38 @@ local metatable = {__index = HBC_Unit}
 --player
 local Player        = setmetatable({},metatable)
 Player.HealthBar    = _G.PlayerFrameHealthBar
+Player.PowerBar     = _G.PlayerFrameManaBar
 Player.Name         = _G.PlayerName
 Player.HealthText   = {_G.PlayerFrameHealthBarTextLeft, _G.PlayerFrameHealthBarTextRight, _G.PlayerFrameHealthBarText}
 Player.PowerText    = {_G.PlayerFrameManaBarTextLeft,_G.PlayerFrameManaBarTextRight,_G.PlayerFrameManaBarText}
 --target
 local Target        = setmetatable({},metatable)
 Target.HealthBar    = _G.TargetFrameHealthBar
+Target.PowerBar     = _G.TargetFrameManaBar
 Target.Name         = _G.TargetFrameTextureFrameName
 Target.HealthText   = {_G.TargetFrameTextureFrame.HealthBarTextLeft,_G.TargetFrameTextureFrame.HealthBarTextRight,_G.TargetFrameTextureFrame.HealthBarText}
 Target.PowerText    = {_G.TargetFrameTextureFrame.ManaBarTextLeft,_G.TargetFrameTextureFrame.ManaBarTextRight,_G.TargetFrameTextureFrame.ManaBarText}
 --targettarget
 local ToT           = setmetatable({},metatable)
 ToT.HealthBar       = _G.TargetFrameToTHealthBar
+ToT.PowerBar        = _G.TargetFrameToTManaBar
 ToT.Name            = _G.TargetFrameToTTextureFrameName
 --focus
 local Focus        = setmetatable({},metatable)
 Focus.HealthBar    = _G.FocusFrameHealthBar
+Focus.PowerBar     = _G.FocusFrameManaBar
 Focus.Name         = _G.FocusFrameTextureFrameName
 Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
 Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
 --focustarget
 local ToF           = setmetatable({},metatable)
 ToF.HealthBar       = _G.FocusFrameToTHealthBar
+ToF.PowerBar        = _G.FocusFrameToTManaBar
 ToF.Name            = _G.FocusFrameToTTextureFrameName
 --pet
 local Pet           = {}
 Pet.HealthBar       = _G.PetFrameHealthBar
+Pet.PowerBar        = _G.PetFrameManaBar
 Pet.Name            = _G.PetName
 Pet.HealthText      = {_G.PetFrameHealthBarTextLeft, _G.PetFrameHealthBarTextRight, _G.PetFrameHealthBarText}
 Pet.PowerText       = {_G.PetFrameManaBarText, _G.PetFrameManaBarTextLeft, _G.PetFrameManaBarTextRight}
