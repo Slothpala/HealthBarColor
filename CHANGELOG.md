@@ -1,5 +1,5 @@
 # **Changelog**
-### Version [2.12.2] - 2023-12-
+### Version [2.12.2] - 2023-12-18
 #### Added
 * Utils/HookRegistry.lua
 * Textures_classic.lua 
