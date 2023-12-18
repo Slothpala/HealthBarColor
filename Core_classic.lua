@@ -28,8 +28,14 @@ ToT.HealthBar       = _G.TargetFrameToTHealthBar
 ToT.Name            = _G.TargetFrameToTTextureFrameName
 --focus
 local Focus        = setmetatable({},metatable)
+Focus.HealthBar    = _G.FocusFrameHealthBar
+Focus.Name         = _G.FocusFrameTextureFrameName
+Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
+Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
 --focustarget
 local ToF           = setmetatable({},metatable)
+ToF.HealthBar       = _G.FocusFrameToTHealthBar
+ToF.Name            = _G.FocusFrameToTTextureFrameName
 --pet
 local Pet           = {}
 Pet.HealthBar       = _G.PetFrameHealthBar
@@ -41,25 +47,6 @@ local addonName, addonTable = ...
 --create addon and get libraries
 addonTable.HealthBarColor = LibStub("AceAddon-3.0"):NewAddon("HealthBarColor", "AceConsole-3.0", "AceEvent-3.0", "AceSerializer-3.0")
 local HealthBarColor = addonTable.HealthBarColor
-HealthBarColor.isClassic = false
-HealthBarColor.isWrath = false
-HealthBarColor.isRetail = false
-local tocversion = select(4,GetBuildInfo())
-if tocversion < 30000 then
-    HealthBarColor.isClassic = true
-elseif tocversion > 30000 and tocversion < 100000 then
-    HealthBarColor.isWrath = true
-    --focus
-    Focus.HealthBar    = _G.FocusFrameHealthBar
-    Focus.Name         = _G.FocusFrameTextureFrameName
-    Focus.HealthText   = {_G.FocusFrameTextureFrame.HealthBarTextLeft,_G.FocusFrameTextureFrame.HealthBarTextRight,_G.FocusFrameTextureFrame.HealthBarText}
-    Focus.PowerText    = {_G.FocusFrameTextureFrame.ManaBarTextLeft,_G.FocusFrameTextureFrame.ManaBarTextRight,_G.FocusFrameTextureFrame.ManaBarText}
-    --tof
-    ToF.HealthBar       = _G.FocusFrameToTHealthBar
-    ToF.Name            = _G.FocusFrameToTTextureFrameName
-else
-    HealthBarColor.isRetail = true
-end
 HealthBarColor:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0")
 HealthBarColor:SetDefaultModuleState(false)
 local AC = LibStub("AceConfig-3.0")

@@ -3,6 +3,7 @@
 --]]
 local _, addonTable = ...
 local HealthBarColor = addonTable.HealthBarColor
+local isRetail, isClassic, isWrath, isVanilla = addonTable.isRetail, addonTable.isClassic, addonTable.isWrath, addonTable.isVanilla
 
 local Media = LibStub("LibSharedMedia-3.0")
 local statusbars = Media:List("statusbar")
@@ -131,7 +132,7 @@ local options = {
                     },
                 },
                 Focus = {
-                    guiHidden = HealthBarColor.isClassic,
+                    guiHidden = isClassic,
                     order = 4,
                     name = L["Focus"],
                     type = "group",
@@ -169,7 +170,7 @@ local options = {
                     },
                 },
                 ToF = {
-                    guiHidden = HealthBarColor.isClassic,
+                    guiHidden = isClassic,
                     order = 5,
                     name = L["Target of Focus"],
                     type = "group",
@@ -236,7 +237,7 @@ local options = {
                     },
                 },
                 Boss = {
-                    guiHidden = not HealthBarColor.isRetail,
+                    guiHidden = not isRetail,
                     order = 7,
                     name = L["Boss"],
                     type = "group",
@@ -488,7 +489,7 @@ local options = {
                             name = "",
                         },
                         healthbar_choice = {
-                            guiHidden = HealthBarColor.isClassic,
+                            guiHidden = isClassic,
                             order = 3,
                             name = L["Health Bar"],
                             desc = "",
@@ -500,7 +501,7 @@ local options = {
                             width = 1.1,
                         },  
                         healthbar_color = {
-                            guiHidden = HealthBarColor.isClassic,
+                            guiHidden = isClassic,
                             order = 4,
                             name = function() local text = HealthBarColor.db.profile.Fonts.Target.healthbar_choice == 1 and "NPC color" or "color" return text end,
                             desc = "",
@@ -516,7 +517,7 @@ local options = {
                             name = "",
                         },
                         powerbar_choice = {
-                            guiHidden = HealthBarColor.isClassic,
+                            guiHidden = isClassic,
                             order = 5,
                             name = L["Power Bar"],
                             desc = "",
@@ -528,7 +529,7 @@ local options = {
                             width = 1.1,
                         },  
                         powerbar_color = {
-                            guiHidden = HealthBarColor.isClassic,
+                            guiHidden = isClassic,
                             order = 6,
                             name = function() local text = HealthBarColor.db.profile.Fonts.Target.powerbar_choice == 1 and "NPC color" or "color" return text end,
                             desc = "",
@@ -541,7 +542,7 @@ local options = {
                     },
                 },
                 Focus = {
-                    guiHidden = HealthBarColor.isClassic,
+                    guiHidden = isClassic,
                     order = 4,
                     name = L["Focus"],
                     type = "group",
@@ -702,7 +703,7 @@ local options = {
                     },
                 },
                 Boss = {
-                    guiHidden = not HealthBarColor.isRetail,
+                    guiHidden = not isRetail,
                     order = 7,
                     name = L["Boss"],
                     type = "group",
@@ -758,7 +759,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         BackgroundTextures = {
                             order = 3,
@@ -767,7 +768,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         DebuffColor = {
                             order = 4,
@@ -776,7 +777,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         PartyColor = {
                             order = 5,
@@ -785,7 +786,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         Glow = {
                             order = 6,
@@ -794,7 +795,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         HideClassPowerBar = {
                             order = 7,
@@ -803,7 +804,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                         },
                         BiggerHealthBar = {
                             order = 8,
@@ -812,7 +813,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                           -- guiHidden = not HealthBarColor.isRetail,
+                           -- guiHidden = not isRetail,
                         },
                         Overabsorb = {
                             order = 9,
@@ -821,7 +822,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden = not HealthBarColor.isRetail,
+                            guiHidden = not isRetail,
                         },
                         DarkFrames = {
                             order = 10,
@@ -838,7 +839,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden = HealthBarColor.isRetail,
+                            guiHidden = isRetail,
                         },
                         BetterBossFrames = {
                             order = 12,
@@ -847,7 +848,7 @@ local options = {
                             type = "toggle",
                             get = "GetStatus",
                             set = "SetStatus",
-                            guiHidden = not HealthBarColor.isRetail,
+                            guiHidden = not isRetail,
                         },
                     },
                 },
@@ -877,7 +878,7 @@ local options = {
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
-                            guiHidden  = HealthBarColor.isClassic,
+                            guiHidden  = isClassic,
                             disabled = function() return not HealthBarColor.db.profile.Settings.ClassColorOverwrites.enabled end,
                         },
                         demonhunter = {
@@ -887,7 +888,7 @@ local options = {
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                             disabled = function() return not HealthBarColor.db.profile.Settings.ClassColorOverwrites.enabled end,
                         },
                         druid = {
@@ -906,7 +907,7 @@ local options = {
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                             disabled = function() return not HealthBarColor.db.profile.Settings.ClassColorOverwrites.enabled end,
                         },
                         hunter = {
@@ -934,7 +935,7 @@ local options = {
                             type = "color",
                             get = "GetColor",
                             set = "SetColor",
-                            guiHidden  = not HealthBarColor.isRetail,
+                            guiHidden  = not isRetail,
                             disabled = function() return not HealthBarColor.db.profile.Settings.ClassColorOverwrites.enabled end,
                         },
                         paladin = {
@@ -1101,14 +1102,14 @@ local options = {
             order = 3,
             name = L["Module Settings"],
             type = "group",
-            hidden  = function() return not ((HealthBarColor.db.profile.Settings.Modules.Textures or HealthBarColor.db.profile.Settings.Modules.BackgroundTextures or HealthBarColor.db.profile.Settings.Modules.DebuffColor or HealthBarColor.db.profile.Settings.Modules.Glow)) or not HealthBarColor.isRetail end,
+            hidden  = function() return not ((HealthBarColor.db.profile.Settings.Modules.Textures or HealthBarColor.db.profile.Settings.Modules.BackgroundTextures or HealthBarColor.db.profile.Settings.Modules.DebuffColor or HealthBarColor.db.profile.Settings.Modules.Glow)) or not isRetail end,
             args = {
                 Textures = {
                     order = 1,
                     name = L["Textures"],
                     type = "group",
                     inline = true,
-                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.Textures end) or not HealthBarColor.isRetail,
+                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.Textures end) or not isRetail,
                     args = {
                         healthbar = {
                             order = 1,
@@ -1161,7 +1162,7 @@ local options = {
                     name = L["Background Texture"],
                     type = "group",
                     inline = true,
-                    hidden = (function() return not HealthBarColor.db.profile.Settings.Modules.BackgroundTextures end) or not HealthBarColor.isRetail,
+                    hidden = (function() return not HealthBarColor.db.profile.Settings.Modules.BackgroundTextures end) or not isRetail,
                     args = {
                         texture = {
                             order = 1,
@@ -1196,7 +1197,7 @@ local options = {
                     name = L["debuff_color_name"],
                     type = "group",
                     inline = true,
-                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.DebuffColor end) or not HealthBarColor.isRetail,
+                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.DebuffColor end) or not isRetail,
                     args = {
                         Curse = {
                             order = 1,
@@ -1265,7 +1266,7 @@ local options = {
                     name = L["Glow"],
                     type = "group",
                     inline = true,
-                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.Glow end) or not HealthBarColor.isRetail,
+                    hidden  = (function() return not HealthBarColor.db.profile.Settings.Modules.Glow end) or not isRetail,
                     args = {
                         player = {
                             order = 1,

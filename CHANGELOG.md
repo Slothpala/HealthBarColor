@@ -7,6 +7,7 @@
     * all classes will now use the texture without an alternate power bar. 
     * the AlternatePowerBar and MonkStaggerBar are now hidden.
     * the module now uses the HookRegistry 
+* The method of determaining the game version got changed from asking the game version to Init files.
 
 ### Version [2.12.1] - 2023-12-04
 #### Added

@@ -8,6 +8,8 @@
 ## OptionalDeps: Ace3, LibDeflate, LibSharedMedia-3.0, LibDualSpec-1.0, LibDDI-1.0, AceGUI-3.0-SharedMediaWidgets
 ## X-Curse-Project-ID: 682398
 
+Init.lua
+
 #Embeds
 embeds.xml
 locales.xml
