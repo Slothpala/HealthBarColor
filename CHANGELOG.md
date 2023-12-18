@@ -2,6 +2,7 @@
 ### Version [2.12.2] - 2023-12-
 #### Added
 * Utils/HookRegistry.lua
+* Textures_classic.lua 
 #### Changed
 * BiggerHealthBar module: 
     * all classes will now use the texture without an alternate power bar. 
