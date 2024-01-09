@@ -1,4 +1,12 @@
 # **Changelog**
+
+### Version [2.12.3] - 2024-01-09
+#### Fixes
+* Fixed an issue for Classic and Retail where the game would simply ignore the font set for PlayerName when first starting the game.
+
+#### Changed
+* Options.lua changed font dropdown widgets from AceGUI-3.0-SharedMediaWidgets to LibDDI-1.0
+
 ### Version [2.12.2] - 2023-12-18
 #### Added
 * Utils/HookRegistry.lua
