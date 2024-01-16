@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [2.12.5] - 2024-01-17
+#### Fixes
+* disabled the overabsorb module until i have time to catch up to the changes on blizzards side.
+
 ### Version [2.12.4] - 2024-01-16
 #### Updated
 * retail interface version updated to 100205

@@ -837,6 +837,7 @@ local options = {
                            -- guiHidden = not isRetail,
                         },
                         Overabsorb = {
+                            disabled = true,
                             order = 9,
                             name = L["Overabsorb"],
                             desc = L["overabsorb_desc"],
