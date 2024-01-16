@@ -1,4 +1,7 @@
 # **Changelog**
+### Version [2.12.4] - 2024-01-16
+#### Updated
+* retail interface version updated to 100205
 
 ### Version [2.12.3] - 2024-01-09
 #### Fixes
