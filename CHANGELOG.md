@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [2.12.6] - 2024-02-18
+#### Updated
+* vanilla interface version updated to 11501
+
 ### Version [2.12.5] - 2024-01-17
 #### Fixes
 * disabled the overabsorb module until i have time to catch up to the changes on blizzards side.
