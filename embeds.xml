@@ -18,5 +18,6 @@
   <Script file="Libs\LibDDI-1.0\lib.lua"/>
   <Script file="Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
   <Include file="Libs\LibDBIcon-1.0\lib.xml"/>
+  <Script file="Libs\LibCanDispel-1.0\LibCanDispel-1.0.lua"/>
 @end-non-debug@-->
 </Ui>
