@@ -1,4 +1,22 @@
 # **Changelog**
+### Version [3.0.0] - 2024-**-**
+#### Updated
+* The entire addon base has been rewritten from scratch.
+    * Retail and Classic versions have been streamlined.
+
+#### Highlights
+* New color option "Blizzard green" added. That can restore the default blizzard green healthbar.
+* All statusbars now use gradient colors. 
+* Performance improvements. The addon uses even fewer resources.
+* Power Colors can be customized when playing with custom textures.
+* BackgroundTextures added for classic.
+
+#### Fixes
+* Overabsorb module rewritten to work with the new absorb textures.
+
+#### Removed
+* PartyColor module as it never fully worked. 
+
 ### Version [2.12.6] - 2024-02-18
 #### Updated
 * vanilla interface version updated to 11501
