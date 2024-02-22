@@ -109,7 +109,7 @@ L["BiggerHealthBars_name"] = "BiggerHealthBars"
 L["BiggerHealthBars_desc"] = "Use larger health bars for player and target frames."
 --HideClassPowerBar
 L["HideClassPowerBar_name"] = "HideClassPowerBar"
-L["HideClassPowerBar_desc"] = "Hide the class power bar (Monk Stagger Bar, Warlock Soul Shards, Combo Points, etc.)"
+L["HideClassPowerBar_desc"] = "Hide the class power bar (Monk Chi Bar, Warlock Soul Shards, Combo Points, etc.)"
 --BackgroundTextures 
 L["BackgroundTextures_name"] = "Background Textures"
 L["BackgroundTextures_desc"] = "Create background Textures beneath health bars."
@@ -122,7 +122,7 @@ L["font_module_name"] = "Fonts"
 L["font_module_desc"] = "Use custom SharedMedia fonts and customize font size and color." 
 --Overabsorbs
 L["Overabsorbs_name"] = "Overabsorbs"
-L["Overabsorbs_desc"] = "Display absorb values above maximum life."
+L["Overabsorbs_desc"] = "Reanchor the absorb bar to fill from right to left if an absorb shield above max life is present."
 --MinimapButton
 L["MinimapButton_name"] = "Minimap Button"
 L["MinimapButton_desc"] = "Create a minimap button to access the add-on settings."
