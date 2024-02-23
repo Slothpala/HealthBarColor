@@ -40,6 +40,11 @@ function module:OnEnable()
   end
   --Setting the texture will set the statusbar color to 1,1,1. On first load, update_health_bar_color might not exist.
   for _, hbc_unit in pairs(hbc_units) do
+    function hbc_unit:RestoreHealthBarToDefault()
+      self.healthBarTexture:SetDesaturation(0)
+      self.healthBar:SetStatusBarColor(0, 1, 0)
+      self.healthBarPreparedForColoring = false
+    end
     hbc_unit:SetHealthBarTexture(pathToHealthBarTexture)
     if hbc_unit.updateFullCallbacks["update_health_bar_color"] then
       hbc_unit.updateFullCallbacks["update_health_bar_color"]()
@@ -78,6 +83,7 @@ if addonTable.isRetail then
       --It gets reset to default on spending power or changing target so very low prio
     }
     for _, hbc_unit in pairs(hbc_units) do
+      hbc_unit.RestoreHealthBarToDefault = nil --Restore the meta function
       if hbc_unit.updateFullCallbacks["update_health_bar_color"] then
         hbc_unit.updateFullCallbacks["update_health_bar_color"]()
       end
@@ -98,6 +104,7 @@ else
     local hbc_units = addon:GetAllUnits()
     local defaultTexturePath = Media:Fetch("statusbar", "Blizzard")
     for _, hbc_unit in pairs(hbc_units) do
+      hbc_unit.RestoreHealthBarToDefault = nil --Restore the meta function
       hbc_unit:SetHealthBarTexture(defaultTexturePath)
       hbc_unit:SetPowerBarTexture(defaultTexturePath)
     end

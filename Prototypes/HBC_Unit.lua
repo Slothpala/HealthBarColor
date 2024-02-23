@@ -173,14 +173,16 @@ function hbc_unit:PrepareHealthBarForColoring()
     self.healthBarPreparedForColoring = true
 end
 
-function hbc_unit:RestoreHealthBarToDefault()
-  self.healthBarTexture:SetDesaturation(0)
-  if addonTable.isRetail then
+if addonTable.isRetail then
+  function hbc_unit:RestoreHealthBarToDefault()
+    self.healthBarTexture:SetDesaturation(0)
     self.healthBar:SetStatusBarColor(1, 1, 1)
-  else
-    self.healthBar:SetStatusBarColor(0, 1, 0)
+    self.healthBarPreparedForColoring = false
   end
-  self.healthBarPreparedForColoring = false
+else
+  function hbc_unit:RestoreHealthBarToDefault()
+    self.healthBar:SetStatusBarColor(1, 1, 1)
+  end
 end
 
 function hbc_unit:RestorePowerBarToDefault()

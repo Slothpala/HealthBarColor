@@ -70,6 +70,8 @@ eventFrame:SetScript("OnEvent", function(_, event, unit, ...)
     if hbc_units[unit] then
       hbc_units[unit]:PowerUpdate()
     end
+  elseif event == "UPDATE_SHAPESHIFT_FORM" then
+    hbc_units["player"]:PowerUpdate()
   end
 end)
 if addonTable.isVanilla then
@@ -82,3 +84,6 @@ end
 eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 eventFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+if addonTable.playerClass == "DRUID" then
+  eventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+end

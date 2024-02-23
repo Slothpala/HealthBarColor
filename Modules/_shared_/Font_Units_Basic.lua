@@ -86,7 +86,10 @@ for _, unit in pairs(units) do
     if dbObj.colorModePower == 1 then
       hbc_unit:SetPowerTextToCustomColor(dbObj.customColorPower)
     else
-      hbc_unit:SetPowerTextToPowerColor()
+      --hbc_unit:SetPowerTextToPowerColor()
+      hbc_unit.updatePowerCallbacks["update_power_font_color"] = function()
+        hbc_unit:SetPowerTextToPowerColor()
+      end
     end
     local font = Media:Fetch("font", dbObj.powerFont)
     local fontSize = dbObj.powerFontSize

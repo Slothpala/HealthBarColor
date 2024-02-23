@@ -1,4 +1,13 @@
 # **Changelog**
+### Version [3.0.0-beta3]
+#### Fixes
+* Font power color will now update on power change for player and pet.
+* Font power color will now update on "UPDATE_SHAPESHIFT_FORM".
+
+#### Changed
+* The textures module will now replace the hbc_units "RestoreHealthBarToDefault" function to set the statusbar to green to to mimic expected behaviour.
+* The "RestoreHealthBarToDefault" function is now different for classic and retail to achieve a slight performance improvement.
+
 ### Version [3.0.0] - 2024-**-**
 #### Updated
 * The entire addon base has been rewritten from scratch.
