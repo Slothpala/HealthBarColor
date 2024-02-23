@@ -2,7 +2,7 @@ local addonName, addonTable = ...
 local addon = addonTable.addon
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local Media = LibStub("LibSharedMedia-3.0")
-local statusbars = Media:List("statusbar")
+local statusbars = Media:HashTable("statusbar")
 
 local moduleToggleWidth = 0.95
 
@@ -159,35 +159,23 @@ local options = {
         {
           order = 1,
           type = "select",
-          name = L["Health Bar"],
+          name = L["Texture"],
           values = statusbars,
-          get = function()
-            for i, v in next, statusbars do
-              if v == addon.db.profile.Textures.healthBarTexture then return i end
-            end
-          end,
-          set = function(_, value)
-            addon.db.profile.Textures.healthBarTexture = statusbars[value]
-            addon:ReloadModule("Textures")
-          end,
-          itemControl = "DDI-Statusbar",
+          get = "GetStatus",
+          set = "SetStatus",
+          dialogControl = "LSM30_Statusbar",
+          width = 1.8,
         },
         powerBarTexture = 
         {
           order = 2,
           type = "select",
-          name = L["Power Bar"],
+          name = L["Texture"],
           values = statusbars,
-          get = function()
-            for i, v in next, statusbars do
-              if v == addon.db.profile.Textures.powerBarTexture then return i end
-            end
-          end,
-          set = function(_, value)
-            addon.db.profile.Textures.powerBarTexture = statusbars[value]
-            addon:ReloadModule("Textures")
-          end,
-          itemControl = "DDI-Statusbar",
+          get = "GetStatus",
+          set = "SetStatus",
+          dialogControl = "LSM30_Statusbar",
+          width = 1.8,
         },
         excludePowerBar = 
         {
@@ -335,16 +323,10 @@ local options = {
           type = "select",
           name = L["Texture"],
           values = statusbars,
-          get = function()
-            for i, v in next, statusbars do
-              if v == addon.db.profile.BackgroundTextures.texture then return i end
-            end
-          end,
-          set = function(_, value)
-            addon.db.profile.BackgroundTextures.texture = statusbars[value]
-            addon:ReloadModule("BackgroundTextures")
-          end,
-          itemControl = "DDI-Statusbar",
+          get = "GetStatus",
+          set = "SetStatus",
+          dialogControl = "LSM30_Statusbar",
+          width = 1.8,
         },
         color = 
         {
