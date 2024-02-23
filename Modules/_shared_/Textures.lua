@@ -38,8 +38,8 @@ function module:OnEnable()
       hbc_units[powerBar.unit]:SetPowerBarColor()
     end)
   end
-  --Setting the texture will set the statusbar color to 1,1,1. On first load, update_health_bar_color might not exist.
   for _, hbc_unit in pairs(hbc_units) do
+    --The green on the default atals is vertex color 1,1,1 for shared media we need actual green 0,1,0
     function hbc_unit:RestoreHealthBarToDefault()
       self.healthBarTexture:SetDesaturation(0)
       self.healthBar:SetStatusBarColor(0, 1, 0)
