@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.0.0-beta4]
+#### Changed 
+* Texture selection widget
+
 ### Version [3.0.0-beta3]
 #### Fixes
 * Font power color will now update on power change for player and pet.
