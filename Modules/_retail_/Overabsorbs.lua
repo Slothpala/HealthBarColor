@@ -1,6 +1,18 @@
 local _, addonTable = ...
 local addon = addonTable.addon
 
+local GetMinMaxValues = GetMinMaxValues
+local UnitGetTotalAbsorbs = UnitGetTotalAbsorbs
+local GetWidth = GetWidth
+local UnitHealth = UnitHealth
+local IsShown = IsShown
+local SetAllPoints = SetAllPoints
+local ClearAllPoints = ClearAllPoints
+local SetPoint = SetPoint
+local SetWidth = SetWidth
+local Show = Show
+local Hide = Hide
+
 local module = addon:NewModule("Overabsorbs")
 Mixin(module, addonTable.hooks)
 local units =
