@@ -29,6 +29,8 @@ L["singleColor_desc"] = "This color is used when the gradient color is not possi
 L["powerColor_name"] = "Power Color"
 L["reactionColor_name"] = "Reaction Color"
 L["debuffColor_name"] = "Debuff Color"
+L["colorResetButton_name"] = "reset"
+L["colorResetButton_desc"] = "Restore defaults for this specific entry only."
 --Options Frame Tab labels
 L["healthBars_tab_label"] = "Health Bars"
 L["fonts_tab_label"] = "Fonts"

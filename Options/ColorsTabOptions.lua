@@ -200,6 +200,20 @@ local function createClassColorEntrys()
           desc = L["gradientEnd_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
+          width = 2,
+        },
+        resetColors = 
+        {
+          order = 5,
+          type = "execute",
+          name = L["colorResetButton_name"],
+          desc = L["colorResetButton_desc"],
+          func = function ()
+            local defaults = addon:GetDefaultDBValues()
+            addon.db.profile.addonColors.classColors[class] = CopyTable(defaults.profile.addonColors.classColors[class])
+            addon:ReloadConfig()
+          end,
+          width = 0.5,
         },
     },
     }
@@ -224,7 +238,7 @@ local function createReactionColorEntrys()
           desc = L["singleColor_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
-      },
+        },
         reactionColorStart = 
         {
           order = 2,
@@ -233,7 +247,7 @@ local function createReactionColorEntrys()
           desc = L["gradientStart_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
-      },
+        },
         reactionColorEnd = 
         {
           order = 3,
@@ -242,7 +256,21 @@ local function createReactionColorEntrys()
           desc = L["gradientEnd_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
-      },
+          width = 2.3,
+        },
+        resetColors = 
+        {
+          order = 4,
+          type = "execute",
+          name = L["colorResetButton_name"],
+          desc = L["colorResetButton_desc"],
+          func = function ()
+            local defaults = addon:GetDefaultDBValues()
+            addon.db.profile.addonColors.reactionColors[reaction] = CopyTable(defaults.profile.addonColors.reactionColors[reaction])
+            addon:ReloadConfig()
+          end,
+          width = 0.5,
+        },
     },
     }
   end
@@ -284,6 +312,20 @@ local function createPowerColorEntrys()
           desc = L["gradientEnd_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
+          width = 2.3,
+        },
+        resetColors = 
+        {
+          order = 4,
+          type = "execute",
+          name = L["colorResetButton_name"],
+          desc = L["colorResetButton_desc"],
+          func = function ()
+            local defaults = addon:GetDefaultDBValues()
+            addon.db.profile.addonColors.powerColors[powerType] = CopyTable(defaults.profile.addonColors.powerColors[powerType])
+            addon:ReloadConfig()
+          end,
+          width = 0.5,
         },
       },
     }
@@ -326,6 +368,20 @@ local function createDebuffColorEntrys()
           desc = L["gradientEnd_desc"],
           get = "GetAddonColor",
           set = "SetAddonColor",
+          width = 2.3,
+        },
+        resetColors = 
+        {
+          order = 4,
+          type = "execute",
+          name = L["colorResetButton_name"],
+          desc = L["colorResetButton_desc"],
+          func = function ()
+            local defaults = addon:GetDefaultDBValues()
+            addon.db.profile.addonColors.debuffColors[debuffType] = CopyTable(defaults.profile.addonColors.debuffColors[debuffType])
+            addon:ReloadConfig()
+          end,
+          width = 0.5,
         },
       },
     }

@@ -984,6 +984,11 @@ local defaults = {
   },
 }
 
+function addon:GetDefaultDBValues()
+  return defaults
+end
+
+
 function addon:LoadDataBase()
     self.db = LibStub("AceDB-3.0"):New("HealthBarColorDB", defaults, true) 
     --db callbacks

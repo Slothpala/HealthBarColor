@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.0.0-beta5]
+#### Added
+* Buttons that allow restoring a color to it's default value.
+
 ### Version [3.0.0-beta4]
 #### Changed 
 * Texture selection widget

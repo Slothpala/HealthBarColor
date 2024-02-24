@@ -90,6 +90,7 @@ for _, unit in pairs(units) do
       hbc_unit.updatePowerCallbacks["update_power_font_color"] = function()
         hbc_unit:SetPowerTextToPowerColor()
       end
+      hbc_unit:SetPowerTextToPowerColor()
     end
     local font = Media:Fetch("font", dbObj.powerFont)
     local fontSize = dbObj.powerFontSize
@@ -107,6 +108,7 @@ for _, unit in pairs(units) do
 
   function module:OnDisable()
     local hbc_unit = addon:GetUnit(unit)
+    hbc_unit.updatePowerCallbacks["update_power_font_color"] = nil
     local defaultFonts = module.defaultFonts
     if defaultFonts then
       hbc_unit:SetNameFont(defaultFonts.name.font, defaultFonts.name.size, defaultFonts.name.outlinemode)
