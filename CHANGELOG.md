@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.0.0-beta6]
+#### Fixes
+* Pet power will now be updated on "PLAYER_ENTERING_WORLD"
+
 ### Version [3.0.0-beta5]
 #### Added
 * Buttons that allow restoring a color to it's default value.

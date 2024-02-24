@@ -62,6 +62,7 @@ eventFrame:SetScript("OnEvent", function(_, event, unit, ...)
     hbc_units["focustarget"]:FullUpdate()
   elseif event == "PLAYER_ENTERING_WORLD" then
     hbc_units["player"]:FullUpdate()
+    hbc_units["pet"]:PowerUpdate()
   elseif event == "UNIT_TARGET" and unit == "target" then
     hbc_units["targettarget"]:FullUpdate()
   elseif event == "UNIT_TARGET" and unit == "focus" then
