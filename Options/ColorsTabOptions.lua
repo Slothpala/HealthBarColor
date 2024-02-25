@@ -209,7 +209,7 @@ local function createClassColorEntrys()
           name = L["colorResetButton_name"],
           desc = L["colorResetButton_desc"],
           func = function ()
-            local defaults = addon:GetDefaultDBValues()
+            local defaults = addon:GetDefaultDbValues()
             addon.db.profile.addonColors.classColors[class] = CopyTable(defaults.profile.addonColors.classColors[class])
             addon:ReloadConfig()
           end,
@@ -265,7 +265,7 @@ local function createReactionColorEntrys()
           name = L["colorResetButton_name"],
           desc = L["colorResetButton_desc"],
           func = function ()
-            local defaults = addon:GetDefaultDBValues()
+            local defaults = addon:GetDefaultDbValues()
             addon.db.profile.addonColors.reactionColors[reaction] = CopyTable(defaults.profile.addonColors.reactionColors[reaction])
             addon:ReloadConfig()
           end,
@@ -321,7 +321,7 @@ local function createPowerColorEntrys()
           name = L["colorResetButton_name"],
           desc = L["colorResetButton_desc"],
           func = function ()
-            local defaults = addon:GetDefaultDBValues()
+            local defaults = addon:GetDefaultDbValues()
             addon.db.profile.addonColors.powerColors[powerType] = CopyTable(defaults.profile.addonColors.powerColors[powerType])
             addon:ReloadConfig()
           end,
@@ -377,7 +377,7 @@ local function createDebuffColorEntrys()
           name = L["colorResetButton_name"],
           desc = L["colorResetButton_desc"],
           func = function ()
-            local defaults = addon:GetDefaultDBValues()
+            local defaults = addon:GetDefaultDbValues()
             addon.db.profile.addonColors.debuffColors[debuffType] = CopyTable(defaults.profile.addonColors.debuffColors[debuffType])
             addon:ReloadConfig()
           end,

@@ -984,7 +984,7 @@ local defaults = {
   },
 }
 
-function addon:GetDefaultDBValues()
+function addon:GetDefaultDbValues()
   return defaults
 end
 
