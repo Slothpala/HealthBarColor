@@ -181,7 +181,7 @@ if addonTable.isRetail then
   end
 else
   function hbc_unit:RestoreHealthBarToDefault()
-    self.healthBar:SetStatusBarColor(1, 1, 1)
+    self.healthBar:SetStatusBarColor(0, 1, 0)
   end
 end
 
