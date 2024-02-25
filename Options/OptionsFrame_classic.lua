@@ -28,6 +28,8 @@ function addon:GetOptionsFrame()
       return frame
   end
   frame = HealthBarColorOptions
+  frame:SetScale(UIParent:GetScale())
+  frame:SetSize(950,550)
   tinsert(UISpecialFrames, frame:GetName())
   frame:SetFrameStrata("DIALOG")
   frame.title = _G["HealthBarColorOptionsTitleText"]

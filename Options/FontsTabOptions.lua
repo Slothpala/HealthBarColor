@@ -4,7 +4,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local Media = LibStub("LibSharedMedia-3.0")
 local fonts = Media:List("font")
 
-local dropdDownWidth = addonTable.isRetail and 1.76 or 1.37
+local dropdDownWidth = 1.76
 local options = 
 {
   name = " ",
