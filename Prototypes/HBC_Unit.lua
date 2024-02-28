@@ -113,16 +113,16 @@ function hbc_unit:GetUnitDataFull()
 end
 
 function hbc_unit:GetUnitPowerData(isFullUpdate)
-    --powerColor
-    local powerToken = select(2, UnitPowerType(self.UnitId, 0)) or "MANA"
-    if self.powerToken == powerToken and not isFullUpdate then
-      return true
-    end
-    self.powerToken = powerToken
-    local powerColor = addonTable.powerColors[self.powerToken] or addonTable.powerColors["MANA"]
-    self.powerColor = powerColor.powerColor
-    self.powerColorStart = powerColor.powerColorStart
-    self.powerColorEnd = powerColor.powerColorEnd
+  --powerColor
+  local powerToken = select(2, UnitPowerType(self.UnitId, 0)) or "MANA"
+  if self.powerToken == powerToken and not isFullUpdate then
+    return true
+  end
+  self.powerToken = powerToken
+  local powerColor = addonTable.powerColors[self.powerToken] or addonTable.powerColors["MANA"]
+  self.powerColor = powerColor.powerColor
+  self.powerColorStart = powerColor.powerColorStart
+  self.powerColorEnd = powerColor.powerColorEnd
 end
 
 --The Update function is called when a unit needs a full update, e.g. target changed / focus changed.
@@ -166,11 +166,11 @@ function hbc_unit:PrepareHealthBarTexture()
 end
 
 function hbc_unit:PrepareHealthBarForColoring()
-    self.healthBar:SetStatusBarDesaturated(true)
-    if addonTable.isRetail then
-      self:PrepareHealthBarTexture()
-    end
-    self.healthBarPreparedForColoring = true
+  self.healthBar:SetStatusBarDesaturated(true)
+  if addonTable.isRetail then
+    self:PrepareHealthBarTexture()
+  end
+  self.healthBarPreparedForColoring = true
 end
 
 if addonTable.isRetail then
