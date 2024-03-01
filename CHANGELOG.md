@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.0.1] - 2024-01-03
+#### Fixes
+* HBC_Unit.lua -> Fixed a problem where UnitPowerType was using the wrong index for classic clients, resulting in all powerTokens using the fallback value ("MANA").
+
 ### Version [3.0.0] - 2024-02-25
 #### Updated
 * The entire addon base has been rewritten from scratch.

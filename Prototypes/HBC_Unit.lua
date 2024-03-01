@@ -112,9 +112,10 @@ function hbc_unit:GetUnitDataFull()
   self:GetUnitPowerData(true)
 end
 
+local powerTypeIndex = addonTable.isClassic and 1 or 0
 function hbc_unit:GetUnitPowerData(isFullUpdate)
   --powerColor
-  local powerToken = select(2, UnitPowerType(self.UnitId, 0)) or "MANA"
+  local powerToken = select(2, UnitPowerType(self.UnitId, powerTypeIndex)) or "MANA"
   if self.powerToken == powerToken and not isFullUpdate then
     return true
   end
