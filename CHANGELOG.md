@@ -1,5 +1,10 @@
 # **Changelog**
-### Version [3.0.1] - 2024-01-03
+### Version [3.0.2] - 2024-03-23
+#### Updated
+* retail interface version updated to 100206
+* updated OptionalDeps
+
+### Version [3.0.1] - 2024-03-01
 #### Fixes
 * HBC_Unit.lua -> Fixed a problem where UnitPowerType was using the wrong index for classic clients, resulting in all powerTokens using the fallback value ("MANA").
 
