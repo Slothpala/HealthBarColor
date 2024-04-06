@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.0.3] - 2024-04-06
+#### Updated
+* Classic Interface version to 11502
+
 ### Version [3.0.2] - 2024-03-23
 #### Updated
 * retail interface version updated to 100206
