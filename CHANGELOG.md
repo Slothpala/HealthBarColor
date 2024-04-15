@@ -1,4 +1,7 @@
 # **Changelog**
+### Version [3.0.4] - 2024-04-15
+* Alternate Power Bar text added to player font module.
+
 ### Version [3.0.3] - 2024-04-06
 #### Updated
 * Classic Interface version to 11502
