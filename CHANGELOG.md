@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.1.0] - 2024-04-21
+#### Added
+* Return of the PartyColor module. (Enable class colors for party frames (non raid style).)
+
 ### Version [3.0.4] - 2024-04-15
 * Alternate Power Bar text added to player font module.
 
@@ -22,7 +26,7 @@
 
 #### Highlights
 * New color option "Blizzard green" added. That can restore the default blizzard green healthbar.
-* All statusbars now use gradient colors. 
+* All statusbars now use gradient colors.
 * Performance improvements. The addon uses even fewer resources.
 * Power Colors can be customized when playing with custom textures.
 * BackgroundTextures added for classic.
@@ -31,7 +35,7 @@
 * Overabsorb module rewritten to work with the new absorb textures.
 
 #### Removed
-* PartyColor module as it never fully worked. 
+* PartyColor module as it never fully worked.
 
 ### Version [2.12.6] - 2024-02-18
 #### Updated
@@ -55,12 +59,12 @@
 ### Version [2.12.2] - 2023-12-18
 #### Added
 * Utils/HookRegistry.lua
-* Textures_classic.lua 
+* Textures_classic.lua
 #### Changed
-* BiggerHealthBar module: 
-    * all classes will now use the texture without an alternate power bar. 
+* BiggerHealthBar module:
+    * all classes will now use the texture without an alternate power bar.
     * the AlternatePowerBar and MonkStaggerBar are now hidden.
-    * the module now uses the HookRegistry 
+    * the module now uses the HookRegistry
 * The method of determaining the game version got changed from asking the game version to Init files.
 
 ### Version [2.12.1] - 2023-12-04
@@ -88,7 +92,7 @@
 ### Version [2.11.3] - 2023-10-25
 
 #### Added
--CHANGELOG.md 
+-CHANGELOG.md
 
 #### Changed
 -Added alpha channels to the BiggerHealthBar_PlayerFrameHealthMask.tga top right and bottom right corners for a smoother transition when using shared media textures.
