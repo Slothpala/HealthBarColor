@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.0] - 2024-05-06
+#### Added
+* Cata support.
+
 ### Version [3.1.0] - 2024-04-21
 #### Added
 * Return of the PartyColor module. (Enable class colors for party frames (non raid style).)
