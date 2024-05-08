@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.1] - 2024-05-08
+#### Updated
+* retail interface version updated to 100207
+
 ### Version [3.2.0] - 2024-05-06
 #### Added
 * Cata support.
