@@ -23,7 +23,7 @@ local units =
 }
 
 local function onUnitFrameHealPredictionBars_Update(frame)
-  if not units[frame.unit] then 
+  if not units[frame.unit] then
     return
   end
   local hbc_unit = units[frame.unit]
@@ -35,12 +35,12 @@ local function onUnitFrameHealPredictionBars_Update(frame)
   if totalAbsorb > maxHealth then
     totalAbsorb = maxHealth
   end
-  if totalAbsorb > 0 then 
-    local width = hbc_unit.healthBar:GetWidth()	
-    local health = UnitHealth(frame.unit)	
+  if totalAbsorb > 0 then
+    local width = hbc_unit.healthBar:GetWidth()
+    local health = UnitHealth(frame.unit)
     local missingHealth = maxHealth - health
-    local barSize = width * ( totalAbsorb / maxHealth ) 
-    if hbc_unit.totalAbsorbBar:IsShown() and totalAbsorb <= missingHealth then 
+    local barSize = width * ( totalAbsorb / maxHealth )
+    if hbc_unit.totalAbsorbBar:IsShown() and totalAbsorb <= missingHealth then
       hbc_unit.tiledFillOverlay:SetAllPoints(hbc_unit.totalAbsorbBar.FillMask)
     else
       if missingHealth > 0 then
@@ -61,7 +61,7 @@ function module:OnEnable()
   for unit, _ in pairs(units) do
     local hbc_unit = addon:GetUnit(unit)
     hbc_unit.tiledFillOverlay:ClearAllPoints()
-    hbc_unit.tiledFillOverlay:SetParent(hbc_unit.healthBar) 
+    hbc_unit.tiledFillOverlay:SetParent(hbc_unit.healthBar)
     hbc_unit.overAbsorbGlow:ClearAllPoints()
     hbc_unit.overAbsorbGlow:SetPoint("TOPLEFT", hbc_unit.tiledFillOverlay, "TOPLEFT", -5, 0)
     hbc_unit.overAbsorbGlow:SetPoint("BOTTOMLEFT", hbc_unit.tiledFillOverlay, "BOTTOMLEFT", -5, 0)
@@ -78,7 +78,7 @@ end
 function module:OnDisable()
   self:DisableHooks()
   for unit, hbc_unit in pairs(units) do
-    if not hbc_unit then 
+    if not hbc_unit then
       return
     end
 		hbc_unit.tiledFillOverlay:ClearAllPoints()
