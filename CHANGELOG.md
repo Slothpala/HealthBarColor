@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.2] - 2024-05-30
+#### Fixes
+* Fixed typos that prevented the targets ManaBarTextRight, Focus ManaBarText and Focus ManaBarTextRight from being affected by font settings for the Wrath and Cata versions.
+
 ### Version [3.2.1] - 2024-05-08
 #### Updated
 * retail interface version updated to 100207

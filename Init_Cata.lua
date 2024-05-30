@@ -47,7 +47,7 @@ addonTable.globalUnitVariables =
     healthTextRight = _G.TargetFrameTextureFrame.HealthBarTextRight,
     powerBarTextLeft = _G.TargetFrameTextureFrame.ManaBarTextLeft,
     powerBarTextMiddle = _G.TargetFrameTextureFrame.ManaBarText,
-    powerBarTextRight = _G.TargetFrameTextureFrame.ManaBarTextRigh,
+    powerBarTextRight = _G.TargetFrameTextureFrame.ManaBarTextRight,
     frameTexture = _G.TargetFrameTextureFrameTexture,
     frameFlash = _G.PlayerStatusTexture
   },
@@ -67,8 +67,8 @@ addonTable.globalUnitVariables =
     healthTextMiddle = _G.FocusFrameTextureFrame.HealthBarText,
     healthTextRight = _G.FocusFrameTextureFrame.HealthBarTextRight,
     powerBarTextLeft = _G.FocusFrameTextureFrame.ManaBarTextLeft,
-    powerBarTextMiddle = _G.PlayerFrameManaBarText,
-    powerBarTextRight = _G.FocusFrameTextureFrame.ManaBarText,
+    powerBarTextMiddle = _G.FocusFrameTextureFrame.ManaBarText,
+    powerBarTextRight = _G.FocusFrameTextureFrame.ManaBarTextRight,
     frameTexture = _G.FocusFrameTextureFrameTexture,
   },
   focustarget =

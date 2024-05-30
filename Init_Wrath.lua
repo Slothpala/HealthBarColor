@@ -3,9 +3,9 @@ local _, addonTable = ...
 addonTable.playerClass = select(2, UnitClass("player"))
 
 addonTable.isWrath = true
-addonTable.isClassic = true 
+addonTable.isClassic = true
 
-addonTable.texturePaths = 
+addonTable.texturePaths =
 {
   portraitIcon = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\Icon_rounded.tga",
 }
@@ -22,7 +22,7 @@ addonTable.fontModules =
 
 addonTable.globalUnitVariables =
 {
-  player = 
+  player =
   {
     healthBar = _G.PlayerFrameHealthBar,
     powerBar = _G.PlayerFrameManaBar,
@@ -36,7 +36,7 @@ addonTable.globalUnitVariables =
     frameTexture = _G.PlayerFrameTexture,
     frameFlash = _G.PlayerStatusTexture
   },
-  target = 
+  target =
   {
     healthBar = _G.TargetFrameHealthBar,
     powerBar = _G.TargetFrameManaBar,
@@ -46,18 +46,18 @@ addonTable.globalUnitVariables =
     healthTextRight = _G.TargetFrameTextureFrame.HealthBarTextRight,
     powerBarTextLeft = _G.TargetFrameTextureFrame.ManaBarTextLeft,
     powerBarTextMiddle = _G.TargetFrameTextureFrame.ManaBarText,
-    powerBarTextRight = _G.TargetFrameTextureFrame.ManaBarTextRigh,
+    powerBarTextRight = _G.TargetFrameTextureFrame.ManaBarTextRight,
     frameTexture = _G.TargetFrameTextureFrameTexture,
     frameFlash = _G.PlayerStatusTexture
   },
-  targettarget = 
+  targettarget =
   {
     healthBar = _G.TargetFrameToTHealthBar,
     powerBar = _G.TargetFrameToTManaBar,
     nameText = _G.TargetFrameToTTextureFrameName,
     frameTexture = _G.TargetFrameToTTextureFrameTexture,
   },
-  focus = 
+  focus =
   {
     healthBar = _G.FocusFrameHealthBar,
     powerBar = _G.FocusFrameManaBar,
@@ -66,18 +66,18 @@ addonTable.globalUnitVariables =
     healthTextMiddle = _G.FocusFrameTextureFrame.HealthBarText,
     healthTextRight = _G.FocusFrameTextureFrame.HealthBarTextRight,
     powerBarTextLeft = _G.FocusFrameTextureFrame.ManaBarTextLeft,
-    powerBarTextMiddle = _G.PlayerFrameManaBarText,
-    powerBarTextRight = _G.FocusFrameTextureFrame.ManaBarText,
+    powerBarTextMiddle = _G.FocusFrameTextureFrame.ManaBarText,
+    powerBarTextRight = _G.FocusFrameTextureFrame.ManaBarTextRight,
     frameTexture = _G.FocusFrameTextureFrameTexture,
   },
-  focustarget = 
+  focustarget =
   {
     healthBar = _G.FocusFrameToTHealthBar,
     powerBar = _G.FocusFrameToTManaBar,
     nameText = _G.FocusFrameToTTextureFrameName,
     frameTexture = _G.FocusFrameToTTextureFrameTexture,
   },
-  pet = 
+  pet =
   {
     healthBar = _G.PetFrameHealthBar,
     powerBar = _G.PetFrameManaBar,
