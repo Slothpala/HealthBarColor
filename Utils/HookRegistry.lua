@@ -3,7 +3,6 @@ addonTable.hooks = {}
 local HooksMixin = addonTable.hooks
 
 local _G = _G
-local HookScript = HookScript
 local hooksecurefunc = hooksecurefunc
 local tostring = tostring
 local next = next

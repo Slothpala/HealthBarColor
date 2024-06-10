@@ -2,8 +2,6 @@ local _, addonTable = ...
 local addon = addonTable.addon
 
 local UnitClass = UnitClass
-local SetAtlas = SetAtlas
-local SetGradient = SetGradient
 local CreateColor = CreateColor
 local MAX_PARTY_MEMBERS = MAX_PARTY_MEMBERS
 

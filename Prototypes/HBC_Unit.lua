@@ -3,9 +3,7 @@ local addon = addonTable.addon
 
 --speed references
 --WoW Api
-local SetGradient = SetGradient
 local CreateColor = CreateColor
-local SetStatusBarTexture = SetStatusBarTexture
 --Lua
 
 --[[
