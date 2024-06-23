@@ -1,22 +1,22 @@
 local _, addonTable = ...
 local addon = addonTable.addon
 
-if IsAddOnLoaded("FrameColor") then
-  local info = 
+if C_AddOns.IsAddOnLoaded("FrameColor") then
+  local info =
   {
     moduleName = "HealthBarColor",
-    color1 = 
+    color1 =
     {
       name = "Main",
       desc = "",
     },
-    color2 = 
+    color2 =
     {
       name = "Background",
       desc = "",
       hasAlpha = true,
     },
-    color3 = 
+    color3 =
     {
       name = "Tabs",
       desc = "",
@@ -48,26 +48,26 @@ if IsAddOnLoaded("FrameColor") then
         healthBarColorOptionsFrame.NineSlice.RightEdge,
         healthBarColorOptionsFrame.NineSlice.LeftEdge,
         healthBarColorOptionsFrame.NineSlice.BottomRightCorner,
-        healthBarColorOptionsFrame.NineSlice.BottomLeftCorner,  
+        healthBarColorOptionsFrame.NineSlice.BottomLeftCorner,
       }
     ) do
       texture:SetDesaturation(desaturation)
-      texture:SetVertexColor(main_color.r,main_color.g,main_color.b) 
+      texture:SetVertexColor(main_color.r,main_color.g,main_color.b)
     end
     local backgroundTexture = healthBarColorOptionsFrame.Bg
     if backgroundTexture then
       backgroundTexture:SetDesaturation(desaturation)
       backgroundTexture:SetVertexColor(bg_color.r, bg_color.g, bg_color.b, bg_color.a)
     end
-    for _, tab in pairs({ healthBarColorOptionsFrame.TabSystem:GetChildren() }) do 
+    for _, tab in pairs({ healthBarColorOptionsFrame.TabSystem:GetChildren() }) do
       for _, texture in pairs(
         {
           tab.Left,
           tab.Middle,
           tab.Right,
         }
-      ) do 
-        texture:SetVertexColor(tab_color.r,tab_color.g,tab_color.b,tab_color.a) 
+      ) do
+        texture:SetVertexColor(tab_color.r,tab_color.g,tab_color.b,tab_color.a)
       end
     end
   end

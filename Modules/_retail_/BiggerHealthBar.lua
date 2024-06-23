@@ -4,12 +4,12 @@ local addon = addonTable.addon
 local module = addon:NewModule("BiggerHealthBar")
 Mixin(module, addonTable.hooks)
 
-local textures = 
+local textures =
 {
-  frameTexture = 
-  { 
+  frameTexture =
+  {
     path = addonTable.texturePaths.biggerHealthBarFrameTexture,
-    coords = 
+    coords =
     {
       26/256, --left
       224/256, --right
@@ -17,10 +17,10 @@ local textures =
       97/128 -- bottom
     },
   },
-  frameFlash = 
-  { 
+  frameFlash =
+  {
     path = addonTable.texturePaths.biggerHealthBarFrameFlash,
-    coords = 
+    coords =
     {
       27.5/256, --left
       219/256, --right
@@ -28,9 +28,9 @@ local textures =
       96/128, -- bottom
     },
   },
-  alternateFrameTexture = 
+  alternateFrameTexture =
   {
-    coords = 
+    coords =
     {
       26/256, --left
       224/256, --right
@@ -38,10 +38,10 @@ local textures =
       100/128, -- bottom
     },
   },
-  healthBarMask = 
+  healthBarMask =
   {
     path = addonTable.texturePaths.biggerHealthBarMask,
-    coords = 
+    coords =
     {
       2/128, --left
       126/128, --right
@@ -51,7 +51,7 @@ local textures =
   },
 }
 
-local resourceBars = 
+local resourceBars =
 {
 	addonTable.globalUnitVariables.player.powerBar,
 	InsanityBarFrame,
@@ -76,7 +76,7 @@ local function onToPlayerArt()
   end
 	frameFlash:SetTexture(textures.frameFlash.path)
 	frameFlash:SetTexCoord(unpack(textures.frameFlash.coords))
-  local mask = addonTable.globalUnitVariables.player.healthBar.HealthBarMask
+  local mask = addonTable.globalUnitVariables.player.healthBarMask
   local healthBar = addonTable.globalUnitVariables.player.healthBar
 	mask:SetTexture(textures.healthBarMask.path)
 	mask:SetPoint("TOPLEFT",healthBar,-3,7)
@@ -108,7 +108,7 @@ function module:OnDisable()
   local isAlterntePowerFrame = PlayerFrame.activeAlternatePowerBar
 	local frameTexture = isAlterntePowerFrame and PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture or PlayerFrame.PlayerFrameContainer.FrameTexture
   local frameFlash =  PlayerFrame.PlayerFrameContainer.FrameFlash
-  local mask = addonTable.globalUnitVariables.player.healthBar.HealthBarMask
+  local mask = addonTable.globalUnitVariables.player.healthBarMask
   local healthBar = addonTable.globalUnitVariables.player.healthBar
   if isAlterntePowerFrame then
 		frameTexture:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-ClassResource")

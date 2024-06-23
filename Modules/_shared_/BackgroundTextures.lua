@@ -19,7 +19,7 @@ function module:OnEnable()
     end
     if not hbc_unit.backgroundTexture then
       hbc_unit.backgroundTexture = hbc_unit.backgroundFrame:CreateTexture()
-      local mask = hbc_unit.healthBar.HealthBarMask
+      local mask = hbc_unit.healthBarMask
       if mask then
         hbc_unit.backgroundTexture:AddMaskTexture(mask)
       end

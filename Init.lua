@@ -4,13 +4,13 @@ addonTable.playerClass = select(2, UnitClass("player"))
 
 addonTable.isRetail = true
 
-addonTable.texturePaths = 
+addonTable.texturePaths =
 {
   --BiggerHealthBar
   biggerHealthBarFrameTexture = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_FrameTexture.tga",
   biggerHealthBarFrameFlash = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_FrameFlash.tga",
   biggerHealthBarMask = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_PlayerFrameHealthMask.tga",
-  --BetterBossFrames 
+  --BetterBossFrames
   betterBossFramesFrameTexture = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BetterBossFrames.png",
   betterBossFramesFrameFlash = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BetterBossFlash.png",
   betterBossFramesMask = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\MaskTextureBoss.png",
@@ -34,15 +34,16 @@ addonTable.fontModules =
 
 addonTable.globalUnitVariables =
 {
-  player = 
+  player =
   {
-    frame = _G.PlayerFrame, 
-    healthBar = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar,
+    frame = _G.PlayerFrame,
+    healthBar = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar,
     nameText = _G.PlayerName,
-    healthTextLeft = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.LeftText,
-    healthTextMiddle = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.TextString,
-    healthTextRight = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.RightText,
+    healthTextLeft = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar.LeftText,
     powerBarTextMiddle = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar.ManaBarText,
     powerBarTextRight = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.ManaBarArea.ManaBar.RightText,
@@ -51,47 +52,49 @@ addonTable.globalUnitVariables =
     alternatePowerBarTextRight = addonTable.playerClass == "MONK" and _G.MonkStaggerBar.RightText or _G.AlternatePowerBar.RightText,
     frameTexture = _G.PlayerFrame.PlayerFrameContainer.FrameTexture,
     alternatePowerFrameTexture = _G.PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture,
-    totalAbsorbBar = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.TotalAbsorbBar,
-    tiledFillOverlay = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.TotalAbsorbBar.TiledFillOverlay,
-    overAbsorbGlow = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarArea.HealthBar.OverAbsorbGlow,
+    totalAbsorbBar = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar,
+    tiledFillOverlay = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar.TiledFillOverlay,
+    overAbsorbGlow = _G.PlayerFrame.PlayerFrameContent.PlayerFrameContentMain.HealthBarsContainer.HealthBar.OverAbsorbGlow,
   },
-  target = 
+  target =
   {
     frame = _G.TargetFrame,
-    healthBar = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
     glowTexture = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor,
     frameTexture = _G.TargetFrame.TargetFrameContainer.FrameTexture,
-    totalAbsorbBar = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TotalAbsorbBar,
-    tiledFillOverlay = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TotalAbsorbBar.TiledFillOverlay,
-    overAbsorbGlow = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.OverAbsorbGlow,
+    totalAbsorbBar = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar,
+    tiledFillOverlay = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar.TiledFillOverlay,
+    overAbsorbGlow = _G.TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.OverAbsorbGlow,
   },
   focus =
   {
     frame = _G.FocusFrame,
-    healthBar = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
     glowTexture = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.ReputationColor,
     frameTexture = _G.FocusFrame.TargetFrameContainer.FrameTexture,
-    totalAbsorbBar = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TotalAbsorbBar,
-    tiledFillOverlay = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TotalAbsorbBar.TiledFillOverlay,
-    overAbsorbGlow = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.OverAbsorbGlow,
+    totalAbsorbBar = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar,
+    tiledFillOverlay = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.TotalAbsorbBar.TiledFillOverlay,
+    overAbsorbGlow = _G.FocusFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar.OverAbsorbGlow,
   },
-  targettarget = 
+  targettarget =
   {
     frame = _G.TargetFrameToT,
     healthBar = _G.TargetFrameToT.HealthBar,
@@ -99,7 +102,7 @@ addonTable.globalUnitVariables =
     nameText = _G.TargetFrameToT.name,
     frameTexture = _G.TargetFrameToT.FrameTexture,
   },
-  focustarget = 
+  focustarget =
   {
     frame = _G.FocusFrameToT,
     healthBar = _G.FocusFrameToT.HealthBar,
@@ -107,7 +110,7 @@ addonTable.globalUnitVariables =
     nameText = _G.FocusFrameToT.name,
     frameTexture = _G.FocusFrameToT.FrameTexture,
   },
-  pet = 
+  pet =
   {
     frame = _G.PetFrame,
     healthBar = _G.PetFrameHealthBar,
@@ -121,15 +124,16 @@ addonTable.globalUnitVariables =
     powerBarTextRight = _G.PetFrameManaBarTextRight,
     frameTexture = _G.PetFrameTexture
   },
-  boss1 = 
+  boss1 =
   {
     frame = _G.Boss1TargetFrame,
-    healthBar = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
@@ -139,15 +143,16 @@ addonTable.globalUnitVariables =
     frameTexture = _G.Boss1TargetFrame.TargetFrameContainer.FrameTexture,
     levelText = _G.Boss1TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText,
   },
-  boss2 = 
+  boss2 =
   {
     frame = _G.Boss2TargetFrame,
-    healthBar = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
@@ -157,15 +162,16 @@ addonTable.globalUnitVariables =
     frameTexture = _G.Boss2TargetFrame.TargetFrameContainer.FrameTexture,
     levelText = _G.Boss2TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText,
   },
-  boss3 = 
+  boss3 =
   {
     frame = _G.Boss3TargetFrame,
-    healthBar = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
@@ -175,15 +181,16 @@ addonTable.globalUnitVariables =
     frameTexture = _G.Boss3TargetFrame.TargetFrameContainer.FrameTexture,
     levelText = _G.Boss3TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText,
   },
-  boss4 = 
+  boss4 =
   {
     frame = _G.Boss4TargetFrame,
-    healthBar = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
@@ -193,15 +200,16 @@ addonTable.globalUnitVariables =
     frameTexture = _G.Boss4TargetFrame.TargetFrameContainer.FrameTexture,
     levelText = _G.Boss4TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText,
   },
-  boss5 = 
+  boss5 =
   {
     frame = _G.Boss5TargetFrame,
-    healthBar = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar,
+    healthBar = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBar,
+    healthBarMask = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.HealthBarMask,
     powerBar = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar,
     nameText = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.Name,
-    healthTextLeft = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.LeftText,
-    healthTextMiddle = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.TextString,
-    healthTextRight = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBar.RightText,
+    healthTextLeft = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.LeftText,
+    healthTextMiddle = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.TextString,
+    healthTextRight = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.HealthBarsContainer.RightText,
     powerBarTextLeft = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.LeftText,
     powerBarTextMiddle = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.ManaBarText,
     powerBarTextRight = _G.Boss5TargetFrame.TargetFrameContent.TargetFrameContentMain.ManaBar.RightText,
