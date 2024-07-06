@@ -25,7 +25,7 @@ end
 
 local function updateAurasFull()
   local function handleAura(aura)
-    if aura.dispelName and LCD:CanDispel(aura.dispelName) then
+    if aura.dispelName and LCD.CanDispel(aura.dispelName) then
       auraMap[aura.auraInstanceID] = aura.dispelName
     end
   end
@@ -36,7 +36,7 @@ end
 local function updateAurasIncremental(updateInfo)
   if updateInfo.addedAuras then
     for _, aura in pairs(updateInfo.addedAuras) do
-      if aura.isHarmful and aura.dispelName and LCD:CanDispel(aura.dispelName) then
+      if aura.isHarmful and aura.dispelName and LCD.CanDispel(aura.dispelName) then
         auraMap[aura.auraInstanceID] = aura.dispelName
       end
     end
