@@ -16,7 +16,7 @@ function module:OnEnable()
       return
     end
 
-    local hp_texture = PartyMemberFrame.HealthBar.HealthBarTexture
+    local hp_texture = PartyMemberFrame.HealthBarContainer.HealthBar.HealthBarTexture
     local classColorStart = addonTable.classColors[class].classColorStart
     local classColorEnd = addonTable.classColors[class].classColorEnd
     -- Desaturation would not work after reloading, but changing texture always seems to work.
@@ -38,7 +38,7 @@ function module:OnDisable()
   for i=1, MAX_PARTY_MEMBERS do
     local PartyMemberFrame = PartyFrame["MemberFrame" .. i]
     if PartyMemberFrame then
-      local hp_texture = PartyMemberFrame.HealthBar.HealthBarTexture
+      local hp_texture = PartyMemberFrame.HealthBarContainer.HealthBar.HealthBarTexture
       hp_texture:SetAtlas("UI-HUD-UnitFrame-Party-PortraitOn-Bar-Health", TextureKitConstants.UseAtlasSize)
       hp_texture:SetVertexColor(1, 1, 1)
     end
