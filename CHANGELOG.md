@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.4] - 2024-07-23
+#### Updated
+* Adapted to tww UI changes.
+
 ### Version [3.2.3] - 2024-06-11
 #### Removed
 * Removed some unused local variables.
