@@ -83,6 +83,13 @@ local function onToPlayerArt()
 	mask:SetPoint("BOTTOMRIGHT",healthBar,2,-12)
   mask:Show()
   healthBar:SetHeight(31)
+  -- Font since tww the halth text is anchored to the container.
+  local healthTextLeft = addonTable.globalUnitVariables.player.healthTextLeft
+  local healthTextMiddle = addonTable.globalUnitVariables.player.healthTextMiddle
+  local healthTextRight = addonTable.globalUnitVariables.player.healthTextRight
+  healthTextLeft:SetPoint("LEFT", healthBar, "LEFT")
+  healthTextMiddle:SetPoint("CENTER", healthBar, "CENTER")
+  healthTextRight:SetPoint("RIGHT", healthBar, "RIGHT")
 end
 
 local function onToVehicleArt()
