@@ -1,4 +1,9 @@
 # **Changelog**
+### Version [3.2.5] - 2024-07-27
+#### Fixes
+* Retail: Init.lua -> healthTextMiddle now points to the correct FontString.
+* Retail: BiggerHealthBar.lua -> Status texts are now anchored to the HealthBar, making them behave like they did before the tww pre patch.
+
 ### Version [3.2.4] - 2024-07-23
 #### Updated
 * Adapted to tww UI changes.
