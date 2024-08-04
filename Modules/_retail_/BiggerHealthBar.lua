@@ -94,7 +94,7 @@ end
 
 local function onToVehicleArt()
   PlayerFrame.PlayerFrameContainer.FrameFlash:SetTexCoord(0,1,0,1)
-  addonTable.globalUnitVariables.player.healthBar.HealthBarMask:Hide()
+  addonTable.globalUnitVariables.player.healthBarMask:Hide()
 end
 
 function module:OnEnable()
