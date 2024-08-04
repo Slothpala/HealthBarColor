@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.6] - 2024-08-05
+#### Fixes
+* Retail: BiggerHealthBar.lua -> fixed the path of the mask texture.
+
 ### Version [3.2.5] - 2024-07-27
 #### Fixes
 * Retail: Init.lua -> healthTextMiddle now points to the correct FontString.
