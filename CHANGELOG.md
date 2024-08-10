@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.7] - 2024-08-10
+#### Removed
+* Removed BetterBossFrame because I could not fix it after the changes.
+
 ### Version [3.2.6] - 2024-08-05
 #### Fixes
 * Retail: BiggerHealthBar.lua -> fixed the path of the mask texture.

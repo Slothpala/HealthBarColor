@@ -74,17 +74,6 @@ local options = {
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
-        BetterBossFrames =
-        {
-          hidden = not addonTable.isRetail,
-          order = 5,
-          name = L["BetterBossFrames_name"],
-          desc = L["BetterBossFrames_desc"],
-          type = "toggle",
-          get = "GetModuleStatus",
-          set = "SetModuleStatus",
-          width = moduleToggleWidth,
-        },
         Glow =
         {
           hidden = not addonTable.isRetail,

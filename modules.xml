@@ -11,7 +11,6 @@
 <!--_retail_-->
   <Script file="Modules\_retail_\BiggerHealthBar.lua"/>
   <Script file="Modules\_retail_\Glow.lua"/>
-  <Script file="Modules\_retail_\BetterBossFrames.lua"/>
   <Script file="Modules\_retail_\HideClassPowerBar.lua"/>
   <Script file="Modules\_retail_\DebuffColor.lua"/>
   <Script file="Modules\_retail_\Overabsorbs.lua"/>
