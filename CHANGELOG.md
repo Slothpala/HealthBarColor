@@ -1,5 +1,5 @@
 # **Changelog**
-### Version [3.2.8] - 2024-08-10
+### Version [3.2.8] - 2024-08-21
 #### Updated
 * retail interface version updated to 110002
 
