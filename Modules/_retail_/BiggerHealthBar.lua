@@ -8,34 +8,46 @@ local textures =
 {
   frameTexture =
   {
-    path = addonTable.texturePaths.biggerHealthBarFrameTexture,
+    path = addonTable.texturePaths.biggerHealthBarTexture,
     coords =
     {
-      26/256, --left
-      224/256, --right
-      26/128, --top
-      97/128 -- bottom
+      0.00048828125, --left
+      0.19384765625, --right
+      0.1669921875, --top
+      0.3056640625 -- bottom
     },
   },
   frameFlash =
   {
-    path = addonTable.texturePaths.biggerHealthBarFrameFlash,
+    path = addonTable.texturePaths.biggerHealthBarTexture,
     coords =
     {
-      27.5/256, --left
-      219/256, --right
-      26/128, --top
-      96/128, -- bottom
+      0.57568359375, --left
+      0.76318359375, --right
+      0.1669921875, --top
+      0.3056640625, -- bottom
     },
   },
   alternateFrameTexture =
   {
+    path = addonTable.texturePaths.biggerHealthBarTexture,
     coords =
     {
-      26/256, --left
-      224/256, --right
-      26/128, --top
-      100/128, -- bottom
+      0.78466796875, --left
+      0.97802734375, --right
+      0.0009765625, --top
+      0.1455078125, -- bottom
+    },
+  },
+  alternateFrameFlash =
+  {
+    path = addonTable.texturePaths.biggerHealthBarTexture,
+    coords =
+    {
+      0.38720703125, --left
+      0.57470703125, --right
+      0.1669921875, --top
+      0.3056640625, -- bottom
     },
   },
   healthBarMask =
@@ -69,13 +81,14 @@ local function onToPlayerArt()
 	local frameTexture = isAlterntePowerFrame and PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture or PlayerFrame.PlayerFrameContainer.FrameTexture
   local frameFlash =  PlayerFrame.PlayerFrameContainer.FrameFlash
   frameTexture:SetTexture(textures.frameTexture.path)
+  frameFlash:SetTexture(textures.frameFlash.path)
   if isAlterntePowerFrame then
     frameTexture:SetTexCoord(unpack(textures.alternateFrameTexture.coords))
+    frameFlash:SetTexCoord(unpack(textures.alternateFrameFlash.coords))
   else
     frameTexture:SetTexCoord(unpack(textures.frameTexture.coords))
+    frameFlash:SetTexCoord(unpack(textures.frameFlash.coords))
   end
-	frameFlash:SetTexture(textures.frameFlash.path)
-	frameFlash:SetTexCoord(unpack(textures.frameFlash.coords))
   local mask = addonTable.globalUnitVariables.player.healthBarMask
   local healthBar = addonTable.globalUnitVariables.player.healthBar
 	mask:SetTexture(textures.healthBarMask.path)

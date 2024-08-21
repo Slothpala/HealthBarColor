@@ -7,8 +7,7 @@ addonTable.isRetail = true
 addonTable.texturePaths =
 {
   --BiggerHealthBar
-  biggerHealthBarFrameTexture = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_FrameTexture.tga",
-  biggerHealthBarFrameFlash = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_FrameFlash.tga",
+  biggerHealthBarTexture = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\UIUnitFrame2x.tga",
   biggerHealthBarMask = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BiggerHealthBar_PlayerFrameHealthMask.tga",
   --BetterBossFrames
   betterBossFramesFrameTexture = "Interface\\AddOns\\HealthBarColor\\Media\\Textures\\BetterBossFrames.png",
