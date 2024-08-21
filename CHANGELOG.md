@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.8] - 2024-08-10
+#### Updated
+* retail interface version updated to 110002
+
 ### Version [3.2.7] - 2024-08-10
 #### Removed
 * Removed BetterBossFrame because I could not fix it after the changes.
