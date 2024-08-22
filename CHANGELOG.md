@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.2.9] - 2024-08-22
+#### Updated
+* retail: Improved the textures of BiggerHelthBar
+
 ### Version [3.2.8] - 2024-08-21
 #### Updated
 * retail interface version updated to 110002
