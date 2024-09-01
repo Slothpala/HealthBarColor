@@ -117,6 +117,9 @@ L["PartyColor_desc"] = "Enable class colors for party frames (non raid style)."
 --HideClassPowerBar
 L["HideClassPowerBar_name"] = "HideClassPowerBar"
 L["HideClassPowerBar_desc"] = "Hide the class power bar (Monk Chi Bar, Warlock Soul Shards, Combo Points, etc.)"
+--HideTotemFrame
+L["HideTotemFrame_name"] = "HideTotemFrame"
+L["HideTotemFrame_desc"] = "Hide the totem indicators around the player frame."
 --BackgroundTextures
 L["BackgroundTextures_name"] = "Background Textures"
 L["BackgroundTextures_desc"] = "Create background Textures beneath health bars."

@@ -2,27 +2,27 @@ local addonName, addonTable = ...
 local addon = addonTable.addon
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-local options = 
+local options =
 {
   name = " ",
   handler = addon,
   type = "group",
   childGroups = "tab",
-  args = 
+  args =
   {
 
   },
 }
 
-local basic_options = 
+local basic_options =
 {
   L["optionClass"],
   L["optionBlizzard"],
   L["optionCustom"],
 }
-local basic_option_units 
+local basic_option_units
 if addonTable.isRetail then
-  basic_option_units = 
+  basic_option_units =
   {
     [1] = "player",
     [6] = "pet",
@@ -33,14 +33,14 @@ if addonTable.isRetail then
     [11] = "boss5",
   }
 else
-  basic_option_units = 
+  basic_option_units =
   {
     [1] = "player",
     [6] = "pet",
   }
 end
 
-local extended_options = 
+local extended_options =
 {
   L["optionClassReaction"],
   L["optionReaction"] ,
@@ -49,15 +49,15 @@ local extended_options =
   L["optionClassBlizzard"],
   L["optionBlizzard"] ,
 }
-local extended_option_units 
+local extended_option_units
 if addonTable.isVanilla then
-  extended_option_units = 
+  extended_option_units =
   {
     [2] = "target",
     [3] = "targettarget",
   }
 else
-  extended_option_units = 
+  extended_option_units =
   {
     [2] = "target",
     [3] = "targettarget",
@@ -68,7 +68,7 @@ end
 
 for key, unit in pairs(basic_option_units) do
   local moduleName = "HealthBarColor_" .. unit
-  options.args[moduleName] = 
+  options.args[moduleName] =
   {
     order = key,
     name = L[unit],
@@ -77,7 +77,7 @@ for key, unit in pairs(basic_option_units) do
     args =
       {
         colorMode =
-        { 
+        {
           order = 1,
           name = L["colorMode"] ,
           desc = "",
@@ -86,7 +86,7 @@ for key, unit in pairs(basic_option_units) do
           get = "GetStatus",
           set = "SetStatus",
         },
-        customColorStart = 
+        customColorStart =
         {
           order = 2,
           name = L["gradientStart_name"],
@@ -95,10 +95,10 @@ for key, unit in pairs(basic_option_units) do
           get = "GetColor",
           set = "SetColor",
           hidden = function()
-            return addon.db.profile[moduleName].colorMode ~= 3 and true 
+            return addon.db.profile[moduleName].colorMode ~= 3 and true
           end,
         },
-        customColorEnd = 
+        customColorEnd =
         {
           order = 3,
           name = L["gradientEnd_name"],
@@ -107,7 +107,7 @@ for key, unit in pairs(basic_option_units) do
           get = "GetColor",
           set = "SetColor",
           hidden = function()
-            return addon.db.profile[moduleName].colorMode ~= 3 and true 
+            return addon.db.profile[moduleName].colorMode ~= 3 and true
           end,
         }
       },
@@ -116,7 +116,7 @@ end
 
 for key, unit in pairs(extended_option_units) do
   local moduleName = "HealthBarColor_" .. unit
-  options.args[moduleName] = 
+  options.args[moduleName] =
   {
     order = key,
     name = L[unit],
@@ -125,7 +125,7 @@ for key, unit in pairs(extended_option_units) do
     args =
       {
         colorMode =
-        { 
+        {
           order = 1,
           name = L["colorMode"],
           desc = "",
@@ -134,7 +134,7 @@ for key, unit in pairs(extended_option_units) do
           get = "GetStatus",
           set = "SetStatus",
         },
-        customColorStart = 
+        customColorStart =
         {
           order = 2,
           name = L["gradientStart_name"],
@@ -146,7 +146,7 @@ for key, unit in pairs(extended_option_units) do
             return not ( addon.db.profile[moduleName].colorMode == 3 or addon.db.profile[moduleName].colorMode == 4 )
           end,
         },
-        customColorEnd = 
+        customColorEnd =
         {
           order = 3,
           name = L["gradientEnd_name"],
@@ -164,7 +164,7 @@ end
 
 --unit specific settings
 --Player
-options.args.HealthBarColor_player.args["BiggerHealthBar"] = 
+options.args.HealthBarColor_player.args["BiggerHealthBar"] =
 {
   hidden = not addonTable.isRetail,
   order = 4,
@@ -174,7 +174,7 @@ options.args.HealthBarColor_player.args["BiggerHealthBar"] =
   get = "GetModuleStatus",
   set = "SetModuleStatus",
 }
-options.args.HealthBarColor_player.args["HideClassPowerBar"] = 
+options.args.HealthBarColor_player.args["HideClassPowerBar"] =
 {
   hidden = not addonTable.isRetail,
   order = 5,
@@ -184,7 +184,7 @@ options.args.HealthBarColor_player.args["HideClassPowerBar"] =
   get = "GetModuleStatus",
   set = "SetModuleStatus",
 }
-options.args.HealthBarColor_player.args["DebuffColor"] = 
+options.args.HealthBarColor_player.args["DebuffColor"] =
 {
   hidden = not addonTable.isRetail,
   order = 6,
@@ -194,6 +194,17 @@ options.args.HealthBarColor_player.args["DebuffColor"] =
   get = "GetModuleStatus",
   set = "SetModuleStatus",
 }
+options.args.HealthBarColor_player.args["HideTotemFrame"] =
+{
+  hidden = not addonTable.isRetail,
+  order = 6,
+  name = L["HideTotemFrame_name"],
+  desc = L["HideTotemFrame_desc"],
+  type = "toggle",
+  get = "GetModuleStatus",
+  set = "SetModuleStatus",
+}
+
 
 function addon:GetHealthBarsTabOptions()
   return options
