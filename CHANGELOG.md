@@ -1,4 +1,11 @@
 # **Changelog**
+### Version [3.3.0] - 2024-09-02
+#### Added
+* Retail: New Module -> HideTotemFrame
+
+#### Fixes
+* UI: The titles for the health and power bar textures now use the correct locale.
+
 ### Version [3.2.9] - 2024-08-22
 #### Updated
 * retail: Improved the textures of BiggerHelthBar
