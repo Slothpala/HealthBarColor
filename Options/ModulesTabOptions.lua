@@ -159,7 +159,7 @@ local options = {
         {
           order = 1,
           type = "select",
-          name = L["Texture"],
+          name = L["Health Bar"],
           values = statusbars,
           get = "GetStatus",
           set = "SetStatus",
@@ -170,7 +170,7 @@ local options = {
         {
           order = 2,
           type = "select",
-          name = L["Texture"],
+          name = L["Power Bar"],
           values = statusbars,
           get = "GetStatus",
           set = "SetStatus",
