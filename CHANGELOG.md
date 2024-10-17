@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.4.0] - TBD
+#### Fixes
+* Classic: Fixed an issue that caused an issue were the color of the druid class could not be changed.
+#### Updated
+* All flavors: Created a new addon-wide table (colorMixins). Instead of creating new color mixins every time SetGradient() is called, the addon will now reuse the mixins from this table, resulting in a slight performance improvement.
+
 ### Version [3.3.0] - 2024-09-02
 #### Added
 * Retail: New Module -> HideTotemFrame
