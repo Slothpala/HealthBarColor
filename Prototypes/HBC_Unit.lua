@@ -3,7 +3,7 @@ local addon = addonTable.addon
 
 --speed references
 --WoW Api
-local CreateColor = CreateColor
+
 --Lua
 
 --[[
@@ -138,11 +138,11 @@ function hbc_unit:RestorePowerBarToDefault()
   self.powerBarPreparedForColoring = false
 end
 
-function hbc_unit:SetHealthBarToCustomColor(colorStart, colorEnd)
+function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetGradient("HORIZONTAL", CreateColor(colorStart.r, colorStart.g, colorStart.b, colorStart.a), CreateColor(colorEnd.r, colorEnd.g, colorEnd.b, colorEnd.a))
+  self.healthBarTexture:SetGradient("HORIZONTAL", startColor, endColor)
 end
 
 function hbc_unit:SetHealthBarToClassColor()
