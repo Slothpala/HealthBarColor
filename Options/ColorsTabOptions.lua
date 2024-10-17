@@ -2,55 +2,55 @@ local addonName, addonTable = ...
 local addon = addonTable.addon
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-local options = 
+local options =
 {
   name = " ",
   handler = addon,
   type = "group",
   childGroups = "tab",
-  args = 
+  args =
   {
-    classColors = 
+    classColors =
     {
       order = 1,
       name = L["classColors"],
       type = "group",
-      args = 
+      args =
       {
     },
   },
-    reactionColors = 
+    reactionColors =
     {
       order = 2,
       name = L["reactionColors"],
       type = "group",
-      args = 
+      args =
       {
     },
   },
-    powerColors = 
+    powerColors =
     {
       order = 3,
       name = L["powerColors"],
       type = "group",
-      args = 
+      args =
       {
     },
   },
-    debuffColors = 
+    debuffColors =
     {
       hidden = not addonTable.isRetail,
       order = 4,
       name = L["debuffColors"],
       type = "group",
-      args = 
+      args =
       {
     },
   },
   },
 }
 
-local classIconCoords = 
+local classIconCoords =
 {
   ["DEATHKNIGHT"] =
   {
@@ -146,24 +146,24 @@ local classIconCoords =
 }
 
 local function createClassColorEntrys()
-  local numClasses = GetNumClasses()
+  local numClasses = 13 --GetNumClasses() -- https://github.com/Stanzilla/WoWUIBugs/issues/559 --@TODO Check from time to time.
   local classes = {}
-  for i=1, numClasses do 
+  for i=1, numClasses do
     local _, classFile = GetClassInfo(i)
     if classFile then
       table.insert(classes, classFile)
     end
   end
-  for i, class in pairs(classes) do 
-    options.args.classColors.args[class] = 
+  for i, class in pairs(classes) do
+    options.args.classColors.args[class] =
     {
       order = i,
       name = L[class],
       type = "group",
       inline = true,
-      args = 
+      args =
       {
-        classIcon = 
+        classIcon =
         {
           order = 1,
           name = "",
@@ -174,7 +174,7 @@ local function createClassColorEntrys()
           type = "description",
           width = 0.3,
         },
-        classColor = 
+        classColor =
         {
           order = 2,
           type = "color",
@@ -183,7 +183,7 @@ local function createClassColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        classColorStart = 
+        classColorStart =
         {
           order = 3,
           type = "color",
@@ -192,7 +192,7 @@ local function createClassColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        classColorEnd = 
+        classColorEnd =
         {
           order = 4,
           type = "color",
@@ -202,7 +202,7 @@ local function createClassColorEntrys()
           set = "SetAddonColor",
           width = 2,
         },
-        resetColors = 
+        resetColors =
         {
           order = 5,
           type = "execute",
@@ -222,15 +222,15 @@ end
 
 local function createReactionColorEntrys()
   for reaction, _ in pairs(addon.db.profile.addonColors.reactionColors) do
-    options.args.reactionColors.args[reaction] = 
+    options.args.reactionColors.args[reaction] =
     {
       order = i,
       name = L[reaction],
       type = "group",
       inline = true,
-      args = 
+      args =
       {
-        reactionColor = 
+        reactionColor =
         {
           order = 1,
           type = "color",
@@ -239,7 +239,7 @@ local function createReactionColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        reactionColorStart = 
+        reactionColorStart =
         {
           order = 2,
           type = "color",
@@ -248,7 +248,7 @@ local function createReactionColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        reactionColorEnd = 
+        reactionColorEnd =
         {
           order = 3,
           type = "color",
@@ -258,7 +258,7 @@ local function createReactionColorEntrys()
           set = "SetAddonColor",
           width = 2.3,
         },
-        resetColors = 
+        resetColors =
         {
           order = 4,
           type = "execute",
@@ -278,15 +278,15 @@ end
 
 local function createPowerColorEntrys()
   for powerType, _ in pairs(addon.db.profile.addonColors.powerColors) do
-    options.args.powerColors.args[powerType] = 
+    options.args.powerColors.args[powerType] =
     {
       order = i,
-      name = L[powerType], 
+      name = L[powerType],
       type = "group",
       inline = true,
-      args = 
+      args =
       {
-        powerColor = 
+        powerColor =
         {
           order = 1,
           type = "color",
@@ -295,7 +295,7 @@ local function createPowerColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        powerColorStart = 
+        powerColorStart =
         {
           order = 2,
           type = "color",
@@ -304,7 +304,7 @@ local function createPowerColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        powerColorEnd = 
+        powerColorEnd =
         {
           order = 3,
           type = "color",
@@ -314,7 +314,7 @@ local function createPowerColorEntrys()
           set = "SetAddonColor",
           width = 2.3,
         },
-        resetColors = 
+        resetColors =
         {
           order = 4,
           type = "execute",
@@ -334,15 +334,15 @@ end
 
 local function createDebuffColorEntrys()
   for debuffType, _ in pairs(addon.db.profile.addonColors.debuffColors) do
-    options.args.debuffColors.args[debuffType] = 
+    options.args.debuffColors.args[debuffType] =
     {
       order = i,
       name = debuffType, --TODO add locales
       type = "group",
       inline = true,
-      args = 
+      args =
       {
-        debuffColor = 
+        debuffColor =
         {
           order = 1,
           type = "color",
@@ -351,7 +351,7 @@ local function createDebuffColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        debuffColorStart = 
+        debuffColorStart =
         {
           order = 2,
           type = "color",
@@ -360,7 +360,7 @@ local function createDebuffColorEntrys()
           get = "GetAddonColor",
           set = "SetAddonColor",
         },
-        debuffColorEnd = 
+        debuffColorEnd =
         {
           order = 3,
           type = "color",
@@ -370,7 +370,7 @@ local function createDebuffColorEntrys()
           set = "SetAddonColor",
           width = 2.3,
         },
-        resetColors = 
+        resetColors =
         {
           order = 4,
           type = "execute",
@@ -402,7 +402,7 @@ function addon:GetAddonColor(info)
 end
 
 function addon:SetAddonColor(info, r, g, b, a)
-  local color = 
+  local color =
   {
     r = r,
     g = g,
