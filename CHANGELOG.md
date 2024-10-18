@@ -1,5 +1,5 @@
 # **Changelog**
-### Version [3.4.0] - TBD
+### Version [3.4.0] - 2024-10-18
 #### Added
 * Retail: The AlternatePowerBar for mana (Shadow, Balance, Ele) now respects the addons color and texture settings if the Texture module is enabled. (Ebon Might and Stagger will follow).
 * Retail: The options frame now has a resize handle that allows the options frame to grow vertically. The options frame now fades to alpha 0.5 when clicking the title bar.
