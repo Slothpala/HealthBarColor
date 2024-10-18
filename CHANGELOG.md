@@ -1,4 +1,16 @@
 # **Changelog**
+### Version [3.4.0] - TBD
+#### Added
+* Retail: The AlternatePowerBar for mana (Shadow, Balance, Ele) now respects the addons color and texture settings if the Texture module is enabled. (Ebon Might and Stagger will follow).
+* Retail: The options frame now has a resize handle that allows the options frame to grow vertically. The options frame now fades to alpha 0.5 when clicking the title bar.
+
+#### Fixes
+* Classic: Fixed an issue where the color of the druid class could not be changed.
+* Classic: The options frame parent is now set to UIParent in OptionsFrame_classic.xml.
+
+#### Updated
+* All flavors: Created a new addon-wide table (colorMixins). Instead of creating new color mixins every time SetGradient() is called, the addon will now reuse the mixins from this table, resulting in a slight performance improvement.
+
 ### Version [3.3.0] - 2024-09-02
 #### Added
 * Retail: New Module -> HideTotemFrame

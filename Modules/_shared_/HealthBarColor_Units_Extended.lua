@@ -10,7 +10,7 @@
 local _, addonTable = ...
 local addon = addonTable.addon
 
-local units 
+local units
 if addonTable.isVanilla then
   units = {"target", "targettarget"}
 else
@@ -35,16 +35,20 @@ for _, unit in pairs(units) do
         hbc_unit:SetHealthBarToReactionColor()
       end
     elseif dbObj.colorMode == 3 then
+      local startColor = CreateColor(dbObj.customColorStart.r, dbObj.customColorStart.g, dbObj.customColorStart.b, dbObj.customColorStart.a)
+      local endColor = CreateColor(dbObj.customColorEnd.r, dbObj.customColorEnd.g, dbObj.customColorEnd.b, dbObj.customColorEnd.a)
       hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
         if hbc_unit.isPlayer then
           hbc_unit:SetHealthBarToClassColor()
         else
-          hbc_unit:SetHealthBarToCustomColor(dbObj.customColorStart, dbObj.customColorEnd)
+          hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
         end
       end
     elseif dbObj.colorMode == 4 then
+      local startColor = CreateColor(dbObj.customColorStart.r, dbObj.customColorStart.g, dbObj.customColorStart.b, dbObj.customColorStart.a)
+      local endColor = CreateColor(dbObj.customColorEnd.r, dbObj.customColorEnd.g, dbObj.customColorEnd.b, dbObj.customColorEnd.a)
       hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
-        hbc_unit:SetHealthBarToCustomColor(dbObj.customColorStart, dbObj.customColorEnd)
+        hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
       end
     elseif dbObj.colorMode == 5 then
       hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
@@ -68,7 +72,7 @@ for _, unit in pairs(units) do
       hbc_unit.healthBar.lockColor = true
     end
   end
-  
+
   function module:OnDisable()
     local hbc_unit = addon:GetUnit(unit)
     hbc_unit.updateFullCallbacks["update_health_bar_color"] = nil

@@ -3,65 +3,24 @@ local addon = addonTable.addon
 
 --speed references
 --WoW Api
-local CreateColor = CreateColor
+
 --Lua
 
 --[[
   colorStart / colorEnd are used for Statusbar gradients while color is used when a gradient is not possible.
   Commented variables are expected to be added to a unit immediately after NewUnit() is called.
 ]]
-local hbc_unit = 
+local hbc_unit =
 {
   UnitId = "player",
   isPlayer = true,
   class = "PRIEST",
-  classColor = 
-  {
-    r=1, 
-    g=1, 
-    b=1, 
-    a=1
-  },
-  classColorStart = 
-  {
-    r=0.96, 
-    g=0.55, 
-    b=0.73, 
-    a=1
-  },
-  classColorEnd = 
-  {
-    r=0.96, 
-    g=0.55, 
-    b=0.73, 
-    a=1
-  },
   healthBarDesaturated = false,
+  powerToken = "MANA",
   --healthBar
   --healthBarTexture
   --powerBar
   --powerBarTexture
-  reactionColor = 
-  {
-    r=1, 
-    g=1, 
-    b=1, 
-    a=1
-  },
-  reactionColorStart = 
-  {
-    r=1, 
-    g=1, 
-    b=1, 
-    a=1
-  },
-  reactionColorEnd = 
-  {
-    r=0, 
-    g=0, 
-    b=1, 
-    a=1
-  },
   --nameText
   --healthTextLeft
   --healthTextMiddle
@@ -71,7 +30,7 @@ local hbc_unit =
   --powerBarTextRight
   --frame
   healthBarPreparedForColoring = false,
-} 
+}
 hbc_unit.metatable = { __index = hbc_unit }
 
 function addon:GetMetaUnit()
@@ -82,7 +41,7 @@ function addon:NewUnit()
   local unit = setmetatable({}, hbc_unit.metatable)
   unit.updateFullCallbacks = {}
   unit.updatePowerCallbacks = {}
-  return unit 
+  return unit
 end
 
 --Fetch all the data the addon needs to know about a unit always called before hbc_unit:Update()
@@ -90,23 +49,16 @@ function hbc_unit:GetUnitDataFull()
   self.isPlayer = UnitIsPlayer(self.UnitId)
   if self.isPlayer then
     self.class = select(2, UnitClass(self.UnitId))
-    self.classColor = addonTable.classColors[self.class].classColor
-    self.classColorStart = addonTable.classColors[self.class].classColorStart
-    self.classColorEnd = addonTable.classColors[self.class].classColorEnd
   end
-  --reactionColor
-  local reactionColor
+  -- reaction
   local reaction = UnitReaction("player", self.UnitId)
-  if reaction == 2 then 
-    reactionColor = addonTable.reactionColors["Hostile"]
+  if reaction == 2 then
+    self.reaction = "Hostile"
   elseif reaction == 4 then
-    reactionColor = addonTable.reactionColors["Neutral"]
+    self.reaction = "Neutral"
   else
-    reactionColor = addonTable.reactionColors["Friendly"]
+    self.reaction = "Friendly"
   end
-  self.reactionColor = reactionColor.reactionColor
-  self.reactionColorStart = reactionColor.reactionColorStart
-  self.reactionColorEnd = reactionColor.reactionColorEnd
   self:GetUnitPowerData(true)
 end
 
@@ -118,10 +70,6 @@ function hbc_unit:GetUnitPowerData(isFullUpdate)
     return true
   end
   self.powerToken = powerToken
-  local powerColor = addonTable.powerColors[self.powerToken] or addonTable.powerColors["MANA"]
-  self.powerColor = powerColor.powerColor
-  self.powerColorStart = powerColor.powerColorStart
-  self.powerColorEnd = powerColor.powerColorEnd
 end
 
 --The Update function is called when a unit needs a full update, e.g. target changed / focus changed.
@@ -147,7 +95,7 @@ function hbc_unit:PowerUpdate()
 end
 
 --[[
-  The below functions are convenience functions to reduce code in the modules and being able to quickly 
+  The below functions are convenience functions to reduce code in the modules and being able to quickly
   adapt to changes made by Blizzard.
 ]]
 function hbc_unit:PrepareHealthBarTexture()
@@ -158,7 +106,7 @@ function hbc_unit:PrepareHealthBarTexture()
       self.overAbsorbGlow,
       self.tiledFillOverlay,
     }
-    ) do 
+    ) do
       v:SetDrawLayer(layer, ( sublayer + 1 ) )
     end
   end
@@ -190,37 +138,40 @@ function hbc_unit:RestorePowerBarToDefault()
   self.powerBarPreparedForColoring = false
 end
 
-function hbc_unit:SetHealthBarToCustomColor(colorStart, colorEnd)
+function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetGradient("HORIZONTAL", CreateColor(colorStart.r, colorStart.g, colorStart.b, colorStart.a), CreateColor(colorEnd.r, colorEnd.g, colorEnd.b, colorEnd.a))
+  self.healthBarTexture:SetGradient("HORIZONTAL", startColor, endColor)
 end
 
 function hbc_unit:SetHealthBarToClassColor()
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetGradient("HORIZONTAL", CreateColor(self.classColorStart.r, self.classColorStart.g, self.classColorStart.b, self.classColorStart.a), CreateColor(self.classColorEnd.r, self.classColorEnd.g, self.classColorEnd.b, self.classColorEnd.a))
+  self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.classColors[self.class].classColorStart, addonTable.colorMixins.classColors[self.class].classColorEnd)
 end
 
 function hbc_unit:SetHealthBarToDebuffColor(debuffType)
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  local color = addonTable.debuffColors[debuffType]
-  self.healthBarTexture:SetGradient("HORIZONTAL", CreateColor(color.debuffColorStart.r, color.debuffColorStart.g, color.debuffColorStart.b, color.debuffColorStart.a), CreateColor(color.debuffColorEnd.r, color.debuffColorEnd.g, color.debuffColorEnd.b, color.debuffColorEnd.a))
+  self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.debuffColors[debuffType].debuffColorStart, addonTable.colorMixins.debuffColors[debuffType].debuffColorEnd)
 end
 
 function hbc_unit:SetHealthBarToReactionColor()
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetGradient("HORIZONTAL", CreateColor(self.reactionColorStart.r, self.reactionColorStart.g, self.reactionColorStart.b, self.reactionColorStart.a), CreateColor(self.reactionColorEnd.r, self.reactionColorEnd.g, self.reactionColorEnd.b, self.reactionColorEnd.a))
+  self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.reactionColors[self.reaction].reactionColorStart, addonTable.colorMixins.reactionColors[self.reaction].reactionColorEnd)
 end
 
 function hbc_unit:SetPowerBarColor()
-  self.powerBarTexture:SetGradient("HORIZONTAL", CreateColor(self.powerColorStart.r, self.powerColorStart.g, self.powerColorStart.b, self.powerColorStart.a), CreateColor(self.powerColorEnd.r, self.powerColorEnd.g, self.powerColorEnd.b, self.powerColorEnd.a))
+  if addonTable.colorMixins.powerColors[self.powerToken] then
+    self.powerBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.powerColors[self.powerToken].powerColorStart, addonTable.colorMixins.powerColors[self.powerToken].powerColorEnd)
+  else
+    self.powerBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.powerColors["MANA"].powerColorStart, addonTable.colorMixins.powerColors["MANA"].powerColorEnd)
+  end
 end
 
 --Path to a texture.
@@ -245,11 +196,13 @@ function hbc_unit:SetNameFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetNameToClassColor()
-  self.nameText:SetTextColor(self.classColor.r, self.classColor.g, self.classColor.b, self.classColor.a)
+  local color = addonTable.classColors[self.class].classColor
+  self.nameText:SetTextColor(color.r, color.g, color.b, color.a)
 end
 
 function hbc_unit:SetNameToReactionColor()
-  self.nameText:SetTextColor(self.reactionColor.r, self.reactionColor.g, self.reactionColor.b, self.reactionColor.a)
+  local color = addonTable.reactionColors[self.reaction].reactionColor
+  self.nameText:SetTextColor(color.r, color.g, color.b, color.a)
 end
 
 function hbc_unit:SetNameToCustomColor(color)
@@ -273,6 +226,7 @@ function hbc_unit:SetHealthTextFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetHealthTextToClassColor()
+  local color = addonTable.classColors[self.class].classColor
   for _, text in pairs(
     {
       self.healthTextLeft,
@@ -280,11 +234,12 @@ function hbc_unit:SetHealthTextToClassColor()
       self.healthTextRight
     }
   ) do
-    text:SetTextColor(self.classColor.r, self.classColor.g, self.classColor.b, self.classColor.a)
+    text:SetTextColor(color.r, color.g, color.b, color.a)
   end
 end
 
 function hbc_unit:SetHealthTextToReactionColor()
+  local color = addonTable.reactionColors[self.reaction].reactionColor
   for _, text in pairs(
     {
       self.healthTextLeft,
@@ -292,7 +247,7 @@ function hbc_unit:SetHealthTextToReactionColor()
       self.healthTextRight
     }
   ) do
-    text:SetTextColor(self.reactionColor.r, self.reactionColor.g, self.reactionColor.b, self.reactionColor.a)
+    text:SetTextColor(color.r, color.g, color.b, color.a)
   end
 end
 
@@ -325,6 +280,7 @@ function hbc_unit:SetPowerTextFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetPowerTextToClassColor()
+  local color = addonTable.classColors[self.class].classColor
   for _, text in pairs(
     {
       self.powerBarTextLeft,
@@ -332,11 +288,12 @@ function hbc_unit:SetPowerTextToClassColor()
       self.powerBarTextRight
     }
   ) do
-    text:SetTextColor(self.classColor.r, self.classColor.g, self.classColor.b, self.classColor.a)
+    text:SetTextColor(color.r, color.g, color.b, color.a)
   end
 end
 
 function hbc_unit:SetPowerTextToReactionColor()
+  local color = addonTable.reactionColors[self.reaction].reactionColor
   for _, text in pairs(
     {
       self.powerBarTextLeft,
@@ -344,11 +301,12 @@ function hbc_unit:SetPowerTextToReactionColor()
       self.powerBarTextRight
     }
   ) do
-    text:SetTextColor(self.reactionColor.r, self.reactionColor.g, self.reactionColor.b, self.reactionColor.a)
+    text:SetTextColor(color.r, color.g, color.b, color.a)
   end
 end
 
 function hbc_unit:SetPowerTextToPowerColor()
+  local color = addonTable.powerColors[self.powerColor].powerColor
   for _, text in pairs(
     {
       self.powerBarTextLeft,
@@ -356,7 +314,7 @@ function hbc_unit:SetPowerTextToPowerColor()
       self.powerBarTextRight
     }
   ) do
-    text:SetTextColor(self.powerColor.r, self.powerColor.g, self.powerColor.b, self.powerColor.a)
+    text:SetTextColor(color.r, color.g, color.b, color.a)
   end
 end
 
@@ -415,11 +373,13 @@ end
 
 --Glow
 function hbc_unit:SetGlowToClassColor()
-  self.glowTexture:SetVertexColor(self.classColor.r, self.classColor.g, self.classColor.b, self.classColor.a)
+  local color = addonTable.classColors[self.class].classColor
+  self.glowTexture:SetVertexColor(color.r, color.g, color.b, color.a)
 end
 
 function hbc_unit:SetGlowToReactionColor()
-  self.glowTexture:SetVertexColor(self.reactionColor.r, self.reactionColor.g, self.reactionColor.b, self.reactionColor.a)
+  local color = addonTable.reactionColors[self.reaction].reactionColor
+  self.glowTexture:SetVertexColor(color.r, color.g, color.b, color.a)
 end
 
 function hbc_unit:SetGlowToCustomColor(color)

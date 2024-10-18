@@ -18,7 +18,7 @@ function module:OnEnable()
         --[[
           targettarget and focustarget never seem to get overwritten, so there is no need to hook them.
           This also fixes a problem where if you hook ToT/ToF and the target/focus is the player himself, the game can't find the ToT/ToF frames because they don't exist
-          and then calls Update every frame, which could lead to CPU spikes. 
+          and then calls Update every frame, which could lead to CPU spikes.
         ]]
         --"targettarget"
         --"focustarget"
@@ -37,6 +37,20 @@ function module:OnEnable()
       hbc_units[powerBar.unit]:SetPowerBarTexture(pathToPowerBarTexture)
       hbc_units[powerBar.unit]:SetPowerBarColor()
     end)
+    -- Alternate Bars
+    if addonTable.isRetail then
+      -- Mana
+      local alternatePowerBarTexture = AlternatePowerBar:GetStatusBarTexture() -- For color gradient.
+      local function applyAlternatePowerBarArt_Mana()
+        alternatePowerBarTexture:SetTexture(pathToPowerBarTexture)
+        alternatePowerBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.powerColors["MANA"].powerColorStart, addonTable.colorMixins.powerColors["MANA"].powerColorEnd)
+      end
+      self:HookFunc(AlternatePowerBar, "UpdateArt", applyAlternatePowerBarArt_Mana) -- Hook it to keep it updated.
+      applyAlternatePowerBarArt_Mana() -- update it on load.
+      -- To follow:
+      -- Ebon Might
+      -- Stagger
+    end
   end
   for _, hbc_unit in pairs(hbc_units) do
     --The green on the default atals is vertex color 1,1,1 for shared media we need actual green 0,1,0
@@ -63,7 +77,7 @@ if addonTable.isRetail then
   function module:OnDisable()
     self:DisableHooks()
     local hbc_units = addon:GetAllUnits()
-    local unitHealthBarAtlasPaths = 
+    local unitHealthBarAtlasPaths =
     {
       player = "UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health",
       target = "UI-HUD-UnitFrame-Target-PortraitOn-Bar-Health",
@@ -77,7 +91,7 @@ if addonTable.isRetail then
       boss4 = "UI-HUD-UnitFrame-Target-Boss-Small-PortraitOff-Bar-Health",
       boss5 = "UI-HUD-UnitFrame-Target-Boss-Small-PortraitOff-Bar-Health",
     }
-    local unotPowerBarAtlasPaths = 
+    local unotPowerBarAtlasPaths =
     {
       --TODO find poweratlas paths
       --It gets reset to default on spending power or changing target so very low prio
@@ -97,7 +111,11 @@ if addonTable.isRetail then
         hbc_unit.powerBarTexture:SetAtlas(powerBarAtalsPath)
       end
     end
-  end  
+    -- Alternate Power Bars
+    -- Mana
+    AlternatePowerBar:GetStatusBarTexture():SetAtlas("UI-HUD-UnitFrame-Player-PortraitOff-Bar-Mana")
+    AlternatePowerBar:SetStatusBarColor(1,1,1)
+  end
 else
   function module:OnDisable()
     self:DisableHooks()
@@ -108,6 +126,7 @@ else
       hbc_unit:SetHealthBarTexture(defaultTexturePath)
       hbc_unit:SetPowerBarTexture(defaultTexturePath)
     end
-  end 
+  end
 end
+
 

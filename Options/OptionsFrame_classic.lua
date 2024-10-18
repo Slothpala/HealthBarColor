@@ -24,11 +24,10 @@ end
 
 local frame = nil
 function addon:GetOptionsFrame()
-  if frame then 
+  if frame then
       return frame
   end
   frame = HealthBarColorOptions
-  frame:SetScale(UIParent:GetScale())
   frame:SetSize(950,550)
   tinsert(UISpecialFrames, frame:GetName())
   frame:SetFrameStrata("DIALOG")
@@ -87,7 +86,7 @@ function addon:GetOptionsFrame()
   end)
 
 
-  frame:SetScript("OnEvent", frame.Hide) 
+  frame:SetScript("OnEvent", frame.Hide)
   frame:HookScript("OnShow", function()
       ACD:Open("HealthBarColor_HealthBars_Tab", container)
       frame:RegisterEvent("PLAYER_REGEN_DISABLED")
