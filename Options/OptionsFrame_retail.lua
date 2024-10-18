@@ -18,20 +18,23 @@ local function createAceContainer(parentFrame)
   return scrollContainer
 end
 
-local function creatResizeButton(parentFrame)
-  local resizeButton = CreateFrame("Button", nil, parentFrame)
-  resizeButton:SetPoint("BOTTOMRIGHT",-1,1)
-  resizeButton:SetSize(26, 26)
-  resizeButton:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
-  resizeButton:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
-  resizeButton:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
-  resizeButton:SetScript("OnMouseDown", function() 
-    parentFrame:StartSizing("BOTTOMRIGHT")
+local function createResizeHandle(parent_frame)
+  local resizeHandle = CreateFrame("Button", addonName .. "OptionsResizeButton", parent_frame)
+  resizeHandle:SetPoint("BOTTOMRIGHT",-1,1)
+  resizeHandle:SetSize(26, 26)
+  resizeHandle:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+  resizeHandle:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+  resizeHandle:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+  resizeHandle:SetScript("OnMouseDown", function(_, button)
+    if button == "LeftButton" then
+      parent_frame:StartSizing("BOTTOMRIGHT")
+    end
   end)
-  resizeButton:SetScript("OnMouseUp", function()
-    parentFrame:StopMovingOrSizing("BOTTOMRIGHT")
+  resizeHandle:SetScript("OnMouseUp", function(_, button)
+    if button == "LeftButton" then
+      parent_frame:StopMovingOrSizing("BOTTOMRIGHT")
+    end
   end)
-  return resizeButton
 end
 
 local function createTabs(parentFrame, ...)
@@ -39,7 +42,7 @@ local function createTabs(parentFrame, ...)
   local tabs = {}
   TabSystem:SetTabSelectedCallback(function()end)
   TabSystem:SetPoint("TOPLEFT", parentFrame, "BOTTOMLEFT", 15, 2)
-  for k,v in pairs({...}) do 
+  for k,v in pairs({...}) do
     TabSystem:AddTab(v)
     tabs[v] = TabSystem:GetTabButton(k)
   end
@@ -52,7 +55,7 @@ local function clearFrame(frame)
 end
 
 local function applySkin(frame)
-  --[[   
+  --[[
   local frameColor = {r=0.23921568627450981,g=0.2235294117647059,b=0.41568627450980394}
   for _, texture in pairs({
       frame.NineSlice.TopEdge,
@@ -62,19 +65,19 @@ local function applySkin(frame)
       frame.NineSlice.RightEdge,
       frame.NineSlice.LeftEdge,
       frame.NineSlice.BottomRightCorner,
-      frame.NineSlice.BottomLeftCorner,  
+      frame.NineSlice.BottomLeftCorner,
   }) do
       texture:SetDesaturation(1)
-      texture:SetVertexColor(frameColor.r,frameColor.g,frameColor.b) 
+      texture:SetVertexColor(frameColor.r,frameColor.g,frameColor.b)
   end
   local tabColor = {r=0.22,g=0.22,b=0.22}
-  for _, tab in pairs({ frame.TabSystem:GetChildren() }) do 
+  for _, tab in pairs({ frame.TabSystem:GetChildren() }) do
       for _, texture in pairs({
           tab.Left,
           tab.Middle,
           tab.Right,
-      }) do 
-          texture:SetVertexColor(tabColor.r,tabColor.g,tabColor.b) 
+      }) do
+          texture:SetVertexColor(tabColor.r,tabColor.g,tabColor.b)
       end
   end
     ]]
@@ -84,7 +87,7 @@ end
 
 local frame = nil
 function addon:GetOptionsFrame()
-  if frame then 
+  if frame then
       return frame
   end
   frame = CreateFrame("Frame", "HealthBarColorOptions", UIParent, "PortraitFrameTemplate")
@@ -97,23 +100,29 @@ function addon:GetOptionsFrame()
   frame:SetSize(950,550)
   frame:SetPoint("CENTER", UIparent, "CENTER")
   frame:SetMovable(true)
-  --frame:SetResizable(true)
   frame:SetUserPlaced(true)
-  --frame:SetResizeBounds(950,550)
+  frame:SetResizable(true)
+  frame:SetResizeBounds(950,550, 950)
   frame:SetClampedToScreen(true)
   frame:SetClampRectInsets(400, -400, 0, 180)
   frame:RegisterForDrag("LeftButton")
-  frame.TitleContainer:SetScript("OnMouseDown", function()
-    frame:StartMoving()
+  frame.TitleContainer:SetScript("OnMouseDown", function(_, button)
+    if button == "LeftButton" then
+      frame:StartMoving()
+      frame:SetAlpha(0.5)
+    end
   end)
-  frame.TitleContainer:SetScript("OnMouseUp", function()
-    frame:StopMovingOrSizing()
+  frame.TitleContainer:SetScript("OnMouseUp", function(_, button)
+    if button == "LeftButton" then
+      frame:StopMovingOrSizing()
+      frame:SetAlpha(1)
+    end
   end)
-  --frame.resizeButton = creatResizeButton(frame)
+  frame.resizeHandle = createResizeHandle(frame)
   local container = createAceContainer(frame)
   frame.container = container
   frame.TabSystem, frame.tabs = createTabs(frame, L["healthBars_tab_label"], L["fonts_tab_label"], L["modules_tab_label"], L["colors_tab_label"], L["profiles_tab_label"])
-  
+
   frame.tabs[L["healthBars_tab_label"]]:HookScript("OnClick", function()
     clearFrame(frame)
     ACD:Open("HealthBarColor_HealthBars_Tab", container)
@@ -142,7 +151,7 @@ function addon:GetOptionsFrame()
     ACD:Open("HealthBarColor_Profiles_Tab", container)
   end)
 
-  frame:SetScript("OnEvent", frame.Hide) 
+  frame:SetScript("OnEvent", frame.Hide)
   frame:HookScript("OnShow", function()
       frame.TabSystem:SetTab(1)
       ACD:Open("HealthBarColor_HealthBars_Tab", container)
