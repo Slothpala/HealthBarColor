@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.4.1] - 2024-10-22
+#### Fixes
+* All flavors: Fixed a problem where setting the power text to the power color caused a lua error.
+
 ### Version [3.4.0] - 2024-10-18
 #### Added
 * Retail: The AlternatePowerBar for mana (Shadow, Balance, Ele) now respects the addons color and texture settings if the Texture module is enabled. (Ebon Might and Stagger will follow).
