@@ -306,7 +306,7 @@ function hbc_unit:SetPowerTextToReactionColor()
 end
 
 function hbc_unit:SetPowerTextToPowerColor()
-  local color = addonTable.powerColors[self.powerColor].powerColor
+  local color = addonTable.powerColors[self.powerToken].powerColor
   for _, text in pairs(
     {
       self.powerBarTextLeft,
