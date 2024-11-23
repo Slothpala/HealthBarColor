@@ -1,4 +1,4 @@
-## Interface: 11502
+## Interface: 11505
 ## Title: HealthBarColor
 ## Author: Slothpala
 ## SavedVariables: HealthBarColorDB

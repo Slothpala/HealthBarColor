@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.4.2] - 2024-11-23
+#### Updated
+* Vanilla interface version to: 11505
+* Classic interface version to: 40401
+* Retail interface version to: 110005
+
 ### Version [3.4.1] - 2024-10-22
 #### Fixes
 * All flavors: Fixed a problem where setting the power text to the power color caused a lua error.
