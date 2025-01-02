@@ -2,7 +2,7 @@ local _, addonTable = ...
 local addon = addonTable.addon
 local globalUnitVariables = addonTable.globalUnitVariables
 
-local hbc_units = 
+local hbc_units =
 {
   ["player"] = false,
   ["target"] = false,
@@ -71,15 +71,21 @@ eventFrame:SetScript("OnEvent", function(_, event, unit, ...)
     if hbc_units[unit] then
       hbc_units[unit]:PowerUpdate()
     end
+  elseif event == "UNIT_HEALTH" then
+    if hbc_units[unit] then
+      hbc_units[unit]:FullUpdate()
+    end
   elseif event == "UPDATE_SHAPESHIFT_FORM" then
     hbc_units["player"]:PowerUpdate()
   end
 end)
 if addonTable.isVanilla then
   eventFrame:RegisterUnitEvent("UNIT_TARGET", "target")
+  eventFrame:RegisterUnitEvent("UNIT_HEALTH", "player", "pet", "target", "targettarget")
   eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget")
 else
   eventFrame:RegisterUnitEvent("UNIT_TARGET", "target", "focus")
+  eventFrame:RegisterUnitEvent("UNIT_HEALTH", "player", "pet", "target", "targettarget", "focus", "focustarget")
   eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget", "focus", "focustarget")
 end
 eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")

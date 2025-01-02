@@ -6,6 +6,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
 L["colorMode"] = "Color by: "
 L["optionClass"] = "Class"
 L["optionBlizzard"] = "Blizzard green"
+L["optionHP"] = "HP"
 L["optionCustom"] = "Custom"
 L["optionClassReaction"] = "Class / Reaction"
 L["optionReaction"] = "Reaction"

@@ -19,6 +19,7 @@ local basic_options =
   L["optionClass"],
   L["optionBlizzard"],
   L["optionCustom"],
+  L["optionHP"],
 }
 local basic_option_units
 if addonTable.isRetail then
@@ -43,11 +44,12 @@ end
 local extended_options =
 {
   L["optionClassReaction"],
-  L["optionReaction"] ,
+  L["optionReaction"],
   L["optionClassCustom"],
   L["optionCustom"],
   L["optionClassBlizzard"],
-  L["optionBlizzard"] ,
+  L["optionBlizzard"],
+  L["optionHP"],
 }
 local extended_option_units
 if addonTable.isVanilla then
