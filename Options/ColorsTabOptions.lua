@@ -17,8 +17,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     reactionColors =
     {
       order = 2,
@@ -26,8 +26,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     powerColors =
     {
       order = 3,
@@ -35,8 +35,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     debuffColors =
     {
       hidden = not addonTable.isRetail,
@@ -45,8 +45,17 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
+    healthColors =
+    {
+      order = 5,
+      name = L["healthColors"],
+      type = "group",
+      args =
+      {
+      },
+    },
   },
 }
 
@@ -224,7 +233,7 @@ local function createReactionColorEntrys()
   for reaction, _ in pairs(addon.db.profile.addonColors.reactionColors) do
     options.args.reactionColors.args[reaction] =
     {
-      order = i,
+      order = 2,
       name = L[reaction],
       type = "group",
       inline = true,
@@ -280,7 +289,7 @@ local function createPowerColorEntrys()
   for powerType, _ in pairs(addon.db.profile.addonColors.powerColors) do
     options.args.powerColors.args[powerType] =
     {
-      order = i,
+      order = 3,
       name = L[powerType],
       type = "group",
       inline = true,
@@ -336,7 +345,7 @@ local function createDebuffColorEntrys()
   for debuffType, _ in pairs(addon.db.profile.addonColors.debuffColors) do
     options.args.debuffColors.args[debuffType] =
     {
-      order = i,
+      order = 4,
       name = debuffType, --TODO add locales
       type = "group",
       inline = true,
@@ -388,11 +397,68 @@ local function createDebuffColorEntrys()
   end
 end
 
+local function createHealthColorEntrys()
+  for healthColor, _ in pairs(addon.db.profile.addonColors.healthColors) do
+    options.args.healthColors.args[healthColor] =
+    {
+      order = 5,
+      name = L[healthColor], --TODO add locales
+      type = "group",
+      inline = true,
+      args =
+      {
+        healthColor =
+        {
+          order = 1,
+          type = "color",
+          name = L["healthColor_name"],
+          desc = L["singleColor_desc"],
+          get = "GetAddonColor",
+          set = "SetAddonColor",
+        },
+        healthColorStart =
+        {
+          order = 2,
+          type = "color",
+          name = L["gradientStart_name"],
+          desc = L["gradientStart_desc"],
+          get = "GetAddonColor",
+          set = "SetAddonColor",
+        },
+        healthColorEnd =
+        {
+          order = 3,
+          type = "color",
+          name = L["gradientEnd_name"],
+          desc = L["gradientEnd_desc"],
+          get = "GetAddonColor",
+          set = "SetAddonColor",
+          width = 2.3,
+        },
+        resetColors =
+        {
+          order = 4,
+          type = "execute",
+          name = L["colorResetButton_name"],
+          desc = L["colorResetButton_desc"],
+          func = function ()
+            local defaults = addon:GetDefaultDbValues()
+            addon.db.profile.addonColors.healthColors[healthColor] = CopyTable(defaults.profile.addonColors.healthColors[healthColor])
+            addon:ReloadConfig()
+          end,
+          width = 0.5,
+        },
+      },
+    }
+  end
+end
+
 function addon:GetColorsTabOptions()
   createClassColorEntrys()
   createReactionColorEntrys()
   createPowerColorEntrys()
   createDebuffColorEntrys()
+  createHealthColorEntrys()
   return options
 end
 

@@ -48,7 +48,9 @@ for _, unit in pairs(units) do
 
   function module:OnDisable()
     local hbc_unit = addon:GetUnit(unit)
-    hbc_unit.updateFullCallbacks["update_health_bar_color"] = nil
+    hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
+
+    end
     hbc_unit:RestoreHealthBarToDefault()
   end
 end

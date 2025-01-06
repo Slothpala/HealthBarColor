@@ -18,6 +18,8 @@ L["classColors"] = "Class Colors"
 L["reactionColors"] = "Reaction Colors"
 L["powerColors"] = "Power Colors"
 L["debuffColors"] = "Debuff Colors"
+L["healthColors"] = "Health Colors"
+
 L["gradientStart_name"] = "Gradient Start"
 L["gradientStart_desc"] = "This color is used at the beginning of a status bar."
 L["gradientEnd_name"] = "Gradient End"
@@ -29,6 +31,7 @@ L["singleColor_desc"] = "This color is used when the gradient color is not possi
 L["powerColor_name"] = "Power Color"
 L["reactionColor_name"] = "Reaction Color"
 L["debuffColor_name"] = "Debuff Color"
+L["healthColor_name"] = "Health Color"
 L["colorResetButton_name"] = "reset"
 L["colorResetButton_desc"] = "Restore defaults for this specific entry only."
 --Options Frame Tab labels
@@ -87,6 +90,9 @@ L["WARRIOR"] = "Warrior"
 L["Friendly"] = true
 L["Neutral"] = true
 L["Hostile"] = true
+-- Health Colors
+L["MediumHealth"] = "Medium Health"
+L["LowHealth"]  = "Low Health"
 --Modules
 L["enabledModules"] = "Enabled Modules:"
 --Textures module
@@ -114,6 +120,11 @@ L["BiggerHealthBars_desc"] = "Use larger health bars for player and target frame
 --PartyColor
 L["PartyColor_name"] = "PartyColor"
 L["PartyColor_desc"] = "Enable class colors for party frames (non raid style)."
+-- HitPointColoring
+L["HitPointColoring_name"] = "HP Value Coloring"
+L["HitPointColoring_desc"] = "Color the health bar based on the current health percentage. Your max life color is your default color setting."
+L["lowThreshold"] = "Low Threshold"
+L["mediumThreshold"] = "Medium Threshold"
 --HideClassPowerBar
 L["HideClassPowerBar_name"] = "HideClassPowerBar"
 L["HideClassPowerBar_desc"] = "Hide the class power bar (Monk Chi Bar, Warlock Soul Shards, Combo Points, etc.)"

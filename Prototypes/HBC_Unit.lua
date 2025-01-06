@@ -3,7 +3,8 @@ local addon = addonTable.addon
 
 --speed references
 --WoW Api
-
+local UnitHealthMax = UnitHealthMax
+local UnitHealth = UnitHealth
 --Lua
 
 --[[
@@ -40,6 +41,7 @@ end
 function addon:NewUnit()
   local unit = setmetatable({}, hbc_unit.metatable)
   unit.updateFullCallbacks = {}
+  unit.updateHealthCallbacks = {}
   unit.updatePowerCallbacks = {}
   return unit
 end
@@ -60,6 +62,7 @@ function hbc_unit:GetUnitDataFull()
     self.reaction = "Friendly"
   end
   self:GetUnitPowerData(true)
+  self:GetUnitHealthData()
 end
 
 local powerTypeIndex = addonTable.isClassic and 1 or 0
@@ -82,6 +85,10 @@ function hbc_unit:FullUpdate()
   for _, callback in next, self.updatePowerCallbacks do
     callback()
   end
+  -- updateHealthCallbacks should be called after updateFullCallbacks because the callbacks may overwrite the default settings, mainly the health color based on HP.
+  for _, callback in next, self.updateHealthCallbacks do
+    callback()
+  end
 end
 
 function hbc_unit:PowerUpdate()
@@ -90,6 +97,19 @@ function hbc_unit:PowerUpdate()
     return
   end
   for _, callback in next, self.updatePowerCallbacks do
+    callback()
+  end
+end
+
+function hbc_unit:GetUnitHealthData()
+  self.maxHealth = UnitHealthMax(self.UnitId)
+  self.currentHealth = UnitHealth(self.UnitId, false)
+  self.percentHealth = math.min( 1.0, self.currentHealth / self.maxHealth )
+end
+
+function hbc_unit:HealthUpdate()
+  self:GetUnitHealthData()
+  for _, callback in next, self.updateHealthCallbacks do
     callback()
   end
 end
@@ -138,7 +158,25 @@ function hbc_unit:RestorePowerBarToDefault()
   self.powerBarPreparedForColoring = false
 end
 
+function hbc_unit:IsHealthBarColoringBlocked()
+  local isBlocked = self.blockColorUpdate and self.blockColorUpdate() or false
+  if isBlocked then
+    return true
+  else
+    self.blockColorUpdate = nil
+    return false
+  end
+end
+
+--- A callback function that have to return the state of the block.
+function hbc_unit:BlockHealthBarColoring(callback)
+  self.blockColorUpdate = callback
+end
+
 function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
+  if self:IsHealthBarColoringBlocked() then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
@@ -146,6 +184,9 @@ function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
 end
 
 function hbc_unit:SetHealthBarToClassColor()
+  if self:IsHealthBarColoringBlocked() then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
@@ -160,6 +201,9 @@ function hbc_unit:SetHealthBarToDebuffColor(debuffType)
 end
 
 function hbc_unit:SetHealthBarToReactionColor()
+  if self:IsHealthBarColoringBlocked() then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end

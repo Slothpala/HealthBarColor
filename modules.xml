@@ -8,6 +8,7 @@
   <Script file="Modules\_shared_\BackgroundTextures.lua"/>
   <Script file="Modules\_shared_\Textures.lua"/>
   <Script file="Modules\_shared_\MinimapButton.lua"/>
+  <Script file="Modules\_shared_\HitPointColoring.lua"/>
 <!--_retail_-->
   <Script file="Modules\_retail_\BiggerHealthBar.lua"/>
   <Script file="Modules\_retail_\Glow.lua"/>

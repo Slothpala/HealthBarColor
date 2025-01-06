@@ -2,7 +2,7 @@ local _, addonTable = ...
 local addon = addonTable.addon
 local globalUnitVariables = addonTable.globalUnitVariables
 
-local hbc_units = 
+local hbc_units =
 {
   ["player"] = false,
   ["target"] = false,
@@ -73,18 +73,28 @@ eventFrame:SetScript("OnEvent", function(_, event, unit, ...)
     end
   elseif event == "UPDATE_SHAPESHIFT_FORM" then
     hbc_units["player"]:PowerUpdate()
+  elseif event == "UNIT_HEALTH" then
+    if hbc_units[unit] then
+      hbc_units[unit]:HealthUpdate()
+    end
   end
 end)
 if addonTable.isVanilla then
   eventFrame:RegisterUnitEvent("UNIT_TARGET", "target")
   eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget")
+  -- eventFrame:RegisterUnitEvent("UNIT_HEALTH", "player", "pet", "target", "targettarget") // UNIT_HEALTH is registered by a module when needed.
 else
   eventFrame:RegisterUnitEvent("UNIT_TARGET", "target", "focus")
   eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget", "focus", "focustarget")
+  -- eventFrame:RegisterUnitEvent("UNIT_HEALTH", "player", "pet", "target", "targettarget", "focus", "focustarget") // UNIT_HEALTH is registered by a module when needed.
 end
 eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 eventFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 if addonTable.playerClass == "DRUID" then
   eventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+end
+
+function addon:GetEventFrame()
+  return eventFrame
 end

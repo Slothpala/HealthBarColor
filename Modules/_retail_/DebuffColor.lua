@@ -12,15 +12,27 @@ local eventFrame = nil
 local Player = nil
 local auraMap = {}
 
+local function restoreHealthColor()
+  if addon:IsModuleEnabled("HitPointColoring") then
+    Player.updateHealthCallbacks["update_hp_threshold_color"]()
+  else
+    Player.updateFullCallbacks["update_health_bar_color"]()
+  end
+end
+
 
 local function updateColor()
   for auraInstanceID, dispelName in next, auraMap do
     if auraInstanceID then
+      local function blockReason()
+        return C_UnitAuras.GetAuraDataByAuraInstanceID("player", auraInstanceID)
+      end
+      Player:BlockHealthBarColoring(blockReason)
       Player:SetHealthBarToDebuffColor(dispelName)
       return
     end
   end
-  Player.updateFullCallbacks["update_health_bar_color"]()
+  restoreHealthColor()
 end
 
 local function updateAurasFull()
@@ -57,7 +69,7 @@ function module:OnEnable()
     eventFrame = CreateFrame("Frame")
   end
   eventFrame:SetScript("OnEvent", function(_, event, unit, updateInfo)
-    if updateInfo.isFullUpdate then 
+    if updateInfo.isFullUpdate then
       updateAurasFull()
     else
       updateAurasIncremental(updateInfo)
@@ -74,6 +86,6 @@ function module:OnDisable()
     eventFrame:UnregisterAllEvents()
   end
   auraMap = {}
-  Player.updateFullCallbacks["update_health_bar_color"]()
+  restoreHealthColor()
 end
 

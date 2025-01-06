@@ -132,6 +132,16 @@ local options = {
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
+        HitPointColoring =
+        {
+          order = 10,
+          name = L["HitPointColoring_name"],
+          desc = L["HitPointColoring_desc"],
+          type = "toggle",
+          get = "GetModuleStatus",
+          set = "SetModuleStatus",
+          width = moduleToggleWidth,
+        },
         MinimapButton =
         {
           order = 20,
@@ -336,6 +346,41 @@ local options = {
           get = "GetColor",
           set = "SetColor",
           hasAlpha = true,
+        },
+      },
+    },
+    HitPointColoring = {
+      hidden = function()
+        return not addon:IsModuleEnabled("HitPointColoring")
+      end,
+      order = 4,
+      name = L["HitPointColoring_name"],
+      type = "group",
+      inline = true,
+      args = {
+        lowThreshold = {
+          order = 1,
+          name = L["lowThreshold"],
+          desc = "",
+          type = "range",
+          min = 0,
+          max = 1,
+          step = 0.05,
+          isPercent = true,
+          get = "GetStatus",
+          set = "SetStatus",
+        },
+        mediumThreshold = {
+          order = 2,
+          name = L["mediumThreshold"],
+          desc = "",
+          type = "range",
+          min = 0,
+          max = 1,
+          step = 0.05,
+          isPercent = true,
+          get = "GetStatus",
+          set = "SetStatus",
         },
       },
     },
