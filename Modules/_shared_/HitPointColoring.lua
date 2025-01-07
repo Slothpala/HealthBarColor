@@ -11,6 +11,7 @@ function module:OnEnable()
   local startColorLowHP = dbObjColors.LowHealth.healthColorStart
   local endColorLowHP = dbObjColors.LowHealth.healthColorEnd
   local hbc_units = addon:GetAllUnits()
+  local preCalculatedColors = {}
 
   ---Interpolate between two colors.
   ---@param color1 table {r,g,b}
@@ -33,11 +34,17 @@ function module:OnEnable()
     return startColor, endColor
   end
 
+  -- floating-point math so better use integers
+  for i=1, 100, 1 do
+    local perc = i / 100
+    local startColor, endColor = lerp_gradient(perc)
+    preCalculatedColors[perc] = {startColor, endColor}
+  end
 
   for _, hbc_unit in pairs(hbc_units) do
     hbc_unit.updateHealthCallbacks["update_hp_threshold_color"] = function()
       if hbc_unit.percentHealth <= dbObj.mediumThreshold then
-        hbc_unit:SetHealthBarToCustomColor(lerp_gradient(hbc_unit.percentHealth))
+        hbc_unit:SetHealthBarToCustomColor(preCalculatedColors[hbc_unit.percentHealth][1], preCalculatedColors[hbc_unit.percentHealth][2])
       else
         hbc_unit.updateFullCallbacks["update_health_bar_color"]()
       end
