@@ -102,9 +102,10 @@ function hbc_unit:PowerUpdate()
 end
 
 function hbc_unit:GetUnitHealthData()
-  self.maxHealth = UnitHealthMax(self.UnitId)
-  self.currentHealth = UnitHealth(self.UnitId, false)
-  self.percentHealth = math.min( 1.0, self.currentHealth / self.maxHealth )
+  self.maxHealth = UnitHealthMax(self.UnitId) or 100
+  self.currentHealth = UnitHealth(self.UnitId, false) or 50
+  local percentHealth = math.min(1, math.ceil(( self.currentHealth / self.maxHealth ) * 100) / 100)
+  self.percentHealth = percentHealth
 end
 
 function hbc_unit:HealthUpdate()
