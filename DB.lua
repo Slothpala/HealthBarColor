@@ -279,8 +279,8 @@ local defaults = {
     },
     HitPointColoring =
     {
-      mediumThreshold = 0.7,
-      lowThreshold = 0.3,
+      lowThreshold = 0.2,
+      mediumThreshold = 0.8,
     },
     addonColors =
     {
@@ -1022,23 +1022,23 @@ local defaults = {
         {
           healthColor =
           {
-            r=0.871,
-            g=0.106,
-            b=0.29,
+            r=1.0,
+            g=0.0,
+            b=0.0,
             a=1.0,
           },
           healthColorStart =
           {
-            r=0.871,
-            g=0.106,
-            b=0.29,
+            r=1.0,
+            g=0.0,
+            b=0.0,
             a=1.0,
           },
           healthColorEnd =
           {
-            r=0.871,
-            g=0.106,
-            b=0.29,
+            r=1.0,
+            g=0.0,
+            b=0.0,
             a=1.0,
           },
         }
