@@ -20,6 +20,7 @@ Utils\Helper.lua
 Utils\HookRegistry.lua
 Utils\CombatLockdownRegistry.lua
 Utils\ProfileSharing.lua
+Utils\HealthValueColor.lua
 
 Options\TabButtonTemplate_classic.xml
 Options\OptionsFrame_classic.xml

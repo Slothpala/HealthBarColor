@@ -22,6 +22,7 @@ Utils\Helper.lua
 Utils\HookRegistry.lua
 Utils\CombatLockdownRegistry.lua
 Utils\ProfileSharing.lua
+Utils\HealthValueColor.lua
 
 Options\OptionsFrame_retail.lua
 Options\HealthBarsTabOptions.lua
