@@ -17,8 +17,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     reactionColors =
     {
       order = 2,
@@ -26,8 +26,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     powerColors =
     {
       order = 3,
@@ -35,8 +35,8 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
     debuffColors =
     {
       hidden = not addonTable.isRetail,
@@ -45,8 +45,68 @@ local options =
       type = "group",
       args =
       {
+      },
     },
-  },
+    healthColors =
+    {
+      order = 5,
+      name = L["healthColors"],
+      type = "group",
+      args =
+      {
+        HIT_POINT =
+        {
+          order = 5,
+          name = L["HIT_POINT"],
+          type = "group",
+          inline = true,
+          args =
+          {
+            maxHealth =
+            {
+              order = 1,
+              type = "color",
+              name = L["maxHealth"],
+              desc = "",
+              get = "GetAddonColor",
+              set = "SetAddonColor",
+            },
+            midHealth =
+            {
+              order = 2,
+              type = "color",
+              name = L["midHealth"],
+              desc = "",
+              get = "GetAddonColor",
+              set = "SetAddonColor",
+            },
+            lowHealth =
+            {
+              order = 3,
+              type = "color",
+              name = L["lowHealth"],
+              desc = "",
+              get = "GetAddonColor",
+              set = "SetAddonColor",
+              width = 2.3,
+            },
+            resetColors =
+            {
+              order = 4,
+              type = "execute",
+              name = L["colorResetButton_name"],
+              desc = L["colorResetButton_desc"],
+              func = function ()
+                local defaults = addon:GetDefaultDbValues()
+                addon.db.profile.addonColors.healthColors["HIT_POINT"] = CopyTable(defaults.profile.addonColors.healthColors["HIT_POINT"])
+                addon:ReloadConfig()
+              end,
+              width = 0.5,
+            },
+          },
+        },
+      },
+    },
   },
 }
 
@@ -224,7 +284,7 @@ local function createReactionColorEntrys()
   for reaction, _ in pairs(addon.db.profile.addonColors.reactionColors) do
     options.args.reactionColors.args[reaction] =
     {
-      order = i,
+      order = 2,
       name = L[reaction],
       type = "group",
       inline = true,
@@ -280,7 +340,7 @@ local function createPowerColorEntrys()
   for powerType, _ in pairs(addon.db.profile.addonColors.powerColors) do
     options.args.powerColors.args[powerType] =
     {
-      order = i,
+      order = 3,
       name = L[powerType],
       type = "group",
       inline = true,
@@ -336,7 +396,7 @@ local function createDebuffColorEntrys()
   for debuffType, _ in pairs(addon.db.profile.addonColors.debuffColors) do
     options.args.debuffColors.args[debuffType] =
     {
-      order = i,
+      order = 4,
       name = debuffType, --TODO add locales
       type = "group",
       inline = true,

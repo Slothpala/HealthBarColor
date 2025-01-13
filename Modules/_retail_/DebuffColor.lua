@@ -20,6 +20,7 @@ local function updateColor()
       return
     end
   end
+  Player:BlockHealthBarColorUpdate(false)
   Player.updateFullCallbacks["update_health_bar_color"]()
 end
 
@@ -57,7 +58,7 @@ function module:OnEnable()
     eventFrame = CreateFrame("Frame")
   end
   eventFrame:SetScript("OnEvent", function(_, event, unit, updateInfo)
-    if updateInfo.isFullUpdate then 
+    if updateInfo.isFullUpdate then
       updateAurasFull()
     else
       updateAurasIncremental(updateInfo)

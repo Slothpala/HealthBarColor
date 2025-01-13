@@ -14,43 +14,43 @@ local addon = addonTable.addon
     4 = custom
     5 = class/blizzard green (has no effect when also playing with custom textures and will then just default to 0,1,0)
     6 = blizzard green (has no effect when also playing with custom textures and will then just default to 0,1,0)
-  Fonts: 
+  Fonts:
     name/health colorModes basic:
     1 = class
-    2 = custom 
+    2 = custom
     name/health colorModes extended:
     1 = class/reaction
     2 = reaction
     3 = class/custom
     4 = custom
-    power 
+    power
     1 = custom
     2 = power
 ]]
 
 local defaults = {
-  profile = 
+  profile =
   {
-    ["**"] = 
+    ["**"] =
     {
       --HealthBars
       enabled = false,
       colorMode = 1,
-      customColor = 
+      customColor =
       {
         r = 1,
         g = 1,
         b = 1,
         a = 1,
       },
-      customColorStart = 
+      customColorStart =
       {
         r = 0,
         g = 0,
         b = 0,
         a = 1,
       },
-      customColorEnd = 
+      customColorEnd =
       {
         r = 1,
         g = 1,
@@ -62,7 +62,7 @@ local defaults = {
       nameFontSize = 12,
       nameFontOutlineMode = 2,
       colorModeName = 2,
-      customColorName = 
+      customColorName =
       {
         r = 1,
         g = 1,
@@ -73,7 +73,7 @@ local defaults = {
       healthFontSize = 12,
       healthFontOutlineMode = 2,
       colorModeHealth = 2,
-      customColorHealth = 
+      customColorHealth =
       {
         r = 1,
         g = 1,
@@ -84,7 +84,7 @@ local defaults = {
       powerFontSize = 10,
       powerFontOutlineMode = 2,
       colorModePower = 1,
-      customColorPower = 
+      customColorPower =
       {
         r = 1,
         g = 1,
@@ -92,10 +92,10 @@ local defaults = {
         a = 1,
       },
       alternatePowerFont = "Friz Quadrata TT", -- currently not used will use power font setting
-      alternatePowerFontSize = 10, 
+      alternatePowerFontSize = 10,
       alternatePowerFontOutlineMode = 2, -- currently not used will use power font setting
       colorModeAlternatePower = 1,
-      customColorAlternatePower = 
+      customColorAlternatePower =
       {
         r = 1,
         g = 1,
@@ -104,7 +104,7 @@ local defaults = {
       },
       --Glow
       colorModeGlow = 1,
-      customColorGlow =         
+      customColorGlow =
       {
         r = 1,
         g = 1,
@@ -112,62 +112,43 @@ local defaults = {
         a = 1,
       },
     },
-    HealthBarColor_player = 
+    HealthBarColor_player =
     {
       enabled = true,
     },
-    HealthBarColor_pet = 
+    HealthBarColor_pet =
     {
       enabled = true,
       colorMode = 2,
     },
-    HealthBarColor_target = 
+    HealthBarColor_target =
     {
       enabled = true,
     },
-    HealthBarColor_targettarget = 
+    HealthBarColor_targettarget =
     {
       enabled = true,
     },
-    HealthBarColor_focus = 
+    HealthBarColor_focus =
     {
       enabled = true,
     },
-    HealthBarColor_focustarget = 
+    HealthBarColor_focustarget =
     {
       enabled = true,
     },
-    HealthBarColor_boss1 = 
-    {
-      enabled = true,
-      colorMode = 3,
-      customColorStart = 
-      {
-        r = 1,
-        g = 0,
-        b = 0,
-        a = 1,
-      },
-      customColorEnd = 
-      {
-        r = 1,
-        g = 0,
-        b = 0,
-        a = 1,
-      },
-    },
-    HealthBarColor_boss2 = 
+    HealthBarColor_boss1 =
     {
       enabled = true,
       colorMode = 3,
-      customColorStart = 
+      customColorStart =
       {
         r = 1,
         g = 0,
         b = 0,
         a = 1,
       },
-      customColorEnd = 
+      customColorEnd =
       {
         r = 1,
         g = 0,
@@ -175,18 +156,18 @@ local defaults = {
         a = 1,
       },
     },
-    HealthBarColor_boss3 = 
+    HealthBarColor_boss2 =
     {
       enabled = true,
       colorMode = 3,
-      customColorStart = 
+      customColorStart =
       {
         r = 1,
         g = 0,
         b = 0,
         a = 1,
       },
-      customColorEnd = 
+      customColorEnd =
       {
         r = 1,
         g = 0,
@@ -194,18 +175,18 @@ local defaults = {
         a = 1,
       },
     },
-    HealthBarColor_boss4 = 
+    HealthBarColor_boss3 =
     {
       enabled = true,
       colorMode = 3,
-      customColorStart = 
+      customColorStart =
       {
         r = 1,
         g = 0,
         b = 0,
         a = 1,
       },
-      customColorEnd = 
+      customColorEnd =
       {
         r = 1,
         g = 0,
@@ -213,18 +194,18 @@ local defaults = {
         a = 1,
       },
     },
-    HealthBarColor_boss5 = 
+    HealthBarColor_boss4 =
     {
       enabled = true,
       colorMode = 3,
-      customColorStart = 
+      customColorStart =
       {
         r = 1,
         g = 0,
         b = 0,
         a = 1,
       },
-      customColorEnd = 
+      customColorEnd =
       {
         r = 1,
         g = 0,
@@ -232,40 +213,59 @@ local defaults = {
         a = 1,
       },
     },
-    Font_target = 
+    HealthBarColor_boss5 =
+    {
+      enabled = true,
+      colorMode = 3,
+      customColorStart =
+      {
+        r = 1,
+        g = 0,
+        b = 0,
+        a = 1,
+      },
+      customColorEnd =
+      {
+        r = 1,
+        g = 0,
+        b = 0,
+        a = 1,
+      },
+    },
+    Font_target =
     {
       colorModeName = 4,
       colorModeHealth = 4,
     },
-    Font_targettarget = 
+    Font_targettarget =
     {
       colorModeName = 4,
       colorModeHealth = 4,
     },
-    Font_focus = 
+    Font_focus =
     {
       colorModeName = 4,
       colorModeHealth = 4,
     },
-    Font_focustarget = 
+    Font_focustarget =
     {
       colorModeName = 4,
       colorModeHealth = 4,
     },
-    MinimapButton = 
+    MinimapButton =
     {
       enabled = true,
     },
-    Textures = 
+    Textures =
     {
       healthBarTexture = "Solid",
       excludePowerBar = false,
       powerBarTexture = "Solid",
     },
-    BackgroundTextures = 
+    BackgroundTextures =
     {
       texture = "Solid",
-      color = 
+      color =
       {
         r = 0,
         g = 0,
@@ -273,7 +273,7 @@ local defaults = {
         a = 1,
       }
     },
-    BiggerHealthBars = 
+    BiggerHealthBars =
     {
       enabled = true,
     },
@@ -281,23 +281,23 @@ local defaults = {
     {
       classColors =
       {
-        ["DEATHKNIGHT"] = 
+        ["DEATHKNIGHT"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.77,
             g = 0.12,
             b = 0.23,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.77,
             g = 0.12,
             b = 0.23,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.77,
             g = 0.12,
@@ -305,23 +305,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["DEMONHUNTER"] = 
+        ["DEMONHUNTER"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.64,
             g = 0.19,
             b = 0.79,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.64,
             g = 0.19,
             b = 0.79,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.64,
             g = 0.19,
@@ -329,23 +329,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["DRUID"] = 
+        ["DRUID"] =
         {
-          classColor = 
+          classColor =
           {
             r = 1,
             g = 0.49,
             b = 0.04,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 1,
             g = 0.49,
             b = 0.04,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 1,
             g = 0.49,
@@ -353,23 +353,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["EVOKER"] = 
+        ["EVOKER"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.20,
             g = 0.58,
             b = 0.50,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.20,
             g = 0.58,
             b = 0.50,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.20,
             g = 0.58,
@@ -377,23 +377,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["HUNTER"] = 
+        ["HUNTER"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.67,
             g = 0.83,
             b = 0.45,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.67,
             g = 0.83,
             b = 0.45,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.67,
             g = 0.83,
@@ -401,23 +401,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["MAGE"] = 
+        ["MAGE"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.25,
             g = 0.78,
             b = 0.92,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.25,
             g = 0.78,
             b = 0.92,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.25,
             g = 0.78,
@@ -425,23 +425,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["MONK"] = 
+        ["MONK"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0,
             g = 1,
             b = 0.60 ,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0,
             g = 1,
             b = 0.60 ,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0,
             g = 1,
@@ -449,23 +449,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["PALADIN"] = 
+        ["PALADIN"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.96,
             g = 0.55,
             b = 0.73,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.96,
             g = 0.55,
             b = 0.73,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.96,
             g = 0.55,
@@ -473,23 +473,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["PRIEST"] = 
+        ["PRIEST"] =
         {
-          classColor = 
+          classColor =
           {
             r = 1,
             g = 1,
             b = 1,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 1,
             g = 1,
             b = 1,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 1,
             g = 1,
@@ -497,23 +497,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["ROGUE"] = 
+        ["ROGUE"] =
         {
-          classColor = 
+          classColor =
           {
             r = 1,
             g = 0.96,
             b = 0.41,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 1,
             g = 0.96,
             b = 0.41,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 1,
             g = 0.96,
@@ -521,23 +521,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["SHAMAN"] = 
+        ["SHAMAN"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0,
             g = 0.44,
             b = 0.87,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0,
             g = 0.44,
             b = 0.87,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0,
             g = 0.44,
@@ -545,23 +545,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["WARLOCK"] = 
+        ["WARLOCK"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.53,
             g = 0.53,
             b = 0.93,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.53,
             g = 0.53,
             b = 0.93,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.53,
             g = 0.53,
@@ -569,23 +569,23 @@ local defaults = {
             a = 1,
           },
         },
-        ["WARRIOR"] = 
+        ["WARRIOR"] =
         {
-          classColor = 
+          classColor =
           {
             r = 0.78,
             g = 0.61,
             b = 0.43,
             a = 1,
           },
-          classColorStart = 
+          classColorStart =
           {
             r = 0.78,
             g = 0.61,
             b = 0.43,
             a = 1,
           },
-          classColorEnd = 
+          classColorEnd =
           {
             r = 0.78,
             g = 0.61,
@@ -594,27 +594,27 @@ local defaults = {
           },
         },
       },
-      reactionColors = 
+      reactionColors =
       {
         ["Hostile"] =
         {
           reactionColor =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
           },
           reactionColorStart =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
           },
           reactionColorEnd =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
@@ -624,21 +624,21 @@ local defaults = {
         {
           reactionColor =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
           },
           reactionColorStart =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
           },
           reactionColorEnd =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
@@ -648,48 +648,48 @@ local defaults = {
         {
           reactionColor =
           {
-            r = 0,  
+            r = 0,
             g = 1,
             b = 0,
             a = 1,
           },
           reactionColorStart =
           {
-            r = 0,  
+            r = 0,
             g = 1,
             b = 0,
             a = 1,
           },
           reactionColorEnd =
           {
-            r = 0,  
+            r = 0,
             g = 1,
             b = 0,
             a = 1,
           },
         },
       },
-      powerColors = 
+      powerColors =
       {
         ["MANA"] =
         {
           powerColor =
           {
-            r = 0,  
+            r = 0,
             g = 0,
             b = 1,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0,  
+            r = 0,
             g = 0,
             b = 1,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0,  
+            r = 0,
             g = 0,
             b = 1,
             a = 1,
@@ -699,21 +699,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
           },
           powerColorStart =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 1,  
+            r = 1,
             g = 0,
             b = 0,
             a = 1,
@@ -723,21 +723,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 1,  
+            r = 1,
             g = 0.5,
             b = 0.25,
             a = 1,
           },
           powerColorStart =
           {
-            r = 1,  
+            r = 1,
             g = 0.5,
             b = 0.25,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 1,  
+            r = 1,
             g = 0.5,
             b = 0.25,
             a = 1,
@@ -747,21 +747,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
           },
           powerColorStart =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 1,  
+            r = 1,
             g = 1,
             b = 0,
             a = 1,
@@ -771,21 +771,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 0,  
+            r = 0,
             g = 0.82,
             b = 1,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0,  
+            r = 0,
             g = 0.82,
             b = 1,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0,  
+            r = 0,
             g = 0.82,
             b = 1,
             a = 1,
@@ -795,21 +795,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 0.3,  
+            r = 0.3,
             g = 0.52,
             b = 0.9,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0.3,  
+            r = 0.3,
             g = 0.52,
             b = 0.9,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0.3,  
+            r = 0.3,
             g = 0.52,
             b = 0.9,
             a = 1,
@@ -819,21 +819,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 0,  
+            r = 0,
             g = 0.5,
             b = 1,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0,  
+            r = 0,
             g = 0.5,
             b = 1,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0,  
+            r = 0,
             g = 0.5,
             b = 1,
             a = 1,
@@ -843,21 +843,21 @@ local defaults = {
         {
           powerColor =
           {
-            r = 0.788,  
+            r = 0.788,
             g = 0.259,
             b = 0.992 ,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0.788,  
+            r = 0.788,
             g = 0.259,
             b = 0.992 ,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0.788,  
+            r = 0.788,
             g = 0.259,
             b = 0.992 ,
             a = 1,
@@ -867,28 +867,28 @@ local defaults = {
         {
           powerColor =
           {
-            r = 0.4,  
+            r = 0.4,
             g = 0,
             b = 0.8,
             a = 1,
           },
           powerColorStart =
           {
-            r = 0.4,  
+            r = 0.4,
             g = 0,
             b = 0.8,
             a = 1,
           },
           powerColorEnd =
           {
-            r = 0.4,  
+            r = 0.4,
             g = 0,
             b = 0.8,
             a = 1,
           },
         },
       },
-      debuffColors = 
+      debuffColors =
       {
         ["Curse"] =
         {
@@ -987,9 +987,36 @@ local defaults = {
           },
         },
       },
+      healthColors =
+      {
+        ["HIT_POINT"] =
+        {
+          maxHealth =
+          {
+            r = 0,
+            g = 1,
+            b = 0,
+            a = 1,
+          },
+          midHealth =
+          {
+            r = 1,
+            g = 1,
+            b = 0,
+            a = 1,
+          },
+          lowHealth =
+          {
+            r = 1,
+            g = 0,
+            b = 0,
+            a = 1,
+          },
+        }
+      }
     },
   },
-  global = 
+  global =
   {
 
   },
@@ -1001,7 +1028,7 @@ end
 
 
 function addon:LoadDataBase()
-    self.db = LibStub("AceDB-3.0"):New("HealthBarColorDB", defaults, true) 
+    self.db = LibStub("AceDB-3.0"):New("HealthBarColorDB", defaults, true)
     --db callbacks
     self.db.RegisterCallback(self, "OnProfileChanged", "ReloadConfig")
     self.db.RegisterCallback(self, "OnProfileCopied", "ReloadConfig")
@@ -1042,7 +1069,7 @@ end
 function addon:SetColor(info, r, g, b, a, moduleName, key)
   local moduleName = moduleName or info[#info-1]
   local key = key or info[#info]
-  local color = 
+  local color =
   {
     r = r,
     g = g,
