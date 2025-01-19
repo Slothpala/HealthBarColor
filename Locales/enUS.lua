@@ -11,6 +11,7 @@ L["optionClassReaction"] = "Class / Reaction"
 L["optionReaction"] = "Reaction"
 L["optionClassCustom"] = "Class / Custom"
 L["optionClassBlizzard"] = "Class / Blizzard green"
+L["optionHealthValue"] = "Health Value"
 L["optionPower"] = "Power Type"
 L["hideOption"] = "Hide"
 --Color Tab Labels & Color Picker names
@@ -18,6 +19,7 @@ L["classColors"] = "Class Colors"
 L["reactionColors"] = "Reaction Colors"
 L["powerColors"] = "Power Colors"
 L["debuffColors"] = "Debuff Colors"
+L["healthColors"] = "Health Colors"
 L["gradientStart_name"] = "Gradient Start"
 L["gradientStart_desc"] = "This color is used at the beginning of a status bar."
 L["gradientEnd_name"] = "Gradient End"
@@ -87,6 +89,11 @@ L["WARRIOR"] = "Warrior"
 L["Friendly"] = true
 L["Neutral"] = true
 L["Hostile"] = true
+-- Health
+L["HIT_POINT"] = "Health Value"
+L["maxHealth"] = "Max Health"
+L["midHealth"] = "Medium Health"
+L["lowHealth"] = "Low Health"
 --Modules
 L["enabledModules"] = "Enabled Modules:"
 --Textures module

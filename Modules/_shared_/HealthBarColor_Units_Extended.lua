@@ -6,6 +6,7 @@
   4 = custom
   5 = class/blizzard green (has no effect when also playing with custom textures and will then just default to 0,1,0)
   6 = blizzard green (has no effect when also playing with custom textures and will then just default to 0,1,0)
+  7 = Health Value
 ]]
 local _, addonTable = ...
 local addon = addonTable.addon
@@ -58,10 +59,18 @@ for _, unit in pairs(units) do
           hbc_unit:RestoreHealthBarToDefault()
         end
       end
-    else -- 6
+    elseif dbObj.colorMode == 6 then
       hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
         hbc_unit:RestoreHealthBarToDefault()
       end
+    else -- 7
+      hbc_unit.updateFullCallbacks["update_health_bar_color"] = function()
+        hbc_unit:SetHealthBarToHealthValueColor()
+      end
+      hbc_unit.updateHealthCallbacks["update_health_bar_color"] = function()
+        hbc_unit:SetHealthBarToHealthValueColor()
+      end
+      hbc_unit.eventFrame:RegisterUnitEvent("UNIT_HEALTH", hbc_unit.UnitId)
     end
     if addon:IsModuleEnabled("Textures") then
       addon:ReloadModule("Textures") --Textures will call update_health_bar_color
@@ -75,7 +84,9 @@ for _, unit in pairs(units) do
 
   function module:OnDisable()
     local hbc_unit = addon:GetUnit(unit)
-    hbc_unit.updateFullCallbacks["update_health_bar_color"] = nil
+    hbc_unit.updateFullCallbacks["update_health_bar_color"] = function () end
+    hbc_unit.updateHealthCallbacks["update_health_bar_color"] = nil
     hbc_unit:RestoreHealthBarToDefault()
+    hbc_unit.eventFrame:UnregisterEvent("UNIT_HEALTH")
   end
 end

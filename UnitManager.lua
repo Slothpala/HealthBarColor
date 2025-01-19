@@ -2,7 +2,7 @@ local _, addonTable = ...
 local addon = addonTable.addon
 local globalUnitVariables = addonTable.globalUnitVariables
 
-local hbc_units = 
+local hbc_units =
 {
   ["player"] = false,
   ["target"] = false,
@@ -17,6 +17,27 @@ local hbc_units =
   ["boss5"] = false,
 }
 
+local function EventHandler(self, event, unit, ...)
+  if event == "UNIT_HEALTH" then
+    self.hbc_unit:HealthUpdate()
+  elseif event == "PLAYER_TARGET_CHANGED" then
+    hbc_units["target"]:FullUpdate()
+    hbc_units["targettarget"]:FullUpdate()
+  elseif event == "PLAYER_FOCUS_CHANGED" then
+    hbc_units["focus"]:FullUpdate()
+    hbc_units["focustarget"]:FullUpdate()
+  elseif event == "PLAYER_ENTERING_WORLD" then
+    hbc_units["player"]:FullUpdate()
+    hbc_units["pet"]:PowerUpdate()
+  elseif event == "UNIT_TARGET" then
+    hbc_units[self.hbc_unit.UnitId .. "target"]:FullUpdate()
+  elseif event == "UNIT_POWER_UPDATE" then
+    self.hbc_unit:PowerUpdate()
+  elseif event == "UPDATE_SHAPESHIFT_FORM" then
+    hbc_units["player"]:PowerUpdate()
+  end
+end
+
 --[[
   globalUnitVariables are defined in the game version's init file
   function get called from OnInitialize()
@@ -29,6 +50,23 @@ function addon:CreateAllUnits()
       hbc_unit.healthBarTexture = hbc_unit.healthBar:GetStatusBarTexture()
       hbc_unit.powerBarTexture = hbc_unit.powerBar:GetStatusBarTexture()
       hbc_unit.UnitId = unitName
+      local eventFrame = CreateFrame("Frame")
+      hbc_unit.eventFrame = eventFrame
+      -- Not the cleanest solution but it works.
+      eventFrame.hbc_unit = hbc_unit
+      hbc_unit.eventFrame:SetScript("OnEvent", EventHandler)
+      if unitName == "player" then
+        eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+        eventFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
+        eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+        if addonTable.playerClass == "DRUID" then
+          eventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+        end
+      elseif unitName == "target" or unitName == "focus" then
+        eventFrame:RegisterUnitEvent("UNIT_TARGET", unitName)
+      end
+      eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", unitName)
+      --eventFrame:RegisterUnitEvent("UNIT_HEALTH", unitName) -- Will be registered on demand.
       hbc_unit:FullUpdate()
       hbc_units[unitName] = hbc_unit
       hbc_unit:PrepareHealthBarTexture()
@@ -52,39 +90,3 @@ function addon:GetAllUnits()
   return units
 end
 
-local eventFrame = CreateFrame("Frame")
-eventFrame:SetScript("OnEvent", function(_, event, unit, ...)
-  if event == "PLAYER_TARGET_CHANGED" then
-    hbc_units["target"]:FullUpdate()
-    hbc_units["targettarget"]:FullUpdate()
-  elseif event == "PLAYER_FOCUS_CHANGED" then
-    hbc_units["focus"]:FullUpdate()
-    hbc_units["focustarget"]:FullUpdate()
-  elseif event == "PLAYER_ENTERING_WORLD" then
-    hbc_units["player"]:FullUpdate()
-    hbc_units["pet"]:PowerUpdate()
-  elseif event == "UNIT_TARGET" and unit == "target" then
-    hbc_units["targettarget"]:FullUpdate()
-  elseif event == "UNIT_TARGET" and unit == "focus" then
-    hbc_units["focustarget"]:FullUpdate()
-  elseif event == "UNIT_POWER_UPDATE" then
-    if hbc_units[unit] then
-      hbc_units[unit]:PowerUpdate()
-    end
-  elseif event == "UPDATE_SHAPESHIFT_FORM" then
-    hbc_units["player"]:PowerUpdate()
-  end
-end)
-if addonTable.isVanilla then
-  eventFrame:RegisterUnitEvent("UNIT_TARGET", "target")
-  eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget")
-else
-  eventFrame:RegisterUnitEvent("UNIT_TARGET", "target", "focus")
-  eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", "pet", "target", "targettarget", "focus", "focustarget")
-end
-eventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-eventFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
-eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-if addonTable.playerClass == "DRUID" then
-  eventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-end

@@ -40,6 +40,7 @@ end
 function addon:NewUnit()
   local unit = setmetatable({}, hbc_unit.metatable)
   unit.updateFullCallbacks = {}
+  unit.updateHealthCallbacks = {}
   unit.updatePowerCallbacks = {}
   return unit
 end
@@ -60,6 +61,7 @@ function hbc_unit:GetUnitDataFull()
     self.reaction = "Friendly"
   end
   self:GetUnitPowerData(true)
+  self:GetUnitHealthData()
 end
 
 local powerTypeIndex = addonTable.isClassic and 1 or 0
@@ -79,7 +81,21 @@ function hbc_unit:FullUpdate()
   for _, callback in next, self.updateFullCallbacks do
     callback()
   end
+  -- @TODO Change it so that all updatePowerCallbacks are also in updateFullCallbacks and remove.
   for _, callback in next, self.updatePowerCallbacks do
+    callback()
+  end
+end
+
+function hbc_unit:GetUnitHealthData()
+  self.maxHealth = UnitHealthMax(self.UnitId)
+  self.currentHealth = UnitHealth(self.UnitId, false)
+  self.percentHealth = math.min(1, math.ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
+end
+
+function hbc_unit:HealthUpdate()
+  self:GetUnitHealthData()
+  for _, callback in next, self.updateHealthCallbacks do
     callback()
   end
 end
@@ -138,7 +154,14 @@ function hbc_unit:RestorePowerBarToDefault()
   self.powerBarPreparedForColoring = false
 end
 
+function hbc_unit:BlockHealthBarColorUpdate(state)
+  hbc_unit.colorUpdateBlocked = state
+end
+
 function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
+  if hbc_unit.colorUpdateBlocked then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
@@ -146,6 +169,9 @@ function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
 end
 
 function hbc_unit:SetHealthBarToClassColor()
+  if hbc_unit.colorUpdateBlocked then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
@@ -153,6 +179,7 @@ function hbc_unit:SetHealthBarToClassColor()
 end
 
 function hbc_unit:SetHealthBarToDebuffColor(debuffType)
+  self:BlockHealthBarColorUpdate(true)
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
@@ -160,10 +187,23 @@ function hbc_unit:SetHealthBarToDebuffColor(debuffType)
 end
 
 function hbc_unit:SetHealthBarToReactionColor()
+  if hbc_unit.colorUpdateBlocked then
+    return
+  end
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
   self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.reactionColors[self.reaction].reactionColorStart, addonTable.colorMixins.reactionColors[self.reaction].reactionColorEnd)
+end
+
+function hbc_unit:SetHealthBarToHealthValueColor()
+  if hbc_unit.colorUpdateBlocked then
+    return
+  end
+  if not self.healthBarPreparedForColoring then
+    self:PrepareHealthBarForColoring()
+  end
+  self.healthBarTexture:SetVertexColor(addon:GetHealthValueColor(self.percentHealth))
 end
 
 function hbc_unit:SetPowerBarColor()

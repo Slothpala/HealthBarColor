@@ -49,4 +49,6 @@ function addon:UpdateAddonColors()
     addonTable.colorMixins.debuffColors[debuff].debuffColorStart = CreateColor(get_rgb(colorTable.debuffColorStart))
     addonTable.colorMixins.debuffColors[debuff].debuffColorEnd = CreateColor(get_rgb(colorTable.debuffColorEnd))
   end
+  -- Health
+  addonTable.healthColors = CopyTable(self.db.profile.addonColors.healthColors)
 end
