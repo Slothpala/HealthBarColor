@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.5.0] - 225-01-19
+#### Added
+* All flavors: Added "Health Value" as a color option for unit health bars.
+#### Updated
+* Changed event handling to make better use of RegisterUnitEvent.
+
 ### Version [3.4.2] - 2024-11-23
 #### Updated
 * Vanilla interface version to: 11505
