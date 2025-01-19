@@ -1,11 +1,13 @@
 local _, addonTable = ...
 local addon = addonTable.addon
 
+-- @TODO: Implement caching.
+
 ---Interpolate between two colors.
 ---@param color1 table {r,g,b} the colot to go to.
 ---@param color2 table {r,g,b} the color coming from.
 ---@param t number percentage, normalized to a range of 0 to 1
-local function lerp_color(color1, color2, t)
+local function lerpColor(color1, color2, t)
   local r = color1["r"] * (1 - t) + color2["r"] * t
   local g = color1["g"] * (1 - t) + color2["g"] * t
   local b = color1["b"] * (1 - t) + color2["b"] * t
@@ -25,5 +27,5 @@ function addon:GetHealthValueColor(percentHealth)
     color1 = addonTable.healthColors.HIT_POINT.lowHealth
     color2 = addonTable.healthColors.HIT_POINT.midHealth
   end
-  return lerp_color(color1, color2, t)
+  return lerpColor(color1, color2, t)
 end
