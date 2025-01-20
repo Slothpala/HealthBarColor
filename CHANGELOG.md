@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.5.1] - 225-01-20
+#### Updated
+* Retail interface version to: 110007
+
 ### Version [3.5.0] - 225-01-19
 #### Added
 * All flavors: Added "Health Value" as a color option for unit health bars.
