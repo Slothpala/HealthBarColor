@@ -5,7 +5,9 @@ local addon = addonTable.addon
 --WoW Api
 
 --Lua
-
+local math_min = math.min
+local math_max = math.max
+local math_ceil = math.ceil
 --[[
   colorStart / colorEnd are used for Statusbar gradients while color is used when a gradient is not possible.
   Commented variables are expected to be added to a unit immediately after NewUnit() is called.
@@ -88,9 +90,9 @@ function hbc_unit:FullUpdate()
 end
 
 function hbc_unit:GetUnitHealthData()
-  self.maxHealth = UnitHealthMax(self.UnitId)
-  self.currentHealth = UnitHealth(self.UnitId, false)
-  self.percentHealth = math.min(1, math.ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
+  self.maxHealth = math_max(UnitHealthMax(self.UnitId), 1)
+  self.currentHealth = UnitHealth(self.UnitId, false) or 1
+  self.percentHealth = math_min(1, math_ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
 end
 
 function hbc_unit:HealthUpdate()
