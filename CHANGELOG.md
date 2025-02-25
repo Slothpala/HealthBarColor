@@ -1,4 +1,11 @@
 # **Changelog**
+### Version [3.5.2] - 225-01-25
+#### Updated
+* Retail interface version to: 110100
+
+#### Fixes
+* Added math speed references + added check to ensure hbc_unit.max_health is always > 0.
+
 ### Version [3.5.1] - 225-01-20
 #### Updated
 * Retail interface version to: 110007
