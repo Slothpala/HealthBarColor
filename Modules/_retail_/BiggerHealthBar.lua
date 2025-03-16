@@ -95,7 +95,7 @@ local function onToPlayerArt()
 	mask:SetPoint("TOPLEFT",healthBar,-3,7)
 	mask:SetPoint("BOTTOMRIGHT",healthBar,2,-12)
   mask:Show()
-  healthBar:SetHeight(31)
+  healthBar:SetHeight(30.5)
   -- Font since tww the halth text is anchored to the container.
   local healthTextLeft = addonTable.globalUnitVariables.player.healthTextLeft
   local healthTextMiddle = addonTable.globalUnitVariables.player.healthTextMiddle

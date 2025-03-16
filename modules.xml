@@ -14,7 +14,10 @@
   <Script file="Modules\_retail_\HideClassPowerBar.lua"/>
   <Script file="Modules\_retail_\DebuffColor.lua"/>
   <Script file="Modules\_retail_\Overabsorbs.lua"/>
+  <!--
+  Preparation for a new FrameColor.
   <Script file="Modules\_retail_\FrameColorSkin.lua"/>
+  -->
   <Script file="Modules\_retail_\PartyColor.lua"/>
   <Script file="Modules\_retail_\HideTotemFrame.lua"/>
 </Ui>

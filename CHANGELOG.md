@@ -1,4 +1,11 @@
 # **Changelog**
+### Version [3.5.3] - 225-03-16
+#### Updated
+* Retail: BiggerHealthBar.lua -> changed the size of the healthbar to not overlap the border.
+
+#### Removed
+* Removed the FrameColor.lua skin module in preparation for an upcoming change with FrameColor.
+
 ### Version [3.5.2] - 225-02-25
 #### Updated
 * Retail interface version to: 110100
