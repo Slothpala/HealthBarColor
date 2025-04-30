@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.5.3] - 225-04-30
+#### Updated
+* Retail interface version to: 110105
+
 ### Version [3.5.3] - 225-03-16
 #### Updated
 * Retail: BiggerHealthBar.lua -> changed the size of the healthbar to not overlap the border.
