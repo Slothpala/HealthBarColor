@@ -113,6 +113,18 @@ end
 function module:OnEnable()
   self:HookFunc("PlayerFrame_ToPlayerArt", onToPlayerArt)
   self:HookFunc("PlayerFrame_ToVehicleArt", onToVehicleArt)
+
+  -- This will avoid distorting the vehicle art when entering a vehicle but as a trade off there is no vehicle art :D. Worth it for me.
+  for _, event in pairs({
+    "UNIT_ENTERED_VEHICLE",
+    "UNIT_EXITING_VEHICLE",
+    "UNIT_EXITED_VEHICLE",
+  }) do
+    PlayerFrame:UnregisterEvent(event)
+  end
+  -- This will avoid changing the bar art on druid shape shift.
+  AlternatePowerBar:UnregisterEvent("UNIT_DISPLAYPOWER")
+
   for i=1, #resourceBars do
 		local statusBar = resourceBars[i]
 		statusBar:SetAlpha(0) --hiding it can cause taint
@@ -142,6 +154,16 @@ function module:OnDisable()
     frameFlash:SetTexCoord(0,1,0,1)
 	end
   mask:SetAtlas("UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health-Mask")
+
+  for _, event in pairs({
+    "UNIT_ENTERED_VEHICLE",
+    "UNIT_EXITING_VEHICLE",
+    "UNIT_EXITED_VEHICLE",
+  }) do
+    PlayerFrame:RegisterEvent(event)
+  end
+  AlternatePowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
+
 	healthBar:SetHeight(20)
 	for i=1, #resourceBars do
 		resourceBars[i]:SetAlpha(1)
