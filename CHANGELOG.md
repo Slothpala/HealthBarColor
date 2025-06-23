@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.5.5] - 225-06-23
+#### Updated
+* Retail interface version to: 110107
+
 ### Version [3.5.5] - 225-05-04
 #### Fixes
 * Retail: BiggerHealthBar.lua -> In an attempt to resolve the issue of the distorted player frame texture, I unregistered the following events from the player frame: (UNIT_ENTERED_VEHICLE, UNIT_EXITING_VEHICLE, UNIT_EXITED_VEHICLE, ). The trade-off is that there is no longer a fully functional vehicle UI, but I think it's worth it. If there are any unforseen issues please contact me.
