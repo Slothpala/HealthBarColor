@@ -1,5 +1,5 @@
 # **Changelog**
-### Version [3.5.5] - 225-06-23
+### Version [3.5.6] - 225-06-23
 #### Updated
 * Retail interface version to: 110107
 
