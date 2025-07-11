@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.5.7] - 225-07-11
+#### Added
+* Added Mists support.
+
 ### Version [3.5.6] - 225-06-23
 #### Updated
 * Retail interface version to: 110107
