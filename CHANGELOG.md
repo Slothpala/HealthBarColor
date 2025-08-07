@@ -1,40 +1,44 @@
 # **Changelog**
-### Version [3.5.7] - 225-07-11
+### Version [3.5.8] - 2025-08-07
+#### Updated
+* Retail interface version to: 110200
+
+### Version [3.5.7] - 2025-07-11
 #### Added
 * Added Mists support.
 
-### Version [3.5.6] - 225-06-23
+### Version [3.5.6] - 2025-06-23
 #### Updated
 * Retail interface version to: 110107
 
-### Version [3.5.5] - 225-05-04
+### Version [3.5.5] - 2025-05-04
 #### Fixes
 * Retail: BiggerHealthBar.lua -> In an attempt to resolve the issue of the distorted player frame texture, I unregistered the following events from the player frame: (UNIT_ENTERED_VEHICLE, UNIT_EXITING_VEHICLE, UNIT_EXITED_VEHICLE, ). The trade-off is that there is no longer a fully functional vehicle UI, but I think it's worth it. If there are any unforseen issues please contact me.
 *  Retail: BiggerHealthBar.lua -> In an attempt to resolve the issue of the distorted player frame texture, I unregistered the following event from the AlternatePowerBar (UNIT_DISPLAYPOWER). This should avoid updating the art on the PlayerFrame on shape-shifting (which is hidden anyways). If there are any unforseen issues please contact me.
 
-### Version [3.5.4] - 225-04-30
+### Version [3.5.4] - 2025-04-30
 #### Updated
 * Retail interface version to: 110105
 
-### Version [3.5.3] - 225-03-16
+### Version [3.5.3] - 2025-03-16
 #### Updated
 * Retail: BiggerHealthBar.lua -> changed the size of the healthbar to not overlap the border.
 
 #### Removed
 * Removed the FrameColor.lua skin module in preparation for an upcoming change with FrameColor.
 
-### Version [3.5.2] - 225-02-25
+### Version [3.5.2] - 2025-02-25
 #### Updated
 * Retail interface version to: 110100
 
 #### Fixes
 * Added math speed references + added check to ensure hbc_unit.max_health is always > 0.
 
-### Version [3.5.1] - 225-01-20
+### Version [3.5.1] - 2025-01-20
 #### Updated
 * Retail interface version to: 110007
 
-### Version [3.5.0] - 225-01-19
+### Version [3.5.0] - 2025-01-19
 #### Added
 * All flavors: Added "Health Value" as a color option for unit health bars.
 #### Updated
