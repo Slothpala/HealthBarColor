@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.5.9] - 2025-10-12
+#### Updated
+* Retail interface version to: 110205
+
 ### Version [3.5.8] - 2025-08-07
 #### Updated
 * Retail interface version to: 110200
