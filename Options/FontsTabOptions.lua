@@ -50,6 +50,10 @@ if addonTable.isRetail then
     "Font_boss3",
     "Font_boss4",
     "Font_boss5",
+    "Font_party1",
+    "Font_party2",
+    "Font_party3",
+    "Font_party4",
   }
 elseif addonTable.isWrath then
   fontModules = 
