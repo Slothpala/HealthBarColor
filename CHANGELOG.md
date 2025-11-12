@@ -1,5 +1,5 @@
 # **Changelog**
-### Version [3.6.0] - 2025-11-12
+### Version [3.6.0-Midnight-Beta] - 2025-11-12
 #### Notes
 * Do not use the color option health value for now. I will try to implement a new method once i found more time to dig into the new api.
 
