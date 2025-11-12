@@ -49,7 +49,7 @@ end
 
 --Fetch all the data the addon needs to know about a unit always called before hbc_unit:Update()
 function hbc_unit:GetUnitDataFull()
-  self.isPlayer = UnitIsPlayer(self.UnitId)
+  self.isPlayer = UnitIsPlayer(self.UnitId) or UnitInPartyIsAI(self.UnitId)
   if self.isPlayer then
     self.class = select(2, UnitClass(self.UnitId))
   end
@@ -90,9 +90,9 @@ function hbc_unit:FullUpdate()
 end
 
 function hbc_unit:GetUnitHealthData()
-  self.maxHealth = math_max(UnitHealthMax(self.UnitId), 1)
+  self.maxHealth = UnitHealthMax(self.UnitId) or 1
   self.currentHealth = UnitHealth(self.UnitId, false) or 1
-  self.percentHealth = math_min(1, math_ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
+  self.percentHealth = UnitHealthPercent(self.UnitId)
 end
 
 function hbc_unit:HealthUpdate()

@@ -1,4 +1,13 @@
 # **Changelog**
+### Version [3.6.0] - 2025-11-12
+#### Notes
+* Do not use the color option health value for now. I will try to implement a new method once i found more time to dig into the new api.
+
+#### Updated
+* Disabled Modules DebuffColor and Overabsorb.
+* HBC_Unit.lua -> Health percentage is now determined via the new UnitHealthPercent.
+
+
 ### Version [3.5.8] - 2025-08-07
 #### Updated
 * Retail interface version to: 110200

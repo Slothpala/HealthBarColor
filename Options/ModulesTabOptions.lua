@@ -53,6 +53,7 @@ local options = {
           end,
           width = moduleToggleWidth,
         },
+        --[[
         Overabsorbs =
         {
           order = 3,
@@ -64,6 +65,7 @@ local options = {
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
+        ]]--
         BackgroundTextures =
         {
           order = 4,
