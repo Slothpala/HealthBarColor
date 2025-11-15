@@ -12,6 +12,13 @@ local function get_rgb(colorTable)
   return colorTable.r, colorTable.g, colorTable.b, colorTable.a
 end
 
+if addonTable.isRetail then
+  -- Mdnight Color Curve: https://warcraft.wiki.gg/wiki/ScriptObject_ColorCurve
+  local curve = C_CurveUtil.CreateColorCurve()
+  --curve:SetType(Enum.LuaCurveType.Step) --keep linear interpolation --https://warcraft.wiki.gg/wiki/API_ColorCurve_SetType
+  addonTable.healthColorCurve = curve
+end
+
 function addon:UpdateAddonColors()
   --[[
     Copy is important for profile switching as the old profile no longer exists after that and the colors inside the hbc_units would point to nil
@@ -51,4 +58,10 @@ function addon:UpdateAddonColors()
   end
   -- Health
   addonTable.healthColors = CopyTable(self.db.profile.addonColors.healthColors)
+  if addonTable.isRetail then
+    addonTable.healthColorCurve:ClearPoints()
+    addonTable.healthColorCurve:AddPoint(0.3, CreateColor(get_rgb(addonTable.healthColors.HIT_POINT.lowHealth)))
+    addonTable.healthColorCurve:AddPoint(0.7, CreateColor(get_rgb(addonTable.healthColors.HIT_POINT.midHealth)))
+    addonTable.healthColorCurve:AddPoint(1.0, CreateColor(get_rgb(addonTable.healthColors.HIT_POINT.maxHealth)))
+  end
 end

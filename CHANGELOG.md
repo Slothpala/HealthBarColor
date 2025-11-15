@@ -1,4 +1,14 @@
 # **Changelog**
+### Version [3.6.0-Midnight-Beta2] - 2025-11-15
+#### Notes
+* The health value color option is now working.
+
+#### Updated
+* Updated the method for determining health value colors by using the new ColorCurve API.
+
+#### Removed
+* Removed debuff colors from the color options.
+
 ### Version [3.6.0-Midnight-Beta] - 2025-11-12
 #### Notes
 * Do not use the color option health value for now. I will try to implement a new method once i found more time to dig into the new api.

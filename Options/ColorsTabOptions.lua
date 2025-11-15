@@ -39,7 +39,7 @@ local options =
     },
     debuffColors =
     {
-      hidden = not addonTable.isRetail,
+      hidden = true, --not addonTable.isRetail, maybe there will be an api in the future so just leave it for now.
       order = 4,
       name = L["debuffColors"],
       type = "group",

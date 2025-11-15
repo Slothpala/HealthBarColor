@@ -49,7 +49,10 @@ end
 
 --Fetch all the data the addon needs to know about a unit always called before hbc_unit:Update()
 function hbc_unit:GetUnitDataFull()
-  self.isPlayer = UnitIsPlayer(self.UnitId) or UnitInPartyIsAI(self.UnitId)
+  self.isPlayer = UnitIsPlayer(self.UnitId)
+  if addonTable.isRetail then
+    self.isPlayer = self.isPlayer or UnitInPartyIsAI(self.UnitId)
+  end
   if self.isPlayer then
     self.class = select(2, UnitClass(self.UnitId))
   end
@@ -90,9 +93,11 @@ function hbc_unit:FullUpdate()
 end
 
 function hbc_unit:GetUnitHealthData()
-  self.maxHealth = UnitHealthMax(self.UnitId) or 1
-  self.currentHealth = UnitHealth(self.UnitId, false) or 1
-  self.percentHealth = UnitHealthPercent(self.UnitId)
+  if addonTable.isClassic then
+    self.maxHealth = math_max(UnitHealthMax(self.UnitId), 1)
+    self.currentHealth = UnitHealth(self.UnitId, false) or 1
+    self.percentHealth = math_min(1, math_ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
+  end
 end
 
 function hbc_unit:HealthUpdate()
@@ -205,7 +210,12 @@ function hbc_unit:SetHealthBarToHealthValueColor()
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetVertexColor(addon:GetHealthValueColor(self.percentHealth))
+  if addonTable.isRetail then
+    local color = UnitHealthPercentColor(self.UnitId, addonTable.healthColorCurve)
+    self.healthBarTexture:SetVertexColor(color:GetRGB())
+  else
+    self.healthBarTexture:SetVertexColor(addon:GetHealthValueColor(self.percentHealth))
+  end
 end
 
 function hbc_unit:SetPowerBarColor()
