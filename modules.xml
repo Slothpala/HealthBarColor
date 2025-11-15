@@ -18,4 +18,5 @@
   -->
   <Script file="Modules\_retail_\PartyColor.lua"/>
   <Script file="Modules\_retail_\HideTotemFrame.lua"/>
+  <Script file="Modules\_retail_\PersonalResourceDisplay.lua"/>
 </Ui>

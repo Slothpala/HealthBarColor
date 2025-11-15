@@ -6,6 +6,14 @@ local statusbars = Media:HashTable("statusbar")
 
 local moduleToggleWidth = 0.95
 
+local basic_options =
+{
+  L["optionClass"],
+  L["optionBlizzard"],
+  L["optionCustom"],
+  L["optionHealthValue"],
+}
+
 local options = {
   name = " ",
   handler = addon,
@@ -129,6 +137,17 @@ local options = {
           order = 9,
           name = L["PartyColor_name"],
           desc = L["PartyColor_desc"],
+          type = "toggle",
+          get = "GetModuleStatus",
+          set = "SetModuleStatus",
+          width = moduleToggleWidth,
+        },
+        PersonalResourceDisplay =
+        {
+          hidden = not addonTable.isRetail,
+          order = 10,
+          name = L["PersonalResourceDisplay_name_short"],
+          desc = L["PersonalResourceDisplay_desc"],
           type = "toggle",
           get = "GetModuleStatus",
           set = "SetModuleStatus",
@@ -338,6 +357,81 @@ local options = {
           get = "GetColor",
           set = "SetColor",
           hasAlpha = true,
+        },
+      },
+    },
+    PersonalResourceDisplay =
+    {
+      hidden = function()
+          return not addon:IsModuleEnabled("PersonalResourceDisplay")
+      end,
+      order = 4,
+      name = L["PersonalResourceDisplay_name"],
+      type = "group",
+      inline = true,
+      args =
+      {
+        healthBarTexture =
+        {
+          order = 1.1,
+          type = "select",
+          name = L["Health Bar"],
+          values = statusbars,
+          get = "GetStatus",
+          set = "SetStatus",
+          dialogControl = "LSM30_Statusbar",
+          width = 1.8,
+        },
+        colorMode =
+        {
+          order = 1.2,
+          name = L["colorMode"] ,
+          desc = "",
+          type = "select",
+          values = basic_options,
+          get = "GetStatus",
+          set = "SetStatus",
+        },
+        customColorStart =
+        {
+          order = 1.3,
+          name = L["gradientStart_name"],
+          desc = L["gradientStart_desc"],
+          type = "color",
+          get = "GetColor",
+          set = "SetColor",
+          hidden = function()
+            return addon.db.profile["PersonalResourceDisplay"].colorMode ~= 3 and true
+          end,
+        },
+        customColorEnd =
+        {
+          order = 1.4,
+          name = L["gradientEnd_name"],
+          desc = L["gradientEnd_desc"],
+          type = "color",
+          get = "GetColor",
+          set = "SetColor",
+          hidden = function()
+            return addon.db.profile["PersonalResourceDisplay"].colorMode ~= 3 and true
+          end,
+        },
+        newline1 =
+        {
+          order = 2,
+          type = "description",
+          name = "",
+        },
+        powerBarTexture =
+        {
+          order = 2.1,
+          type = "select",
+          name = L["Power Bar"],
+          values = statusbars,
+          get = "GetStatus",
+          set = "SetStatus",
+          dialogControl = "LSM30_Statusbar",
+          width = 1.8,
         },
       },
     },

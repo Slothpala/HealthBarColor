@@ -277,6 +277,13 @@ local defaults = {
     {
       enabled = true,
     },
+    PersonalResourceDisplay =
+    {
+      enabled = true,
+      healthBarTexture = "Solid",
+      colorMode = 1,
+      powerBarTexture = "Solid",
+    },
     addonColors =
     {
       classColors =

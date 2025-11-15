@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.6.0-Midnight-Beta3] - 2025-11-15
+#### Added
+* Retail: New module: PersonalResourceDisplay, change textures and colors of the personal resource display.
+
 ### Version [3.6.0-Midnight-Beta2] - 2025-11-15
 #### Notes
 * The health value color option is now working.
