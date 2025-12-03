@@ -8,6 +8,32 @@
 ### Version [3.5.9] - 2025-10-12
 #### Updated
 * Retail interface version to: 110205
+### Version [3.6.0-Midnight-Beta4] - 2025-11-15
+#### Fixes
+* PersonalResourceDisplay -> added hooks to reapply colors when the game changes them to default.
+
+### Version [3.6.0-Midnight-Beta3] - 2025-11-15
+#### Added
+* Retail: New module: PersonalResourceDisplay, change textures and colors of the personal resource display.
+
+### Version [3.6.0-Midnight-Beta2] - 2025-11-15
+#### Notes
+* The health value color option is now working.
+
+#### Updated
+* Updated the method for determining health value colors by using the new ColorCurve API.
+
+#### Removed
+* Removed debuff colors from the color options.
+
+### Version [3.6.0-Midnight-Beta] - 2025-11-12
+#### Notes
+* Do not use the color option health value for now. I will try to implement a new method once i found more time to dig into the new api.
+
+#### Updated
+* Disabled Modules DebuffColor and Overabsorb.
+* HBC_Unit.lua -> Health percentage is now determined via the new UnitHealthPercent.
+
 
 ### Version [3.5.8] - 2025-08-07
 #### Updated
