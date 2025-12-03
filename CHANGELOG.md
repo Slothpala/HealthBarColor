@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.6.0] - 2025-10-12
+#### Updated
+* Retail interface version to: 110207
+#### Added
+* Merged "Support for Party Frame in the Font module #24" into master.
+
 ### Version [3.5.9] - 2025-10-12
 #### Updated
 * Retail interface version to: 110205
