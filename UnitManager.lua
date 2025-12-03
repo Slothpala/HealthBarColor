@@ -15,6 +15,10 @@ local hbc_units =
   ["boss3"] = false,
   ["boss4"] = false,
   ["boss5"] = false,
+  ["party1"] = false,
+  ["party2"] = false,
+  ["party3"] = false,
+  ["party4"] = false,
 }
 
 local function EventHandler(self, event, unit, ...)
