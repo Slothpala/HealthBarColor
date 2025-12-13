@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.6.0-Midnight-Beta5] - 2025-12-13
+#### Fixes
+* Adapted to the removal of UnitHealthPercentColor
+
 ### Version [3.6.0-Midnight-Beta4] - 2025-11-15
 #### Fixes
 * PersonalResourceDisplay -> added hooks to reapply colors when the game changes them to default.

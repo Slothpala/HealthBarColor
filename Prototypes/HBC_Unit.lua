@@ -3,7 +3,7 @@ local addon = addonTable.addon
 
 --speed references
 --WoW Api
-
+local UnitHealthPercent = UnitHealthPercent
 --Lua
 local math_min = math.min
 local math_max = math.max
@@ -211,7 +211,7 @@ function hbc_unit:SetHealthBarToHealthValueColor()
     self:PrepareHealthBarForColoring()
   end
   if addonTable.isRetail then
-    local color = UnitHealthPercentColor(self.UnitId, addonTable.healthColorCurve)
+    local color = UnitHealthPercent(self.UnitId, true, addonTable.healthColorCurve)
     self.healthBarTexture:SetVertexColor(color:GetRGB())
   else
     self.healthBarTexture:SetVertexColor(addon:GetHealthValueColor(self.percentHealth))
