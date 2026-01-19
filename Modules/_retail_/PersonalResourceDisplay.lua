@@ -37,7 +37,7 @@ end
 
 -- health value
 local function set_health_bar_to_health_value_color()
-  local color = UnitHealthPercentColor("player", addonTable.healthColorCurve)
+  local color = UnitHealthPercent("player", true, addonTable.healthColorCurve)
   health_texture:SetVertexColor(color:GetRGB())
 end
 

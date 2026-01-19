@@ -211,7 +211,7 @@ function hbc_unit:SetHealthBarToHealthValueColor()
     self:PrepareHealthBarForColoring()
   end
   if addonTable.isRetail then
-    local color = UnitHealthPercentColor(self.UnitId, addonTable.healthColorCurve)
+    local color = UnitHealthPercent(self.UnitId, true, addonTable.healthColorCurve)
     self.healthBarTexture:SetVertexColor(color:GetRGB())
   else
     self.healthBarTexture:SetVertexColor(addon:GetHealthValueColor(self.percentHealth))
