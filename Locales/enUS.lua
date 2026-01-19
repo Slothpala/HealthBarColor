@@ -149,6 +149,10 @@ L["MinimapButton_name"] = "Minimap Button"
 L["MinimapButton_desc"] = "Create a minimap button to access the add-on settings."
 --PartyColor
 L["PartyColor"] = "Party Color"
+--PersonalResourceDisplay
+L["PersonalResourceDisplay_name"] = "Personal Resource Display"
+L["PersonalResourceDisplay_name_short"] = "Pers. Res. Display"
+L["PersonalResourceDisplay_desc"] = "@TODO"
 --Profile Management:
 L["profile_management_group_name"] = "Profile Management"
 L["share_profile_title"] = "Import/Export Profile"
