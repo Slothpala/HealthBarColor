@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.6.1] - 2025-01-21
+#### Updated
+* Retail interface version to: 120000 (This was done withe the previous update but not mentioned in the changelog)
+#### Fixes
+* Retail: Removed the packaging and embedding of LibCanDispel. This was previously used for the DebuffColor module.
+
 ### Version [3.6.0] - 2025-10-12
 #### Updated
 * Retail interface version to: 110207
