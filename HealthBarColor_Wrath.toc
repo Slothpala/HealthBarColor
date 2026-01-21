@@ -2,7 +2,7 @@
 ## Title: HealthBarColor
 ## Author: Slothpala
 ## SavedVariables: HealthBarColorDB
-## OptionalDeps: Ace3, LibDeflate, LibDBIcon-1.0, LibDualSpec-1.0, LibSharedMedia-3.0, LibDDI-1.0, LibCanDispel
+## OptionalDeps: Ace3, LibDeflate, LibDBIcon-1.0, LibDualSpec-1.0, LibSharedMedia-3.0, LibDDI-1.0
 ## X-Curse-Project-ID: 682398
 
 Init_Wrath.lua
