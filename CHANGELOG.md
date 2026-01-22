@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.6.2] - 2025-01-22
+#### Fixes
+* BiggerHealthBar: Added DemonHunterSoulFragmentsBar.
+
 ### Version [3.6.1] - 2025-01-21
 #### Updated
 * Retail interface version to: 120000 (This was done withe the previous update but not mentioned in the changelog)
