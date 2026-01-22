@@ -69,6 +69,7 @@ local resourceBars =
 	InsanityBarFrame,
 	AlternatePowerBar,
 	MonkStaggerBar,
+  DemonHunterSoulFragmentsBar,
 }
 
 local function onToPlayerArt()
