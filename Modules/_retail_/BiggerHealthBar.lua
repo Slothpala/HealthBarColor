@@ -70,6 +70,7 @@ local resourceBars =
 	AlternatePowerBar,
 	MonkStaggerBar,
   DemonHunterSoulFragmentsBar,
+  EvokerEbonMightBar,
 }
 
 local function onToPlayerArt()
