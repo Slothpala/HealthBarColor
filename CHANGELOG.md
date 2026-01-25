@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.6.3] - 2025-01-22
+#### Fixes
+* BiggerHealthBar: Added EvokerEbonMightBar.
+
 ### Version [3.6.2] - 2025-01-22
 #### Fixes
 * BiggerHealthBar: Added DemonHunterSoulFragmentsBar.
