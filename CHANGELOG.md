@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.6.4] - 2025-03-19
+#### Updated
+* Added 120001 as supported interface version.
+#### Fixes
+* BiggerHealthBar: Fixed an anchoring issue with the health text that occurred when the player's max health was reduced.
+
 ### Version [3.6.3] - 2025-01-22
 #### Fixes
 * BiggerHealthBar: Added EvokerEbonMightBar.
