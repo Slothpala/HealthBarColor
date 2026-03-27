@@ -1,19 +1,23 @@
 # **Changelog**
-### Version [3.6.4] - 2025-03-19
+### Version [3.7.0] - 2026-03-27
+#### Added
+* New Module (retail): DebuffHighlight. This is a replacement for the former DebuffColor module, utilizing the Midnight API changes.
+
+### Version [3.6.4] - 2026-03-19
 #### Updated
 * Added 120001 as supported interface version.
 #### Fixes
 * BiggerHealthBar: Fixed an anchoring issue with the health text that occurred when the player's max health was reduced.
 
-### Version [3.6.3] - 2025-01-22
+### Version [3.6.3] - 2026-01-22
 #### Fixes
 * BiggerHealthBar: Added EvokerEbonMightBar.
 
-### Version [3.6.2] - 2025-01-22
+### Version [3.6.2] - 2026-01-22
 #### Fixes
 * BiggerHealthBar: Added DemonHunterSoulFragmentsBar.
 
-### Version [3.6.1] - 2025-01-21
+### Version [3.6.1] - 2026-01-21
 #### Updated
 * Retail interface version to: 120000 (This was done withe the previous update but not mentioned in the changelog)
 #### Fixes

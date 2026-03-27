@@ -185,12 +185,12 @@ function hbc_unit:SetHealthBarToClassColor()
   self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.classColors[self.class].classColorStart, addonTable.colorMixins.classColors[self.class].classColorEnd)
 end
 
-function hbc_unit:SetHealthBarToDebuffColor(debuffType)
+function hbc_unit:SetHealthBarToDebuffColor(color)
   self:BlockHealthBarColorUpdate(true)
   if not self.healthBarPreparedForColoring then
     self:PrepareHealthBarForColoring()
   end
-  self.healthBarTexture:SetGradient("HORIZONTAL", addonTable.colorMixins.debuffColors[debuffType].debuffColorStart, addonTable.colorMixins.debuffColors[debuffType].debuffColorEnd)
+  self.healthBarTexture:SetVertexColor(color:GetRGB())
 end
 
 function hbc_unit:SetHealthBarToReactionColor()

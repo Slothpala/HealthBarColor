@@ -39,7 +39,7 @@ local options =
     },
     debuffColors =
     {
-      hidden = true, --not addonTable.isRetail, maybe there will be an api in the future so just leave it for now.
+      hidden = not addonTable.isRetail,
       order = 4,
       name = L["debuffColors"],
       type = "group",
@@ -413,6 +413,7 @@ local function createDebuffColorEntrys()
         },
         debuffColorStart =
         {
+          hidden = true, -- SetGradient does not accept secret values. So right now there is no use for this.
           order = 2,
           type = "color",
           name = L["gradientStart_name"],
@@ -422,6 +423,7 @@ local function createDebuffColorEntrys()
         },
         debuffColorEnd =
         {
+          hidden = true, -- SetGradient does not accept secret values. So right now there is no use for this.
           order = 3,
           type = "color",
           name = L["gradientEnd_name"],

@@ -136,7 +136,7 @@ L["BackgroundTextures_name"] = "Background Textures"
 L["BackgroundTextures_desc"] = "Create background Textures beneath health bars."
 L["Texture"] = true
 --DebuffColor
-L["DebuffColor_name"] = "DebuffColor"
+L["DebuffColor_name"] = "DebuffHighlight"
 L["DebuffColor_desc"] = "Color the player health bar by debuff color if you are affected by a debuff that you can dispel."
 --Fonts
 L["font_module_name"] = "Fonts"

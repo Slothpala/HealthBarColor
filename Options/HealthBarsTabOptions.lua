@@ -186,6 +186,16 @@ options.args.HealthBarColor_player.args["HideClassPowerBar"] =
   get = "GetModuleStatus",
   set = "SetModuleStatus",
 }
+options.args.HealthBarColor_player.args["DebuffHighlight"] =
+{
+  hidden = not addonTable.isRetail,
+  order = 6,
+  name = L["DebuffColor_name"],
+  desc = L["DebuffColor_desc"],
+  type = "toggle",
+  get = "GetModuleStatus",
+  set = "SetModuleStatus",
+}
 options.args.HealthBarColor_player.args["HideTotemFrame"] =
 {
   hidden = not addonTable.isRetail,

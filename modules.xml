@@ -12,6 +12,7 @@
   <Script file="Modules\_retail_\BiggerHealthBar.lua"/>
   <Script file="Modules\_retail_\Glow.lua"/>
   <Script file="Modules\_retail_\HideClassPowerBar.lua"/>
+  <Script file="Modules\_retail_\DebuffHighlight.lua"/>
   <!--
   Preparation for a new FrameColor.
   <Script file="Modules\_retail_\FrameColorSkin.lua"/>
