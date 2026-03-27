@@ -34,4 +34,4 @@ Options\ProfilesTabOptions.lua
 UnitManager.lua
 Prototypes\HBC_UnitOverrides.lua
 
-modules_Vanilla.xml
+modules_TBC.xml
