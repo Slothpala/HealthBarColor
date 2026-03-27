@@ -2,6 +2,7 @@
 ### Version [3.7.0] - 2026-03-27
 #### Added
 * New Module (retail): DebuffHighlight. This is a replacement for the former DebuffColor module, utilizing the Midnight API changes.
+* TBC: Merged pull request *Add TBC addon files*
 
 ### Version [3.6.4] - 2026-03-19
 #### Updated
