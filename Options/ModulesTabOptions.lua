@@ -122,7 +122,7 @@ local options = {
         },
         BiggerHealthBars =
         {
-          hidden = not addonTable.isClassic,
+          hidden = not addonTable.isClassic or addonTable.isTBC,
           order = 8,
           name = L["BiggerHealthBars_name"],
           desc = L["BiggerHealthBars_desc"],
