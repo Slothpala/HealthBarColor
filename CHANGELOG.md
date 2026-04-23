@@ -2,6 +2,8 @@
 ### Version [3.7.1] - 2026-04-24
 #### Updated
 * Updated the supported interface version to 120005.
+#### Fixes
+* Fonts: Normalized font outline flags for compatibility with the current `SetFont()` API and older saved settings.
 
 ### Version [3.7.0] - 2026-03-27
 #### Added

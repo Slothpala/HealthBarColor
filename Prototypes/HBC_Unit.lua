@@ -244,7 +244,7 @@ end
   ]]
 
 function hbc_unit:SetNameFont(font, fontSize, outlinemode)
-  self.nameText:SetFont(font, fontSize, outlinemode)
+  self.nameText:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
 end
 
 function hbc_unit:SetNameToClassColor()
@@ -273,7 +273,7 @@ function hbc_unit:SetHealthTextFont(font, fontSize, outlinemode)
       self.healthTextRight
     }
   ) do
-    text:SetFont(font, fontSize, outlinemode)
+    text:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
   end
 end
 
@@ -327,7 +327,7 @@ function hbc_unit:SetPowerTextFont(font, fontSize, outlinemode)
       self.powerBarTextRight
     }
   ) do
-    text:SetFont(font, fontSize, outlinemode)
+    text:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
   end
 end
 
@@ -395,7 +395,7 @@ function hbc_unit:SetAlternatePowerTextFont(font, fontSize, outlinemode)
       self.alternatePowerBarTextRight
     }
   ) do
-    text:SetFont(font, fontSize, outlinemode)
+    text:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
   end
 end
 
