@@ -49,12 +49,12 @@ for _, unit in pairs(units) do
         --TODO check from time to time if still needed.
         Hacky method to fix a problem where the _G.PlayerName would simply ignore SetFont on first game start (before reloading or logging in on another character), even on repeat calls.
       ]]
-      local success = hbc_unit.nameText:SetFont(font, fontSize, outlinemode)
+      local success = hbc_unit.nameText:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
       local i = 0
       while ( not success ) and ( i < 10 ) do
         i = i + 1
         font = Media:Fetch("font", "")
-        success = hbc_unit.nameText:SetFont(font, fontSize, outlinemode)
+        success = hbc_unit.nameText:SetFont(font, fontSize, addon:NormalizeFontFlags(outlinemode))
       end
     else
       hbc_unit:SetNameFont(font, fontSize, outlinemode)
