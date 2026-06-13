@@ -256,6 +256,17 @@ local defaults = {
     {
       enabled = true,
     },
+    Overabsorb =
+    {
+      enabled = true,
+      color =
+      {
+        r = 1,
+        g = 1,
+        b = 1,
+        a = 0.5,
+      }
+    },
     Textures =
     {
       healthBarTexture = "Solid",

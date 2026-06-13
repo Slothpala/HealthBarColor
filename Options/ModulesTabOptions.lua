@@ -61,19 +61,17 @@ local options = {
           end,
           width = moduleToggleWidth,
         },
-        --[[
-        Overabsorbs =
+        Overabsorb =
         {
           order = 3,
           hidden = not addonTable.isRetail,
-          name = L["Overabsorbs_name"],
-          desc = L["Overabsorbs_desc"],
+          name = L["Overabsorb_name"],
+          desc = L["Overabsorb_desc"],
           type = "toggle",
           get = "GetModuleStatus",
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
-        ]]--
         BackgroundTextures =
         {
           order = 4,

@@ -141,9 +141,9 @@ L["DebuffColor_desc"] = "Color the player health bar by debuff color if you are 
 --Fonts
 L["font_module_name"] = "Fonts"
 L["font_module_desc"] = "Use custom SharedMedia fonts and customize font size and color."
---Overabsorbs
-L["Overabsorbs_name"] = "Overabsorbs"
-L["Overabsorbs_desc"] = "Reanchor the absorb bar to fill from right to left if an absorb shield above max life is present."
+--Overabsorb
+L["Overabsorb_name"] = "Overabsorb"
+L["Overabsorb_desc"] = "Show absorbs that exceed maximum health on a separate bar above the health bar.\n|cffff7f00Caution: Due to Midnight API restrictions, the bar is not perfectly proportional when on low health with a large overabsorb.|r"
 --MinimapButton
 L["MinimapButton_name"] = "Minimap Button"
 L["MinimapButton_desc"] = "Create a minimap button to access the add-on settings."
@@ -152,7 +152,7 @@ L["PartyColor"] = "Party Color"
 --PersonalResourceDisplay
 L["PersonalResourceDisplay_name"] = "Personal Resource Display"
 L["PersonalResourceDisplay_name_short"] = "Pers. Res. Display"
-L["PersonalResourceDisplay_desc"] = "@TODO"
+L["PersonalResourceDisplay_desc"] = "Enable texture and color options for the personal resource display."
 --Profile Management:
 L["profile_management_group_name"] = "Profile Management"
 L["share_profile_title"] = "Import/Export Profile"

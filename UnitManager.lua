@@ -24,6 +24,8 @@ local hbc_units =
 local function EventHandler(self, event, unit, ...)
   if event == "UNIT_HEALTH" then
     self.hbc_unit:HealthUpdate()
+  elseif event == "UNIT_ABSORB_AMOUNT_CHANGED" then
+    self.hbc_unit:HealthUpdate()
   elseif event == "PLAYER_TARGET_CHANGED" then
     hbc_units["target"]:FullUpdate()
     hbc_units["targettarget"]:FullUpdate()
@@ -71,6 +73,7 @@ function addon:CreateAllUnits()
       end
       eventFrame:RegisterUnitEvent("UNIT_POWER_UPDATE", unitName)
       --eventFrame:RegisterUnitEvent("UNIT_HEALTH", unitName) -- Will be registered on demand.
+      --eventFrame:RegisterUnitEvent("UNIT_ABSORB_AMOUNT_CHANGED", unitName) -- Will be registered on demand.
       hbc_unit:FullUpdate()
       hbc_units[unitName] = hbc_unit
       hbc_unit:PrepareHealthBarTexture()

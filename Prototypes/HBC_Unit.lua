@@ -97,6 +97,10 @@ function hbc_unit:GetUnitHealthData()
     self.maxHealth = math_max(UnitHealthMax(self.UnitId), 1)
     self.currentHealth = UnitHealth(self.UnitId, false) or 1
     self.percentHealth = math_min(1, math_ceil((self.currentHealth / self.maxHealth) * 100) / 100) -- reduce to 2 decimals.
+  elseif addonTable.isRetail then
+    self.maxHealth = UnitHealthMax(self.UnitId) -- secretvalue
+    self.currentHealth = UnitHealth(self.UnitId) -- secretvalue
+    self.missingHealth = UnitHealthMissing(self.UnitId) -- secretvalue
   end
 end
 
