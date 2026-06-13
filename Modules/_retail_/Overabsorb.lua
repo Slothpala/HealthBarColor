@@ -15,13 +15,10 @@ local overAbsorbBarColor =
   r = 1,
   g = 1,
   b = 1,
-  a = 0.5,
+  a = 1,
 }
 
 function module:OnEnable()
-  local color = CopyTable(addon.db.profile.Overabsorb.color)
-  overAbsorbBarColor = color
-
   for _, unit in pairs(applicableUnits) do
     local hbc_unit = addon:GetUnit(unit)
     self:SetupOverabsorbBar(hbc_unit)
