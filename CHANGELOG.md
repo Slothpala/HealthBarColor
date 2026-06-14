@@ -1,4 +1,9 @@
 # **Changelog**
+### Version [3.8.0] - 2026-06-14
+#### Added
+* New Module (retail): Overabsorb.lua. Rewritten version of the old Overabsorb module, adapted to the Midnight API changes.
+* Added zhCN (Simplified Chinese) localization (thanks @MOSS099).
+
 ### Version [3.7.1] - 2026-04-24
 #### Updated
 * Updated the supported interface version to 120005.
