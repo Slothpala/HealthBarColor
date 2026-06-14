@@ -258,7 +258,7 @@ local defaults = {
     },
     Overabsorb =
     {
-      enabled = true,
+      enabled = false,
     },
     Textures =
     {
