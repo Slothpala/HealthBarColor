@@ -140,6 +140,8 @@ local options = {
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
+        --[[
+        @TODO Implement for new PersonalResourceDisplay.
         PersonalResourceDisplay =
         {
           hidden = not addonTable.isRetail,
@@ -151,6 +153,7 @@ local options = {
           set = "SetModuleStatus",
           width = moduleToggleWidth,
         },
+        --]]
         MinimapButton =
         {
           order = 20,
@@ -358,6 +361,7 @@ local options = {
         },
       },
     },
+    --[[
     PersonalResourceDisplay =
     {
       hidden = function()
@@ -433,6 +437,7 @@ local options = {
         },
       },
     },
+    --]]
   },
 }
 

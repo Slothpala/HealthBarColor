@@ -3,6 +3,8 @@
 #### Added
 * New Module (retail): Overabsorb.lua. Rewritten version of the old Overabsorb module, adapted to the Midnight API changes.
 * Added zhCN (Simplified Chinese) localization (thanks @MOSS099).
+#### Removed
+* Temporarily disabled the PersonalResourceDisplay module.
 
 ### Version [3.7.1] - 2026-04-24
 #### Updated
