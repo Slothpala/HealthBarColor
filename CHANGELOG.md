@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.8.1] - 2026-08-09
+#### Updated
+* Updated the supported interface version to 120100.
+
 ### Version [3.8.0] - 2026-06-14
 #### Added
 * New Module (retail): Overabsorb.lua. Rewritten version of the old Overabsorb module, adapted to the Midnight API changes.
