@@ -179,7 +179,17 @@ function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
   self.healthBarTexture:SetGradient("HORIZONTAL", startColor, endColor)
 end
 
+-- 12.1: UnitClass/UnitClassBase return secret values when the unit's identity
+-- is secret; such strings must never be used as table keys.
+local isSecret = issecretvalue or function() return false end
+
 function hbc_unit:SetHealthBarToClassColor()
+  local class = self.class
+  if class == nil or isSecret(class) then
+    -- fall back to reaction coloring instead of erroring out
+    self:SetHealthBarToReactionColor()
+    return
+  end
   if hbc_unit.colorUpdateBlocked then
     return
   end
