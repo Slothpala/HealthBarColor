@@ -1,4 +1,10 @@
 # **Changelog**
+### Version [3.8.2] - 2026-08-14
+#### Updated
+* Retail: Fixed an issue related to the Unit* api changes that came with 12.1
+#### Removed
+* Retail: Removed the DebuffHighlight module as it is no longe functional after the recent UNIT_AURA changes.
+
 ### Version [3.8.1] - 2026-08-09
 #### Updated
 * Updated the supported interface version to 120100.
