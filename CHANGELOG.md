@@ -1,4 +1,12 @@
 # **Changelog**
+### Version [3.8.3] - 2026-08-25
+#### Note
+* I will recreate the addon soon with the secret system in mind.
+
+#### Fixes
+* Retail: Fixed errors caused by secret class tokens (12.1). `UnitClass` can now return a secret value, which must not be used as a table key. Affected units no longer store a class and fall back to reaction coloring for the health bar, name, health text, power text and glow.
+* Retail: PartyColor now skips party members whose class token is secret instead of erroring out.
+
 ### Version [3.8.2] - 2026-08-14
 #### Updated
 * Retail: Fixed an issue related to the Unit* api changes that came with 12.1

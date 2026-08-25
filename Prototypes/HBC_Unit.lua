@@ -8,6 +8,11 @@ local addon = addonTable.addon
 local math_min = math.min
 local math_max = math.max
 local math_ceil = math.ceil
+
+-- 12.1: UnitClass returns a secret string when the unit's identity is secret.
+-- Secret values must never be used as table keys, so the class token is only
+-- kept when it is safe to index the color tables with it.
+local isSecret = issecretvalue or function() return false end
 --[[
   colorStart / colorEnd are used for Statusbar gradients while color is used when a gradient is not possible.
   Commented variables are expected to be added to a unit immediately after NewUnit() is called.
@@ -53,9 +58,9 @@ function hbc_unit:GetUnitDataFull()
   if addonTable.isRetail then
     self.isPlayer = self.isPlayer or UnitInPartyIsAI(self.UnitId)
   end
-  if self.isPlayer then
-    self.class = select(2, UnitClass(self.UnitId))
-  end
+  local class = self.isPlayer and select(2, UnitClass(self.UnitId)) or nil
+  -- false instead of nil, otherwise the metatable's default class would be read back.
+  self.class = (class ~= nil and not isSecret(class)) and class or false
   -- reaction
   local reaction = UnitReaction("player", self.UnitId)
   if reaction == 2 then
@@ -179,14 +184,8 @@ function hbc_unit:SetHealthBarToCustomColor(startColor, endColor)
   self.healthBarTexture:SetGradient("HORIZONTAL", startColor, endColor)
 end
 
--- 12.1: UnitClass/UnitClassBase return secret values when the unit's identity
--- is secret; such strings must never be used as table keys.
-local isSecret = issecretvalue or function() return false end
-
 function hbc_unit:SetHealthBarToClassColor()
-  local class = self.class
-  if class == nil or isSecret(class) then
-    -- fall back to reaction coloring instead of erroring out
+  if not self.class then
     self:SetHealthBarToReactionColor()
     return
   end
@@ -262,6 +261,10 @@ function hbc_unit:SetNameFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetNameToClassColor()
+  if not self.class then
+    self:SetNameToReactionColor()
+    return
+  end
   local color = addonTable.classColors[self.class].classColor
   self.nameText:SetTextColor(color.r, color.g, color.b, color.a)
 end
@@ -292,6 +295,10 @@ function hbc_unit:SetHealthTextFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetHealthTextToClassColor()
+  if not self.class then
+    self:SetHealthTextToReactionColor()
+    return
+  end
   local color = addonTable.classColors[self.class].classColor
   for _, text in pairs(
     {
@@ -346,6 +353,10 @@ function hbc_unit:SetPowerTextFont(font, fontSize, outlinemode)
 end
 
 function hbc_unit:SetPowerTextToClassColor()
+  if not self.class then
+    self:SetPowerTextToReactionColor()
+    return
+  end
   local color = addonTable.classColors[self.class].classColor
   for _, text in pairs(
     {
@@ -439,6 +450,10 @@ end
 
 --Glow
 function hbc_unit:SetGlowToClassColor()
+  if not self.class then
+    self:SetGlowToReactionColor()
+    return
+  end
   local color = addonTable.classColors[self.class].classColor
   self.glowTexture:SetVertexColor(color.r, color.g, color.b, color.a)
 end

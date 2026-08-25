@@ -5,6 +5,9 @@ local UnitClass = UnitClass
 local CreateColor = CreateColor
 local MAX_PARTY_MEMBERS = MAX_PARTY_MEMBERS
 
+-- 12.1: a secret class token must never be used as a table key.
+local isSecret = issecretvalue or function() return false end
+
 local module = addon:NewModule("PartyColor")
 Mixin(module, addonTable.hooks)
 
@@ -12,7 +15,7 @@ function module:OnEnable()
   local function on_to_player_art(PartyMemberFrame)
     local class = select(2, UnitClass(PartyMemberFrame.unit))
 
-    if not class then
+    if not class or isSecret(class) then
       return
     end
 
