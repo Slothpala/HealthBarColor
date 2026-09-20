@@ -1,4 +1,7 @@
 # **Changelog**
+### Version [3.8.4] - 2026-09-20
+* Added support for "Forver"/16001
+
 ### Version [3.8.3] - 2026-08-25
 #### Note
 * I will recreate the addon soon with the secret system in mind.
