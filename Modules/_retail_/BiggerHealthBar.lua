@@ -130,13 +130,12 @@ function module:OnEnable()
   -- This will avoid changing the bar art on druid shape shift.
   AlternatePowerBar:UnregisterEvent("UNIT_DISPLAYPOWER")
 
-  for i=1, #resourceBars do
-		local statusBar = resourceBars[i]
-		statusBar:SetAlpha(0) --hiding it can cause taint
-		self:HookScript(statusBar, "OnShow", function()
-			statusBar:SetAlpha(0)
-		end)
-	end
+  for _, statusBar in pairs(resourceBars) do
+    statusBar:SetAlpha(0) --hiding it can cause taint
+    self:HookScript(statusBar, "OnShow", function()
+      statusBar:SetAlpha(0)
+    end)
+  end
   onToPlayerArt()
 end
 
@@ -170,8 +169,8 @@ function module:OnDisable()
   AlternatePowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
 
 	healthBar:SetHeight(20)
-	for i=1, #resourceBars do
-		resourceBars[i]:SetAlpha(1)
-	end
+  for _, statusBar in pairs(resourceBars) do
+    statusBar:SetAlpha(1)
+  end
 end
 
