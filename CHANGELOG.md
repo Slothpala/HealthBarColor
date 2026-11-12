@@ -1,10 +1,18 @@
 # **Changelog**
+### Version [3.8.6] - 2026-11-12
+#### Updated
+* Added seperate init for Forever
+
+#### Removed
+* Temporarily removed BiggerHealthBar from forever until a new module replaces it.
+
 ### Version [3.8.5] - 2026-11-01
 #### Updated
 * Updated the supported interface version to 120105.
 
 
 ### Version [3.8.4] - 2026-09-20
+#### Added
 * Added support for "Forver"/16001
 
 ### Version [3.8.3] - 2026-08-25

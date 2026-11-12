@@ -168,7 +168,7 @@ end
 --Player
 options.args.HealthBarColor_player.args["BiggerHealthBar"] =
 {
-  hidden = not addonTable.isRetail,
+  hidden = not addonTable.isRetail or addonTable.isCamelot,
   order = 4,
   name = L["BiggerHealthBar_name"],
   desc = L["BiggerHealthBar_desc"],
