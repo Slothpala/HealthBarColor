@@ -1,4 +1,8 @@
 # **Changelog**
+### Version [3.8.7] - 2026-11-12
+#### Fixes
+* Removed debug print.
+
 ### Version [3.8.6] - 2026-11-12
 #### Updated
 * Added seperate init for Forever

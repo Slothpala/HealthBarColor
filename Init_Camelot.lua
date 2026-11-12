@@ -1,5 +1,4 @@
 local _, addonTable = ...
-print("Is camelot")
 addonTable.playerClass = select(2, UnitClass("player"))
 
 addonTable.isRetail = true
